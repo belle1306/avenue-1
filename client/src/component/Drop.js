@@ -86,6 +86,8 @@ function Drop(props) {
         <img
           src={file.preview}
           style={img}
+          alt="description"
+          //CHANGE THIS LATER
         />
       </div>
     </div>
