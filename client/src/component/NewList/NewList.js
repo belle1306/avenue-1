@@ -27,8 +27,8 @@ const newlist = (props) => {
                 <input type="text"/>
                 Owned by
                 {ownerSummary}
-                <button>Add</button>
-                <button>Cancel</button>
+                <button onClick = {props.add}>Add</button>
+                <button onClick = {props.cancel}>Cancel</button>
         </div>
     );
 };

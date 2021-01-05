@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Drop from "./component/Drop";
-import Modal from "./component/Modal/Modal";
+import Modal from "./component/UI/Modal/Modal";
 import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
 
@@ -49,17 +49,15 @@ class App extends React.Component {
     alert("work saved! logged out");
   }
 
-  editingHandler() {
-    this.setState({
-      editing: true
-    });
-  }
-
   addingHandler() {
     this.getOwners();
-    this.setState({
-      adding: true
-    });
+    this.state.adding ? this.setState({adding: false}) : this.setState({adding: true});
+  }
+
+  editingHandler() {
+    //this.state.editing ? this.setState({editing: false}) : 
+    this.setState({editing: true})
+    console.log("this is the state", this.state.editing)
   }
 
   render() {
@@ -72,7 +70,10 @@ class App extends React.Component {
             For Testing: {this.state.properties.length}
             <button onClick={() => this.addingHandler()}>New</button>
             <Modal show={this.state.adding}>
-              <NewList owners={this.state.owners} />
+              <NewList 
+                owners={this.state.owners} 
+                cancel={this.addingHandler}
+              />
             </Modal>
           </div>
 
