@@ -62,7 +62,7 @@ const rejectStyle = {
   borderColor: '#ff1744'
 };
 
-function Drop(props) {
+const Drop = (props) => {
   const [files, setFiles] = useState([]);
   const {
     getRootProps,

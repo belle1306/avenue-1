@@ -1,21 +1,30 @@
 import React from "react";
 import "./App.css";
 import Drop from "./component/Drop";
+import Modal from "./component/Modal/Modal";
+import List from "./component/List/List";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: "",
       properties: []
     };
   }
 
-  updateInput(e) {
-    e.preventDefault();
-    this.setState({
-      input: e.target.value
-    });
+  //mount all properties when page loads
+  componentDidMount() {
+    fetch("/propertymgmt/properties")
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        this.setState({
+          properties: json
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -24,8 +33,30 @@ class App extends React.Component {
           <span>Hello, user 1</span>
           <button>Log out</button>
           <h1>Property</h1>
-          <button>New</button>
+          <div>
+            For Testing: {this.state.properties.length}
+            <button>New</button>
+          </div>
+
+          <div>
+            {this.state.properties.map(p => {
+              return (
+                <ul key={p.id}>
+                    <li> Address: {p.property_address} </li>
+                    <li> Postcode: {p.property_postcode} </li>
+                    <li> Bedroom: {p.property_bedroom} </li>
+                    <li> Bathroom: {p.property_bathroom} </li>
+                    <li> Carpark: {p.property_carpark} </li>
+                    <li> Furnishing: {p.property_furnish} </li>
+                    <li> Photo:</li>
+                </ul>
+              )
+            })}
+          </div>
           <button>Edit</button>
+          <Modal>
+            <List properties={this.state.properties} />
+          </Modal>
           <button>x</button>
           <Drop />
       </div>
