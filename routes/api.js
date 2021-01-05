@@ -22,20 +22,10 @@ router.get("/propertymgmt/:table", (req, res) => {
 // POST new property after user has a choice to select which owner
 // populate owner table with fake data
 router.post("/propertymgmt/properties", (req, res) => {
-  // console.log("---------1-------", req.body.property_address)
-  // console.log("----------2------", JSON.stringify(req.body.property_address))
-  // console.log("----------3------", JSON.stringify(req.body))
-  // const thbody = JSON.stringify(req.body);
-  // console.log(thbody.property_address);
-  const newAddress = req.body.property_address;
-  const newOwnerId = req.body.owner_id;
-  const newPostcode = req.body.property_postcode;
-  const newBedroom = req.body.property_bedroom;
-  const newBathroom = req.body.property_bathroom;
-  const newCarpark = req.body.property_carpark;
-  const newFurnish = req.body.property_furnish;
-
-  db(`INSERT INTO properties(property_address, owner_id, property_postcode, property_bedroom, property_bathroom, property_carpark, property_furnish) VALUES(${JSON.stringify(newAddress)},${JSON.stringify(newOwnerId)},${JSON.stringify(newPostcode)},${JSON.stringify(newBedroom)},${JSON.stringify(newBathroom)}, ${JSON.stringify(newCarpark)}, ${JSON.stringify(newFurnish)});`)
+  const table = req.params.table;
+  db(
+    `INSERT INTO ${table}(property_address,property_postcode) VALUES(req.body.address,req.body.postcode);`
+  )
     .then(results => {
       res.send(results);
       res.send("posted new property");
