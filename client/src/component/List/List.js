@@ -17,11 +17,11 @@ const List = (props) => {
     
     return (
         <div>
-             <h3>Summary</h3>
+             <h5>Editing...</h5>
              <div>
                  {propertySummary}
              </div>
-             <p>Submit</p>
+             <button>Save</button>
         </div>
     );
 };

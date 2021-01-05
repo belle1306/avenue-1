@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      properties: []
+      properties: [],
+      editing: false
     };
   }
 
@@ -25,6 +26,12 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  editingHandler() {
+    this.setState({
+      editing: true
+    });
   }
 
   render() {
@@ -53,8 +60,8 @@ class App extends React.Component {
               )
             })}
           </div>
-          <button>Edit</button>
-          <Modal>
+          <button onClick={() => this.editingHandler()}>Edit</button>
+          <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
           </Modal>
           <button>x</button>
