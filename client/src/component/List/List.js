@@ -1,6 +1,6 @@
 import React from "react";
 
-const List = (props) => {
+const list = (props) => {
     const propertySummary = props.properties.map(p => {
         return (
             <div key={p.id}>
@@ -23,13 +23,13 @@ const List = (props) => {
     return (
         <div>
             <h5>Editing...</h5>
-            
             {propertySummary}
-            
             <button>Save</button>
+            <button>Cancel</button>
         </div>
     );
 };
 //MOVE BUTTON TO APP; WHEN CLICK SAVE, SEND PUT REQ to API
+//CANCEL close modal;
 
-export default List;
+export default list;

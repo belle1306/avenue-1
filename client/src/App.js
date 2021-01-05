@@ -28,6 +28,10 @@ class App extends React.Component {
       });
   }
 
+  logoutHandler() {
+    alert("work saved! logged out");
+  }
+
   editingHandler() {
     this.setState({
       editing: true
@@ -38,7 +42,7 @@ class App extends React.Component {
     return (
       <div>
           <span>Hello, user 1</span>
-          <button>Log out</button>
+          <button onClick={() => this.logoutHandler()}>Log out</button>
           <h1>Property</h1>
           <div>
             For Testing: {this.state.properties.length}
@@ -60,12 +64,14 @@ class App extends React.Component {
               )
             })}
           </div>
+
           <button onClick={() => this.editingHandler()}>Edit</button>
+          <button>Delete</button>
           <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
           </Modal>
-          <button>x</button>
           <Drop />
+          
       </div>
     )}
 }
