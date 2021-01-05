@@ -18,15 +18,16 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
  
-  let sql = "DROP database IF exists `propertymgmt`;" 
+  //CHANGE SQL variable
+  let sql = "DROP database IF exists `propertymgmt`;"
   + "CREATE database propertymgmt;" 
   + "USE propertymgmt;" 
   + "CREATE TABLE `properties` (`property_id` INT NOT NULL AUTO_INCREMENT,`property_address` varchar(50),`tenant_id` INT NOT NULL,`owner_id` INT NOT NULL,`property_postcode` varchar(5),`property_bedroom` INT,`property_bathroom` INT,`property_carpark` INT,`property_furnish` BINARY NOT NULL,`property_photo` blob,PRIMARY KEY (`property_id`));"
-  + "CREATE TABLE `tenants` (`tenant_id` INT NOT NULL AUTO_INCREMENT,`tenant_firstName` varchar(50),`tenant_lastName` varchar(50),`rent` INT,`leaseStart` DATE,`leaseEnd` DATE,`leaseLength` INT,`agreement` longblob,`numOccupant` INT,PRIMARY KEY (`tenant_id`));"
-  + "CREATE TABLE `owners` (`owner_id` INT NOT NULL AUTO_INCREMENT,`owner_firstName` varchar(50),`owner_lastName` varchar(50),`owner_mobile` varchar(13),`owner_email` TEXT,PRIMARY KEY (`owner_id`));"
+  + "CREATE TABLE `tenants` (`tenant_id` INT,`tenant_firstName` varchar(50),`tenant_lastName` varchar(50),`rent` INT,`leaseStart` DATE,`leaseEnd` DATE,`leaseLength` INT,`agreement` longblob,`numOccupant` INT,PRIMARY KEY (`tenant_id`));"
+  + "CREATE TABLE `owners` (`owner_id` INT,`owner_firstName` varchar(50),`owner_lastName` varchar(50),`owner_mobile` varchar(13),`owner_email` TEXT,PRIMARY KEY (`owner_id`));"
   + "ALTER TABLE `properties` ADD CONSTRAINT `properties_fk0` FOREIGN KEY (`tenant_id`) REFERENCES `tenants`(`tenant_id`);"
   + "ALTER TABLE `properties` ADD CONSTRAINT `properties_fk1` FOREIGN KEY (`owner_id`) REFERENCES `owners`(`owner_id`);"
-
+brb 
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Tables for `propertymgmt` database were successfully created!");

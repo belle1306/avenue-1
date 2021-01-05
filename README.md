@@ -30,7 +30,7 @@ DB_NAME=propertymgmt
 DB_PASS=YOUR_PASSWORD
 ```
 
-Replace `YOUR_PASSWORD` with a password you can remember.
+Replace `YOUR_PASSWORD` with a password that you can remember.
 
 Go to MySQL CLI and type the password that you have created.
 
@@ -38,7 +38,7 @@ Go to MySQL CLI and type the password that you have created.
 
 In the MySQL CLI, type `create database propertymgmt;` to create a database in MySQL.
 
-Open a **new** terminal window and run `node model/database.js` in avenue folder. This will create a table called 'properties' in your database.
+Open a **new** terminal window and run `node model/database.js` in avenue root folder. This will create a table called 'properties' in your database.
 
 ### Install Dependencies
 
@@ -50,10 +50,10 @@ Run `yarn` in avenue folder to install dependencies related to Express.
 
 - Run `yarn start` in avenue directory to start the Express server on port 5000.
 
-- `cd client` and run `yarn start` to start client server in development mode on port 8080.
+- `cd client` and run `yarn start` to start client server in development mode on port 3000.
 
 - Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. Yay!
-- You can test your client app in `http://localhost:8080`
+- You can test your client app in `http://localhost:3000`
 - You can test your API in `http://localhost:5000/api`
 
 ## Features
