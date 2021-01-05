@@ -3,13 +3,16 @@ import "./App.css";
 import Drop from "./component/Drop";
 import Modal from "./component/Modal/Modal";
 import List from "./component/List/List";
+import NewList from "./component/NewList/NewList";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       properties: [],
-      editing: false
+      owners: [],
+      editing: false,
+      adding: false
     };
   }
 
@@ -28,6 +31,20 @@ class App extends React.Component {
       });
   }
 
+  getOwners() {
+    fetch("/propertymgmt/owners")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          owners: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   logoutHandler() {
     alert("work saved! logged out");
   }
@@ -35,6 +52,13 @@ class App extends React.Component {
   editingHandler() {
     this.setState({
       editing: true
+    });
+  }
+
+  addingHandler() {
+    this.getOwners();
+    this.setState({
+      adding: true
     });
   }
 
@@ -46,7 +70,10 @@ class App extends React.Component {
           <h1>Property</h1>
           <div>
             For Testing: {this.state.properties.length}
-            <button>New</button>
+            <button onClick={() => this.addingHandler()}>New</button>
+            <Modal show={this.state.adding}>
+              <NewList owners={this.state.owners} />
+            </Modal>
           </div>
 
           <div>
@@ -66,12 +93,11 @@ class App extends React.Component {
           </div>
 
           <button onClick={() => this.editingHandler()}>Edit</button>
-          <button>Delete</button>
           <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
           </Modal>
           <Drop />
-          
+          <button>Delete</button>
       </div>
     )}
 }

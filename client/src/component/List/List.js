@@ -24,11 +24,12 @@ const list = (props) => {
         <div>
             <h5>Editing...</h5>
             {propertySummary}
-            <button>Save</button>
+            <button>Save Changes</button>
             <button>Cancel</button>
         </div>
     );
 };
+
 //MOVE BUTTON TO APP; WHEN CLICK SAVE, SEND PUT REQ to API
 //CANCEL close modal;
 

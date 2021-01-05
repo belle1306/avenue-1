@@ -9,9 +9,9 @@ router.get("/", (req, res) => {
   res.send("API working");
 });
 
-// GET all properties
+// GET all tables - properties, owners and leases
 router.get("/propertymgmt/:table", (req, res) => {
-  const table = req.params.table
+  const table = req.params.table;
   db(`SELECT * FROM ${table};`)
     .then(results => {
       res.send(results.data);
@@ -19,15 +19,16 @@ router.get("/propertymgmt/:table", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-
-// POST new property
-router.post("/propertymgmt", (req, res) => {
+// POST new property after user has a choice to select which owner
+// populate owner table with fake data
+router.post("/propertymgmt/properties", (req, res) => {
+  const table = req.params.table;
   db(
-    `INSERT INTO properties(property_address,property_postcode) VALUES(req.body.address,req.body.postcode);`
+    `INSERT INTO ${table}(property_address,property_postcode) VALUES(req.body.address,req.body.postcode);`
   )
     .then(results => {
       res.send(results);
-      res.send("property details added");
+      res.send("posted new property");
     })
     .catch(err => res.status(500).send(err));
 });
