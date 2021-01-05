@@ -55,9 +55,7 @@ class App extends React.Component {
   }
 
   editingHandler() {
-    //this.state.editing ? this.setState({editing: false}) : 
-    this.setState({editing: true})
-    console.log("this is the state", this.state.editing)
+    this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
   }
 
   render() {

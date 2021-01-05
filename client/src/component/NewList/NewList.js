@@ -1,32 +1,29 @@
 import React from "react";
+import Select from "react-select";
 
 const newlist = (props) => {
     console.log(props.owners)
-    const ownerSummary = props.owners.map(o => {
-        return (
-            <div key={o.id}>
-                <input type="text" defaultValue={o.owner_firstName}/>
-            </div>
-        );
+    let ownerSummary = props.owners.map(o => {
+        return {value: o.id, label: o.owner_firstName}
     });
     
     return (
         <div>
             <h5>Add Property...</h5>
                 Address
-                <input type="text"/>
+                <input type="text" onChange={props.update}/>
                 Postcode
-                <input type="text"/>
+                <input type="text" onChange={props.update}/>
                 Bedroom
-                <input type="text"/>
+                <input type="number" onChange={props.update}/>
                 Bathroom
-                <input type="text"/>
+                <input type="number" onChange={props.update}/>
                 Carpark
-                <input type="text"/>
+                <input type="number" onChange={props.update}/>
                 Furnish
-                <input type="text"/>
+                <input type="radio" onChange={props.update}/>
                 Owned by
-                {ownerSummary}
+                <Select options = {ownerSummary} />
                 <button onClick = {props.add}>Add</button>
                 <button onClick = {props.cancel}>Cancel</button>
         </div>
