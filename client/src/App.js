@@ -14,7 +14,7 @@ class App extends React.Component {
       editing: false,
       adding: false
     };
-    this.addProperty = this.addProperty.bind(this);
+    this.update = this.update.bind(this);
   }
 
   //mount all properties when page loads
@@ -46,6 +46,27 @@ class App extends React.Component {
       });
   }
 
+  // addPropertyInput() {
+  //   this.addProperty();
+  // }
+
+  update(newVal) {
+    console.log("new val address", newVal.address);
+    let newProperty = {
+      address: newVal.address,
+      postcode: newVal.postcode,
+      bedroom: newVal.bedroom,
+      bathroom: newVal.bathroom,
+      carpark: newVal.carpark,
+      furnish: newVal.furnish
+    }
+    let existingProperties = this.state.properties;
+    existingProperties.push(newProperty);
+    this.setState({
+      properties: existingProperties
+    })
+  }
+
   addProperty() {
     fetch("/propertymgmt/properties", {
       method: "POST",
@@ -63,6 +84,7 @@ class App extends React.Component {
       })
     })
       .then(res => {
+        console.log("submit btn clicked and called POST", res.json());
         res.json();
         this.componentDidMount();
       })
@@ -97,7 +119,7 @@ class App extends React.Component {
               <NewList 
                 owners={this.state.owners} 
                 cancel={this.addingHandler}
-                add={this.addProperty}
+                add={this.update}
               />
             </Modal>
           </div>
