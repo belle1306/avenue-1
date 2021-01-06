@@ -22,7 +22,7 @@ class App extends React.Component {
     fetch("/propertymgmt/properties")
       .then(res => res.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         this.setState({
           properties: json
         });
@@ -30,6 +30,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    this.getOwners();
   }
 
   getOwners() {
@@ -123,21 +124,20 @@ class App extends React.Component {
     this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
   }
 
-  // showOwnerHandler(e, id) {
-  //   const ownerIndex = this.state.owners.findIndex(o => {
-  //     return o.id === id;
-  //   });
-
-  //   const owner = {
-  //     ...this.state.owners[ownerIndex]
-  //   };
-
-  //   owner.name = e.value;
-
-  //   const owners = [...this.state.owners];
-  //   owners[ownerIndex]
-
-  // }
+  showOwnerHandler(id) {
+    console.log("this is owner id", id)
+    console.log("this is the owners state", this.state.owners)
+    const ownerIndex = this.state.owners.findIndex(o => {
+      return o.id === id;
+    });
+    let selectedOwner = this.state.owners[ownerIndex]
+    if(selectedOwner) {
+      return selectedOwner.owner_firstName + " " + selectedOwner.owner_lastName;
+    }
+    else {
+     return null;
+    }
+  }
 
   render() {
     return (
@@ -171,7 +171,7 @@ class App extends React.Component {
                     <li> Bathroom: {p.property_bathroom} </li>
                     <li> Carpark: {p.property_carpark} </li>
                     <li> Furnishing: {p.property_furnish} </li>
-                    {/* <li> Owned by: {this.state.owners} </li> */}
+                    <li> Owned by: {this.showOwnerHandler(p.owner_id)} </li>
                     <button onClick={() => this.deleteProperty(p.id)}>Delete</button>
                 </ul>
               )

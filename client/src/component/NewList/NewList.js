@@ -33,7 +33,7 @@ class NewList extends React.Component {
 
     render() {
         let ownerSummary = this.props.owners.map(o => {
-            return {value: o.id, label: o.owner_firstName}
+            return {value: o.id, label: o.owner_firstName + " " + o.owner_lastName}
         });
         return (
             <div>
