@@ -74,7 +74,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         property_address: newProperty.address,
-        owner_id: "1",
+        owner_id: newProperty.owner,
         property_postcode: newProperty.postcode,
         property_bedroom: newProperty.bedroom,
         property_bathroom: newProperty.bathroom,
@@ -107,7 +107,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log("This is deleted", id)
+    console.log("This property id was deleted", id)
   }
 
   logoutHandler() {
@@ -122,6 +122,22 @@ class App extends React.Component {
   editingHandler() {
     this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
   }
+
+  // showOwnerHandler(e, id) {
+  //   const ownerIndex = this.state.owners.findIndex(o => {
+  //     return o.id === id;
+  //   });
+
+  //   const owner = {
+  //     ...this.state.owners[ownerIndex]
+  //   };
+
+  //   owner.name = e.value;
+
+  //   const owners = [...this.state.owners];
+  //   owners[ownerIndex]
+
+  // }
 
   render() {
     return (
@@ -155,6 +171,7 @@ class App extends React.Component {
                     <li> Bathroom: {p.property_bathroom} </li>
                     <li> Carpark: {p.property_carpark} </li>
                     <li> Furnishing: {p.property_furnish} </li>
+                    {/* <li> Owned by: {this.state.owners} </li> */}
                     <button onClick={() => this.deleteProperty(p.id)}>Delete</button>
                 </ul>
               )

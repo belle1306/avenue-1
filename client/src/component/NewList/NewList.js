@@ -1,17 +1,10 @@
 import React from "react";
 import Select from "react-select";
 
-// const getInputValue = () => {
-//     let inputValue = {
-//         "property_address" : document.getElementById("property_address"),
-//         "property_postcode": document.getElementById("property_postcode")
-//     }
-    
-//     return inputValue
-// }
 class NewList extends React.Component {
     constructor(props) {
         super(props);
+      
         this.state = {
             address: "",
             postcode: "",
@@ -19,13 +12,14 @@ class NewList extends React.Component {
             bathroom: 0,
             carpark: 0,
             furnish: 0,
-            owner: null
-        }
+            owner: null,
+            // ownerList: ownerSummary
+        };
     }
 
     handleFormSubmit(e) {
         e.preventDefault();
-        console.log("input values", this.state.address, this.state.postcode);
+        console.log("input values", this.state.address, this.state.owner);
         this.props.add({
             address: this.state.address,
             postcode: this.state.postcode,
@@ -33,20 +27,14 @@ class NewList extends React.Component {
             bathroom: this.state.bathroom,
             carpark: this.state.carpark,
             furnish: this.state.furnish,
-            owner: {
-                ownerId: 2,
-                ownerFirstName: "Eileen"
-            }
+            owner: this.state.owner
         })
     }
 
-    // const newlist = (props) => {
-
-    //     let ownerSummary = props.owners.map(o => {
-    //         return {value: o.id, label: o.owner_firstName}
-    //     });
-
     render() {
+        let ownerSummary = this.props.owners.map(o => {
+            return {value: o.id, label: o.owner_firstName}
+        });
         return (
             <div>
                 <h5>Add Property...</h5>
@@ -63,8 +51,8 @@ class NewList extends React.Component {
                     <input type="number" value={this.state.carpark} onChange={e => this.setState({ carpark: e.target.value})}/>
                     <label>Furnish</label>
                     <input type="checkbox" value={this.state.furnish} onChange={e => this.setState({ furnish: e.target.checked ? 1 : 0})}/>
-                    {/* // <label>Owned by</label>
-                    // <Select options = {ownerSummary} value={this.state.owner} onChange={e => this.setState({ owner: e.target.value})}/> */}
+                    <label>Owned by</label>
+                    <Select options = {ownerSummary} onChange={e => this.setState({ owner: e.value})}/>
 
                     <input type="submit" onClick={e => this.handleFormSubmit(e)}/>
                     {/* <button onClick = {props.cancel}>Cancel</button> */}
