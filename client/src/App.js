@@ -83,7 +83,7 @@ class App extends React.Component {
       })
     })
       .then(res => {
-        console.log("submit btn clicked and called POST");
+        // console.log("submit btn clicked and called POST");
         res.json();
         this.componentDidMount();
       })
