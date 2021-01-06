@@ -43,14 +43,14 @@ router.post("/propertymgmt/properties", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// DELETE a property
-// router.delete("/propertymgmt/properties/:property_id", (req, res) => {
-//   const deleteId = req.params["property_id"];
-//   db(`DELETE FROM properties WHERE id = ${JSON.stringify(deleteId)};`)
-//     .then(results => {
-//       res.send(results);
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
+//DELETE a property
+router.delete("/propertymgmt/properties/:property_id", (req, res) => {
+  const deleteId = req.params["property_id"];
+  db(`DELETE FROM properties WHERE id = ${deleteId};`)
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 module.exports = router;
