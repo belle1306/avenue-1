@@ -14,7 +14,7 @@ class App extends React.Component {
       editing: false,
       adding: false
     };
-    this.update = this.update.bind(this);
+    this.addProperty = this.addProperty.bind(this);
   }
 
   //mount all properties when page loads
@@ -46,45 +46,43 @@ class App extends React.Component {
       });
   }
 
-  // addPropertyInput() {
-  //   this.addProperty();
+  // update(newVal) {
+  //   console.log("new val address", newVal.address);
+  //   let newProperty = {
+  //     address: newVal.address,
+  //     postcode: newVal.postcode,
+  //     bedroom: newVal.bedroom,
+  //     bathroom: newVal.bathroom,
+  //     carpark: newVal.carpark,
+  //     furnish: newVal.furnish
+  //   }
+  //   let existingProperties = newProperty.properties;
+  //   existingProperties.push(newProperty);
+  //   this.setState({
+  //     properties: existingProperties
+  //   })
+  //   this.addProperty(newProperty);
   // }
 
-  update(newVal) {
-    console.log("new val address", newVal.address);
-    let newProperty = {
-      address: newVal.address,
-      postcode: newVal.postcode,
-      bedroom: newVal.bedroom,
-      bathroom: newVal.bathroom,
-      carpark: newVal.carpark,
-      furnish: newVal.furnish
-    }
-    let existingProperties = this.state.properties;
-    existingProperties.push(newProperty);
-    this.setState({
-      properties: existingProperties
-    })
-  }
-
-  addProperty() {
+  addProperty(newProperty) {
+    console.log("new prop address", newProperty.address);
     fetch("/propertymgmt/properties", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        property_address: this.state.address,
-        owner_id: this.state.ownerid,
-        property_postcode: this.state.postcode,
-        property_bedroom: this.state.bedroom,
-        property_bathroom: this.state.property_bathroom,
-        property_carpark: this.state.carpark,
-        property_furnish: this.state.furnish
+        property_address: newProperty.address,
+        owner_id: newProperty.ownerid,
+        property_postcode: newProperty.postcode,
+        property_bedroom: newProperty.bedroom,
+        property_bathroom: newProperty.property_bathroom,
+        property_carpark: newProperty.carpark,
+        property_furnish: newProperty.furnish
       })
     })
       .then(res => {
-        console.log("submit btn clicked and called POST", res.json());
+        console.log("submit btn clicked and called POST");
         res.json();
         this.componentDidMount();
       })
@@ -119,7 +117,7 @@ class App extends React.Component {
               <NewList 
                 owners={this.state.owners} 
                 cancel={this.addingHandler}
-                add={this.update}
+                add={this.addProperty}
               />
             </Modal>
           </div>
