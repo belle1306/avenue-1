@@ -14,6 +14,7 @@ class App extends React.Component {
       editing: false,
       adding: false
     };
+    this.addProperty = this.addProperty.bind(this);
   }
 
   //mount all properties when page loads
@@ -39,6 +40,31 @@ class App extends React.Component {
         this.setState({
           owners: data
         });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  addProperty() {
+    fetch("/propertymgmt/properties", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        property_address: this.state.address,
+        owner_id: this.state.ownerid,
+        property_postcode: this.state.postcode,
+        property_bedroom: this.state.bedroom,
+        property_bathroom: this.state.property_bathroom,
+        property_carpark: this.state.carpark,
+        property_furnish: this.state.furnish
+      })
+    })
+      .then(res => {
+        res.json();
+        this.componentDidMount();
       })
       .catch(error => {
         console.log(error);
@@ -71,6 +97,7 @@ class App extends React.Component {
               <NewList 
                 owners={this.state.owners} 
                 cancel={this.addingHandler}
+                add={this.addProperty}
               />
             </Modal>
           </div>
@@ -85,7 +112,6 @@ class App extends React.Component {
                     <li> Bathroom: {p.property_bathroom} </li>
                     <li> Carpark: {p.property_carpark} </li>
                     <li> Furnishing: {p.property_furnish} </li>
-                    <li> Photo:</li>
                 </ul>
               )
             })}
