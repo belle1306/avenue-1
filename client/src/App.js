@@ -15,10 +15,13 @@ class App extends React.Component {
       adding: false
     };
     this.addProperty = this.addProperty.bind(this);
+    this.addingHandler = this.addingHandler.bind(this);
+    this.deleteProperty = this.deleteProperty.bind(this);
   }
 
   //mount all properties when page loads
   componentDidMount() {
+    console.log("starting mounting")
     fetch("/propertymgmt/properties")
       .then(res => res.json())
       .then(json => {
@@ -30,6 +33,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+
     this.getOwners();
   }
 
@@ -91,10 +95,12 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    
+    this.setState({adding: false});
   }
 
   deleteProperty(id) {
-    // console.log(id);
+    console.log("taken id", id);
     fetch("/propertymgmt/properties/" + id, {
       method: "DELETE",
       headers: {
@@ -108,6 +114,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    
     console.log("This property id was deleted", id)
   }
 
@@ -116,28 +123,21 @@ class App extends React.Component {
   }
 
   addingHandler() {
-    this.getOwners();
-    this.state.adding ? this.setState({adding: false}) : this.setState({adding: true});
+    console.log("adding", this.state.adding);
+    if (this.state.adding) {
+      this.setState({adding: false});
+    }
+    else {
+      this.getOwners();
+      this.setState({adding: true});
+    }
   }
 
   editingHandler() {
     this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
   }
 
-  showOwnerHandler(id) {
-    console.log("this is owner id", id)
-    console.log("this is the owners state", this.state.owners)
-    const ownerIndex = this.state.owners.findIndex(o => {
-      return o.id === id;
-    });
-    let selectedOwner = this.state.owners[ownerIndex]
-    if(selectedOwner) {
-      return selectedOwner.owner_firstName + " " + selectedOwner.owner_lastName;
-    }
-    else {
-     return null;
-    }
-  }
+ 
 
   render() {
     return (
@@ -149,7 +149,7 @@ class App extends React.Component {
           <div>
             
             <button onClick={() => this.addingHandler()}>New</button>
-            <Modal show={this.state.adding}>
+            <Modal cancel={this.addingHandler} show={this.state.adding}>
               <NewList 
                 owners={this.state.owners} 
                 cancel={this.addingHandler}
@@ -160,7 +160,7 @@ class App extends React.Component {
                 Total Properties: {this.state.properties.length}
               </div>
           </div>
-
+{/* 
           <div>
             {this.state.properties.map(p => {
               return (
@@ -176,12 +176,19 @@ class App extends React.Component {
                 </ul>
               )
             })}
-          </div>
+          </div> */}
 
+          <List 
+          properties={this.state.properties}
+          delete={this.deleteProperty}
+          owner={this.state.owners}
+          />
+
+        {/* 
           <button onClick={() => this.editingHandler()}>Edit</button>
           <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
-          </Modal>
+          </Modal> */}
 
           <Drop />
 

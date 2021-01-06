@@ -67,6 +67,7 @@ class NewList extends React.Component {
                         <Select options = {ownerSummary} onChange={e => this.setState({ owner: e.value})}/>
                     </div>
                     <input type="submit" onClick={e => this.handleFormSubmit(e)}/>
+                    <input type="reset" onClick={this.props.cancel}/>
                 </form>
             </div>
         );
