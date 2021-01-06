@@ -66,6 +66,7 @@ class App extends React.Component {
 
   addProperty(newProperty) {
     console.log("new prop address", newProperty.address);
+    console.log("properties object",newProperty);
     fetch("/propertymgmt/properties", {
       method: "POST",
       headers: {
@@ -73,16 +74,33 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         property_address: newProperty.address,
-        owner_id: newProperty.ownerid,
+        owner_id: "1",
         property_postcode: newProperty.postcode,
         property_bedroom: newProperty.bedroom,
-        property_bathroom: newProperty.property_bathroom,
+        property_bathroom: newProperty.bathroom,
         property_carpark: newProperty.carpark,
-        property_furnish: newProperty.furnish
+        property_furnish: "1"
       })
     })
       .then(res => {
         console.log("submit btn clicked and called POST");
+        res.json();
+        this.componentDidMount();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  deleteProperty(id) {
+    // console.log(id);
+    fetch("/propertymgmt/properties/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
         res.json();
         this.componentDidMount();
       })
@@ -110,8 +128,9 @@ class App extends React.Component {
           <span>Hello, user 1</span>
           <button onClick={() => this.logoutHandler()}>Log out</button>
           <h1>Property</h1>
+          <Drop />
           <div>
-            For Testing: {this.state.properties.length}
+            
             <button onClick={() => this.addingHandler()}>New</button>
             <Modal show={this.state.adding}>
               <NewList 
@@ -120,6 +139,9 @@ class App extends React.Component {
                 add={this.addProperty}
               />
             </Modal>
+              <div>
+                Total Properties: {this.state.properties.length}
+              </div>
           </div>
 
           <div>
@@ -132,6 +154,7 @@ class App extends React.Component {
                     <li> Bathroom: {p.property_bathroom} </li>
                     <li> Carpark: {p.property_carpark} </li>
                     <li> Furnishing: {p.property_furnish} </li>
+                    <button onClick={() => this.deleteProperty(p.id)}>Delete</button>
                 </ul>
               )
             })}
@@ -141,8 +164,7 @@ class App extends React.Component {
           <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
           </Modal>
-          <Drop />
-          <button>Delete</button>
+
       </div>
     )}
 }

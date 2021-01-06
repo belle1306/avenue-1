@@ -27,6 +27,7 @@ router.post("/propertymgmt/properties", (req, res) => {
   // console.log("----------3------", JSON.stringify(req.body))
   // const thbody = JSON.stringify(req.body);
   // console.log(thbody.property_address);
+  console.log("---THIS IS BEING PASSED----", req.body.property_address,req.body.owner_id)
   const newAddress = req.body.property_address;
   const newOwnerId = req.body.owner_id;
   const newPostcode = req.body.property_postcode;
