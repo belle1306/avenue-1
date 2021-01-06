@@ -1,5 +1,6 @@
 import React from "react";
 import ListItem from "./ListItem/ListItem";
+import classes from "./List.module.css";
 
 class List extends React.Component {
 
@@ -30,7 +31,7 @@ class List extends React.Component {
         })
         console.log(propertyList)
         return (
-            <div>
+            <div className={classes.List}>
                 {propertyList}
             </div>
         );

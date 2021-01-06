@@ -1,0 +1,9 @@
+.List {
+    width: 60%;
+    padding: 16px;
+    margin: 50px auto;
+    border: 2px solid black;
+    text-align: center;
+    background-color: whitesmoke;
+    justify-content: space-between;
+}

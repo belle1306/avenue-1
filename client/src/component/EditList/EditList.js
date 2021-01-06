@@ -1,21 +1,10 @@
 import React from "react";
 import Select from "react-select";
-import Drop from "../Drop";
 
-class NewList extends React.Component {
+class EditList extends React.Component {
     constructor(props) {
         super(props);
-      
-        this.state = {
-            address: "",
-            postcode: "",
-            bedroom: 0,
-            bathroom: 0,
-            carpark: 0,
-            furnish: 0,
-            owner: null,
-            // ownerList: ownerSummary
-        };
+        this.state = this.props.property;
     }
 
     handleFormSubmit(e) {
@@ -54,7 +43,6 @@ class NewList extends React.Component {
                     <div>
 
                     </div> */}
-                    <Drop />
                     <label>Bedroom</label>
                     <input type="number" value={this.state.bedroom} onChange={e => this.setState({ bedroom: e.target.value})}/>
                     <label>Bathroom</label>
@@ -74,4 +62,4 @@ class NewList extends React.Component {
         );
     }
 }
-export default NewList;
+export default EditList;

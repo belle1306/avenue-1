@@ -5,7 +5,7 @@ const listItem = (props) => {
     console.log("this is property id in list item", props.property.id)
         
     return(
-    <div>
+    <div className = {classes.ListItem}>
         <h3>Address: {props.property.property_address}</h3>
         <div>
             Postcode: {props.property.property_postcode}

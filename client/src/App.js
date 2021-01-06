@@ -144,7 +144,7 @@ class App extends React.Component {
       <div>
           <span>Hello, user 1</span>
           <button onClick={() => this.logoutHandler()}>Log out</button>
-          <h1>Property</h1>
+          <h1>Avenue - </h1>
         
           <div>
             
@@ -182,6 +182,7 @@ class App extends React.Component {
           properties={this.state.properties}
           delete={this.deleteProperty}
           owner={this.state.owners}
+          edit={this.editingHandler}
           />
 
         {/* 

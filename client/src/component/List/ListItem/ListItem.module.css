@@ -1,0 +1,9 @@
+.ListItem {
+    width: 95%;
+    padding: 10px;
+    margin: 16px auto;
+    border: 2px solid black;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 25px;
+}
