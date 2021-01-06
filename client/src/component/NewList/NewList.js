@@ -18,7 +18,7 @@ class NewList extends React.Component {
             bedroom: 0,
             bathroom: 0,
             carpark: 0,
-            furnish: true,
+            furnish: 0,
             owner: null
         }
     }
@@ -62,7 +62,7 @@ class NewList extends React.Component {
                     <label>Carpark</label>
                     <input type="number" value={this.state.carpark} onChange={e => this.setState({ carpark: e.target.value})}/>
                     <label>Furnish</label>
-                    <input type="radio" value={this.state.furnish} onChange={e => this.setState({ furnish: e.target.value})}/>
+                    <input type="checkbox" value={this.state.furnish} onChange={e => this.setState({ furnish: e.target.checked ? 1 : 0})}/>
                     {/* // <label>Owned by</label>
                     // <Select options = {ownerSummary} value={this.state.owner} onChange={e => this.setState({ owner: e.target.value})}/> */}
 

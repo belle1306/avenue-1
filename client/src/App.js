@@ -79,7 +79,7 @@ class App extends React.Component {
         property_bedroom: newProperty.bedroom,
         property_bathroom: newProperty.bathroom,
         property_carpark: newProperty.carpark,
-        property_furnish: "1"
+        property_furnish: newProperty.furnish
       })
     })
       .then(res => {
@@ -107,6 +107,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    console.log("This is deleted", id)
   }
 
   logoutHandler() {
