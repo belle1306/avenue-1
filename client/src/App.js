@@ -145,7 +145,7 @@ class App extends React.Component {
           <span>Hello, user 1</span>
           <button onClick={() => this.logoutHandler()}>Log out</button>
           <h1>Property</h1>
-          <Drop />
+        
           <div>
             
             <button onClick={() => this.addingHandler()}>New</button>
@@ -182,6 +182,8 @@ class App extends React.Component {
           <Modal show={this.state.editing}>
             <List properties={this.state.properties} />
           </Modal>
+
+          <Drop />
 
       </div>
     )}
