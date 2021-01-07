@@ -6,7 +6,8 @@ const listItem = (props) => {
         
     return(
     <div className = {classes.ListItem}>
-        <h3>Address: {props.property.property_address}</h3>
+        <h3>{props.property.property_address}</h3>
+        {/* <input type="text" defaultValue={props.property.property_address} /> */}
         <div>
             Postcode: {props.property.property_postcode}
         </div>
@@ -20,13 +21,20 @@ const listItem = (props) => {
             Carpark: {props.property.property_carpark}
         </div>
         <div>
-            Furnish: {props.property.property_furnish}
+            Furnish: {(props.property.property_furnish) ? "yes" : "no"}
+        </div>
+        <div>
+            Rented: {(props.property.property_rent) ? "yes" : "no"}
+        </div>
+        <div>
+            ${props.property.property_rentWeek} weekly
+            ${props.property.property_rentWeek * 52} monthly
         </div>
         <div>
             Owned by: {props.owner}
         </div>
-        <button>Edit</button>
-        <button onClick={props.delete}>Delete</button>
+        <button className="btn btn-primary">Edit</button>
+        <button onClick={props.delete} className="btn btn-dark">Delete</button>
     </div>
     )
 };

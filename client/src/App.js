@@ -84,7 +84,9 @@ class App extends React.Component {
         property_bedroom: newProperty.bedroom,
         property_bathroom: newProperty.bathroom,
         property_carpark: newProperty.carpark,
-        property_furnish: newProperty.furnish
+        property_furnish: newProperty.furnish,
+        property_rent: newProperty.rent,
+        property_rentWeek: newProperty.rentWeek
       })
     })
       .then(res => {
@@ -134,17 +136,21 @@ class App extends React.Component {
   }
 
   editingHandler() {
-    this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
+    if (this.state.editing) {
+      this.setState({editing: false});
+    }
+    else {
+      this.setState({editing: true});
+    }
+    // this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
   }
-
- 
 
   render() {
     return (
       <div>
           <span>Hello, user 1</span>
           <button onClick={() => this.logoutHandler()}>Log out</button>
-          <h1>Avenue - </h1>
+          <h1>Avenue</h1>
         
           <div>
             
@@ -157,7 +163,7 @@ class App extends React.Component {
               />
             </Modal>
               <div>
-                Total Properties: {this.state.properties.length}
+                Currently managing {this.state.properties.length} properties
               </div>
           </div>
 {/* 

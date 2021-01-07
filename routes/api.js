@@ -35,8 +35,10 @@ router.post("/propertymgmt/properties", (req, res) => {
   const newBathroom = req.body.property_bathroom;
   const newCarpark = req.body.property_carpark;
   const newFurnish = req.body.property_furnish;
+  const newRent = req.body.property_rent;
+  const newRentWeek = req.body.property_rentWeek;
 
-  db(`INSERT INTO properties(property_address, owner_id, property_postcode, property_bedroom, property_bathroom, property_carpark, property_furnish) VALUES(${JSON.stringify(newAddress)},${JSON.stringify(newOwnerId)},${JSON.stringify(newPostcode)},${JSON.stringify(newBedroom)},${JSON.stringify(newBathroom)}, ${JSON.stringify(newCarpark)}, ${JSON.stringify(newFurnish)});`)
+  db(`INSERT INTO properties(property_address, owner_id, property_postcode, property_bedroom, property_bathroom, property_carpark, property_furnish, property_rent, property_rentWeek) VALUES(${JSON.stringify(newAddress)},${JSON.stringify(newOwnerId)},${JSON.stringify(newPostcode)},${JSON.stringify(newBedroom)},${JSON.stringify(newBathroom)}, ${JSON.stringify(newCarpark)}, ${JSON.stringify(newFurnish)}, ${JSON.stringify(newRent)}, ${JSON.stringify(newRentWeek)});`)
     .then(results => {
       res.send(results);
       res.send("posted new property");
