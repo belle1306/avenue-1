@@ -149,10 +149,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          <Layout logout={this.logoutHandler}>
-            {/* <button className="btn btn-dark" onClick={() => this.logoutHandler()}>Log out</button> */}
+          <Layout 
+          logoutbtn={this.logoutHandler}
+          newbtn={this.addingHandler}
+          >
           </Layout>
-          
+
           <div>
             <div className="badge rounded-pill bg-warning text-dark">  
               Currently managing 
@@ -162,8 +164,6 @@ class App extends React.Component {
               properties
             </div>
           </div>
-
-          <button className="btn btn-success" onClick={() => this.addingHandler()}>New</button>
 
           <div>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
