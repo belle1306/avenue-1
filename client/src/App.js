@@ -150,11 +150,21 @@ class App extends React.Component {
     return (
       <div>
           <Layout>
-            <button onClick={() => this.logoutHandler()}>Log out</button>
+            <button className="btn btn-dark" onClick={() => this.logoutHandler()}>Log out</button>
           </Layout>
           
           <div>
-            <button onClick={() => this.addingHandler()}>New</button>
+            <div className="badge rounded-pill bg-warning text-dark">  
+              Currently managing 
+                <span className="badge rounded-pill bg-danger text-light">
+                  {this.state.properties.length} 
+                </span>
+              properties
+            </div>
+          </div>
+
+          <div>
+            <button className="btn btn-success" onClick={() => this.addingHandler()}>New</button>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
               <NewList 
                 owners={this.state.owners} 
@@ -162,9 +172,6 @@ class App extends React.Component {
                 add={this.addProperty}
               />
             </Modal>
-              <div>
-                Currently managing {this.state.properties.length} properties
-              </div>
           </div>
 {/* 
           <div>
