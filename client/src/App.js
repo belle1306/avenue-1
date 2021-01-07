@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Drop from "./component/Drop";
 import Modal from "./component/UI/Modal/Modal";
+import Layout from "./component/Layout/Layout";
 import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
 
@@ -148,12 +149,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          <span>Hello, user 1</span>
-          <button onClick={() => this.logoutHandler()}>Log out</button>
-          <h1>Avenue</h1>
-        
+          <Layout>
+            <p>Hello, user 1</p>
+            <button onClick={() => this.logoutHandler()}>Log out</button>
+          </Layout>
+          
           <div>
-            
             <button onClick={() => this.addingHandler()}>New</button>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
               <NewList 

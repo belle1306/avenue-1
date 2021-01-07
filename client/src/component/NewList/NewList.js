@@ -41,7 +41,6 @@ class NewList extends React.Component {
         });
         return (
             <div>
-                <h5>Add Property...</h5>
                 <form>
                     <div>
                         <label>Address</label>

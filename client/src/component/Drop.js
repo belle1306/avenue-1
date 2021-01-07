@@ -1,8 +1,6 @@
 import React, {useMemo, useEffect, useState} from "react";
 import {useDropzone} from 'react-dropzone';
 
-//EXPORT THIS COMPONENT
-
 const thumbsContainer = {
   display: 'flex',
   flexDirection: 'row',
@@ -110,7 +108,8 @@ const Drop = (props) => {
 
   const filepath = acceptedFiles.map(file => (
     <li key={file.path}>
-      {file.path} - {file.size} bytes
+      {/* {file.path} - {file.size} bytes */}
+      {file.path}
     </li>
   ));
 
@@ -121,7 +120,7 @@ const Drop = (props) => {
           <p>Drag and drop images here</p>
         </div>
         <aside>
-          <h3>Preview</h3>
+          {/* <h3>Preview</h3> */}
           <ul>{filepath}</ul>
         </aside>
         <aside style={thumbsContainer}>
