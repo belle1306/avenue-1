@@ -74,7 +74,6 @@ class NewList extends React.Component {
                     <div className="form-check">
                         <input type="checkbox" className="form-check-input" value={this.state.rent} onChange={e => this.setState({ rent: e.target.checked ? 1 : 0})}/>
                         <label>Rented</label>
-                       
                         <input type="number" value={this.state.rentWeek} onChange={e => this.setState({ rentWeek: e.target.value})}/>
                         <label>weekly</label>
                     </div>

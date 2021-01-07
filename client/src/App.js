@@ -155,14 +155,12 @@ class App extends React.Component {
           >
           </Layout>
 
-          <div>
-            <div className="badge rounded-pill bg-warning text-dark">  
+          <div className="badge rounded-pill bg-light text-dark">  
               Currently managing 
-                <span className="badge rounded-pill bg-danger text-light">
+                <span className="badge rounded-pill bg-warning text-dark">
                   {this.state.properties.length} 
                 </span>
               properties
-            </div>
           </div>
 
           <div>
