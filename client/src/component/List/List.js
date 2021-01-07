@@ -32,6 +32,7 @@ class List extends React.Component {
         console.log(propertyList)
         return (
             <div className={classes.List}>
+            {/* <div className="card"> */}
                 {propertyList}
             </div>
         );

@@ -150,7 +150,6 @@ class App extends React.Component {
     return (
       <div>
           <Layout>
-            <p>Hello, user 1</p>
             <button onClick={() => this.logoutHandler()}>Log out</button>
           </Layout>
           

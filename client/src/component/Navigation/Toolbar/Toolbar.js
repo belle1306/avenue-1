@@ -4,9 +4,8 @@ import Logo from "../../Logo/Logo";
 
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
-        <Logo />
-        <nav>
-            nav...
+        <nav className="navbar navbar-dark bg-dark">
+            <Logo />
         </nav>
     </header>
 );
