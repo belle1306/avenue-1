@@ -26,6 +26,7 @@ class List extends React.Component {
                 property = {p}
                 delete = {() => this.props.delete(p.id)}
                 owner = {selectedOwner}
+                edit = {() => this.props.edit(p)}
                 />
             )
         })

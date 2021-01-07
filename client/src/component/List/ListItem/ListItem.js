@@ -33,7 +33,7 @@ const listItem = (props) => {
         <div>
             Owned by: {props.owner}
         </div>
-        <button className="btn btn-primary">Edit</button>
+        <button onClick={props.edit} className="btn btn-primary">Edit</button>
         <button onClick={props.delete} className="btn btn-danger">Delete</button>
     </div>
     )

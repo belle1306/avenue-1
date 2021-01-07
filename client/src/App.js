@@ -5,6 +5,7 @@ import Modal from "./component/UI/Modal/Modal";
 import Layout from "./component/Layout/Layout";
 import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
+import EditList from "./component/EditList/EditList";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,12 +13,14 @@ class App extends React.Component {
     this.state = {
       properties: [],
       owners: [],
-      editing: false,
-      adding: false
+      propertyUpdate: false,
+      adding: false,
+      editing: false
     };
     this.addProperty = this.addProperty.bind(this);
     this.addingHandler = this.addingHandler.bind(this);
     this.deleteProperty = this.deleteProperty.bind(this);
+    this.editingHandler = this.editingHandler.bind(this);
   }
 
   //mount all properties when page loads
@@ -102,6 +105,10 @@ class App extends React.Component {
     this.setState({adding: false});
   }
 
+  updateProperty(updateProperty) {
+    console.log("property being updated");
+  }
+  
   deleteProperty(id) {
     console.log("taken id", id);
     fetch("/propertymgmt/properties/" + id, {
@@ -136,17 +143,19 @@ class App extends React.Component {
     }
   }
 
-  editingHandler() {
+  editingHandler(property) {
+    console.log("We are trying to edit this property:", property)
     if (this.state.editing) {
       this.setState({editing: false});
     }
     else {
-      this.setState({editing: true});
+      this.setState({editing: property});
     }
-    // this.state.editing ? this.setState({editing: false}) : this.setState({editing: true})
+    console.log(this.state.editing)
   }
 
   render() {
+
     return (
       <div>
           <Layout 
@@ -172,38 +181,20 @@ class App extends React.Component {
               />
             </Modal>
           </div>
-{/* 
-          <div>
-            {this.state.properties.map(p => {
-              return (
-                <ul key={p.id}>
-                    <li> Address: {p.property_address} </li>
-                    <li> Postcode: {p.property_postcode} </li>
-                    <li> Bedroom: {p.property_bedroom} </li>
-                    <li> Bathroom: {p.property_bathroom} </li>
-                    <li> Carpark: {p.property_carpark} </li>
-                    <li> Furnishing: {p.property_furnish} </li>
-                    <li> Owned by: {this.showOwnerHandler(p.owner_id)} </li>
-                    <button onClick={() => this.deleteProperty(p.id)}>Delete</button>
-                </ul>
-              )
-            })}
-          </div> */}
 
           <List 
-          properties={this.state.properties}
-          delete={this.deleteProperty}
-          owner={this.state.owners}
-          edit={this.editingHandler}
+            properties={this.state.properties}
+            delete={this.deleteProperty}
+            owner={this.state.owners}
+            edit={this.editingHandler}
           />
-
-        {/* 
-          <button onClick={() => this.editingHandler()}>Edit</button>
-          <Modal show={this.state.editing}>
-            <List properties={this.state.properties} />
-          </Modal> */}
-
-          {/* <Drop /> */}
+        <Modal cancel={this.editingHandler} show={this.state.editing}>
+          <EditList 
+          property={this.state.editing}
+          owners={this.state.owners}
+          update={this.updateProperty}
+          />
+        </Modal>
 
       </div>
     )}
