@@ -149,8 +149,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          <Layout>
-            <button className="btn btn-dark" onClick={() => this.logoutHandler()}>Log out</button>
+          <Layout logout={this.logoutHandler}>
+            {/* <button className="btn btn-dark" onClick={() => this.logoutHandler()}>Log out</button> */}
           </Layout>
           
           <div>
@@ -163,8 +163,9 @@ class App extends React.Component {
             </div>
           </div>
 
+          <button className="btn btn-success" onClick={() => this.addingHandler()}>New</button>
+
           <div>
-            <button className="btn btn-success" onClick={() => this.addingHandler()}>New</button>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
               <NewList 
                 owners={this.state.owners} 
@@ -204,7 +205,7 @@ class App extends React.Component {
             <List properties={this.state.properties} />
           </Modal> */}
 
-          <Drop />
+          {/* <Drop /> */}
 
       </div>
     )}

@@ -7,9 +7,8 @@ class EditList extends React.Component {
         this.state = this.props.property;
     }
 
-    handleFormSubmit(e) {
+    handleSave(e) {
         e.preventDefault();
-        console.log("input values", this.state.address, this.state.owner);
         this.props.add({
             address: this.state.address,
             postcode: this.state.postcode,
@@ -55,7 +54,7 @@ class EditList extends React.Component {
                         <label>Owned by</label>
                         <Select options = {ownerSummary} onChange={e => this.setState({ owner: e.value})}/>
                     </div>
-                    <input type="submit" onClick={e => this.handleFormSubmit(e)}/>
+                    <input type="submit" onClick={e => this.handleSave(e)}/>
                     <input type="reset" onClick={this.props.cancel}/>
                 </form>
             </div>

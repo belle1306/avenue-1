@@ -4,8 +4,10 @@ import Logo from "../../Logo/Logo";
 
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
+         
         <nav className="navbar navbar-dark bg-dark">
-            <Logo />
+        <Logo />
+        <button className="btn btn-dark" onClick={props.logout}>Log out</button>
         </nav>
     </header>
 );

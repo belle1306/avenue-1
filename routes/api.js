@@ -56,4 +56,6 @@ router.delete("/propertymgmt/properties/:property_id", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+//PUT a property
+
 module.exports = router;
