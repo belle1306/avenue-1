@@ -6,6 +6,7 @@ class EditList extends React.Component {
     constructor(props) {
         super(props);
         // const [address , postcode] = this.props.property;
+        // console.log("constructor owners", props.owners);
         this.state = {
             id: this.props.property.id,
             address: this.props.property.property_address,
@@ -20,9 +21,7 @@ class EditList extends React.Component {
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFormSave = this.handleFormSave.bind(this);
-        console.log("constructor", this.props.property, "id", this.props.property.id);
     }
-
 
     handleFieldChange(e) {
         let change = {};
@@ -32,7 +31,7 @@ class EditList extends React.Component {
 
     handleFormSave(e) {
         e.preventDefault();
-        console.log("handleFormSave id", this.state.id);
+        // console.log("handleFormSave id", this.state.id);
         this.props.update({
             id: this.state.id,
             address: this.state.address,
@@ -45,25 +44,16 @@ class EditList extends React.Component {
             rentWeek: this.state.rentWeek,
             owner: this.state.owner
         })
-        console.log("handleFormSave sends this",this.state)
+        // console.log("handleFormSave sends this",this.state);
     }
 
     render() {
-        // let ownerSummary = this.props.owners.map(o => {
-        //     return {value: o.id, label: o.owner_firstName + " " + o.owner_lastName}
-        // });
+        let ownerSummary = this.props.owners.map(o => {
+            return {value: o.id, label: o.owner_firstName + " " + o.owner_lastName}
+        });
+        
+        console.log("render owner id", this.state.owner);
 
-        // const editProperty = this.props.property.map(e => {
-        //     return (
-        //         <ListItem key = {e.id}
-        //         property = {e}
-        //         // owners = {e.owner}
-        //         update = {() => this.props.update(e.id)}
-        //         />
-        //     )
-        // })
-
-        console.log("render", this.props);
         return (
             
             <div>
@@ -104,14 +94,14 @@ class EditList extends React.Component {
                         <input type="number" name="rentWeek" value={this.state.property_rentWeek} onChange={e => this.setState({ rentWeek: e.target.value})}/>
                         <label>weekly</label>
                     </div>                 
-                    {/* <div>
+                    <div>
                         <label>Owned by</label>
                         <Select 
                             options = {ownerSummary} 
                             name="owner"
-                            value = {ownerSummary.filter((e) => e.value === this.props.property.owner_id)}
+                            value = {ownerSummary.filter((e) => e.value === this.state.owner)}
                             onChange={e => this.setState({ owner: e.value})}/>
-                    </div> */}
+                    </div>
                     
                     <button type="submit" className="btn btn-primary" onClick={e => this.handleFormSave(e)}>Save</button>
                     <input type="reset" className="btn btn-dark" onClick={this.props.cancel}/>

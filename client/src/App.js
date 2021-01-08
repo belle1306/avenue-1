@@ -208,15 +208,14 @@ class App extends React.Component {
             update={this.updateProperty}
             /> 
         </Modal> */}
-     
+
+        {/* {console.log("APP RENDER OWNER", this.state.owners)} */}
         { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}
-          // owners={this.state.owners}
+          owners={this.state.owners}
           update={this.updateProperty}
           /> : <div></div> }
-       
-
       </div>
   )};
 }
