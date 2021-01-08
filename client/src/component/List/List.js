@@ -20,7 +20,7 @@ class List extends React.Component {
     render() {
         const propertyList = this.props.properties.map(p => {
             let selectedOwner = this.showOwner(this.props.owner, p.owner_id)
-            console.log(selectedOwner)
+            // console.log(selectedOwner);
             return (
                 <ListItem key = {p.id}
                 property = {p}
@@ -30,7 +30,7 @@ class List extends React.Component {
                 />
             )
         })
-        console.log(propertyList)
+        // console.log(propertyList);
         return (
             <div className={classes.List}>
                 {propertyList}

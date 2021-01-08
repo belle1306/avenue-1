@@ -50,8 +50,6 @@ class EditList extends React.Component {
         // let ownerSummary = this.props.owners.map(o => {
         //     return {value: o.id, label: o.owner_firstName + " " + o.owner_lastName}
         // });
-    
-        console.log("we are finding this list!!!", this.props);
 
         // const editProperty = this.props.property.map(e => {
         //     return (
@@ -67,7 +65,7 @@ class EditList extends React.Component {
         return (
             
             <div>
-                {console.log("CHECK THIS",this.props.property)};
+                {console.log("return",this.props.property)};
 
                 {/* {this.props.property.map(p => {
                     {console.log("EDIT FORM", p.id)}

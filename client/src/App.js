@@ -220,7 +220,7 @@ class App extends React.Component {
             /> 
         </Modal> */}
         
-        {console.log("PROPERTY", this.state.editing.property)}
+        {/* {console.log("PROPERTY", this.state.editing.property)} */}
         { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}
