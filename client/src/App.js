@@ -200,22 +200,24 @@ class App extends React.Component {
             owner={this.state.owners}
             edit={this.editingHandler}
           />
-        {/* 
-        <Modal cancel={this.editingHandler} show={this.state.editing.isEditable} property={this.state.editing.property}>
-          <EditList 
-            property={this.state.editing.property}
-            // owners={this.state.owners}
-            update={this.updateProperty}
-            /> 
-        </Modal> */}
+        
+        { (this.state.editing.isEditable) ? 
+            <Modal cancel={this.editingHandler} show={this.state.editing.isEditable}>
+                <EditList 
+                  property={this.state.editing.property}
+                  owners={this.state.owners}
+                  update={this.updateProperty}
+                  />
+            </Modal> : <div></div> }
 
-        {/* {console.log("APP RENDER OWNER", this.state.owners)} */}
-        { (this.state.editing.isEditable) ?  
+      
+        {/* { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}
           owners={this.state.owners}
           update={this.updateProperty}
-          /> : <div></div> }
+          /> : <div></div> } */}
+
       </div>
   )};
 }

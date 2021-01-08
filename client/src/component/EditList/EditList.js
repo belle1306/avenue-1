@@ -57,7 +57,7 @@ class EditList extends React.Component {
         return (
             
             <div>
-                {console.log("return",this.props.property)};
+                {console.log("return",this.props.property)}
 
                 <form className="form-inline" onSubmit={this.handleFormSave}>
                     <div className="form-group mb-2"> 
