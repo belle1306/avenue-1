@@ -40,49 +40,4 @@ class List extends React.Component {
     };
 }
 
-// const list = (props) => {
-//     const propertyList = props.properties.map(p => {
-//         return (
-//             <ListItem 
-//             property = {p}
-//             delete = {props.delete}/>
-//         )
-//     });
-//     return (
-//         <div>
-//             {propertyList}
-//         </div>
-//     )
-// };
-    // // ---------------------------------------------------------------------- //
-    //         <div key={p.id}>
-    //             Address
-    //             <input type="text" defaultValue={p.property_address}/>
-    //             Postcode
-    //             <input type="text" defaultValue={p.property_postcode}/>
-    //             Bedroom
-    //             <input type="text" defaultValue={p.property_bedroom}/>
-    //             Bathroom
-    //             <input type="text" defaultValue={p.property_bathroom}/>
-    //             Carpark
-    //             <input type="text" defaultValue={p.property_carpark}/>
-    //             Furnish
-    //             <input type="text" defaultValue={p.property_furnish}/>
-    //         </div>
-    //     );
-    // });
-    
-    // return (
-    //     <div>
-    //         <h5>Editing...</h5>
-    //         {propertySummary}
-    //         <button>Save Changes</button>
-    //         <button>Cancel</button>
-    //     </div>
-    // );
-
-
-//MOVE BUTTON TO APP; WHEN CLICK SAVE, SEND PUT REQ to API
-//CANCEL close modal;
-
 export default List;

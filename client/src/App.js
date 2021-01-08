@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Drop from "./component/Drop";
+// import Drop from "./component/Drop";
 import Modal from "./component/UI/Modal/Modal";
 import Layout from "./component/Layout/Layout";
 import List from "./component/List/List";
@@ -13,13 +13,13 @@ class App extends React.Component {
     this.state = {
       properties: [],
       owners: [],
-      propertyUpdate: false,
       adding: false,
       editing: false
     };
     this.addProperty = this.addProperty.bind(this);
-    this.addingHandler = this.addingHandler.bind(this);
+    this.updateProperty = this.updateProperty.bind(this);
     this.deleteProperty = this.deleteProperty.bind(this);
+    this.addingHandler = this.addingHandler.bind(this);
     this.editingHandler = this.editingHandler.bind(this);
   }
 
@@ -55,27 +55,9 @@ class App extends React.Component {
       });
   }
 
-  // update(newVal) {
-  //   console.log("new val address", newVal.address);
-  //   let newProperty = {
-  //     address: newVal.address,
-  //     postcode: newVal.postcode,
-  //     bedroom: newVal.bedroom,
-  //     bathroom: newVal.bathroom,
-  //     carpark: newVal.carpark,
-  //     furnish: newVal.furnish
-  //   }
-  //   let existingProperties = newProperty.properties;
-  //   existingProperties.push(newProperty);
-  //   this.setState({
-  //     properties: existingProperties
-  //   })
-  //   this.addProperty(newProperty);
-  // }
-
   addProperty(newProperty) {
     console.log("new prop address", newProperty.address);
-    console.log("properties object",newProperty);
+    console.log("properties object", newProperty);
     fetch("/propertymgmt/properties", {
       method: "POST",
       headers: {
@@ -105,10 +87,35 @@ class App extends React.Component {
     this.setState({adding: false});
   }
 
-  updateProperty(updateProperty) {
-    console.log("property being updated");
+  updateProperty(newVal, id) {
+    console.log("NEW VALUE FOR UPDATED PROPERTY", newVal);
+    console.log("UPDATED PROPERTY ID", id);
+    fetch("/propertymgmt/properties/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        property_address: newVal.address,
+        owner_id: newVal.owner,
+        property_postcode: newVal.postcode,
+        property_bedroom: newVal.bedroom,
+        property_bathroom: newVal.bathroom,
+        property_carpark: newVal.carpark,
+        property_furnish: newVal.furnish,
+        property_rent: newVal.rent,
+        property_rentWeek: newVal.rentWeek
+      })
+    })
+      .then(res => {
+        res.json();
+        this.componentDidMount();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-  
+
   deleteProperty(id) {
     console.log("taken id", id);
     fetch("/propertymgmt/properties/" + id, {
@@ -151,7 +158,6 @@ class App extends React.Component {
     else {
       this.setState({editing: property});
     }
-    console.log(this.state.editing)
   }
 
   render() {
@@ -188,13 +194,18 @@ class App extends React.Component {
             owner={this.state.owners}
             edit={this.editingHandler}
           />
-        <Modal cancel={this.editingHandler} show={this.state.editing}>
-          <EditList 
-          property={this.state.editing}
-          owners={this.state.owners}
+
+        {/* <Modal cancel={this.editingHandler} property={this.state.properties} show={this.state.editing}> */}
+          
+          
+        {/* </Modal> */}
+        
+        { (this.state.editing) ?  <EditList 
+          property={this.state.properties}
+          // owners={this.state.owners}
           update={this.updateProperty}
-          />
-        </Modal>
+          /> : <div></div> }
+       
 
       </div>
     )}

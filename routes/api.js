@@ -57,5 +57,25 @@ router.delete("/propertymgmt/properties/:property_id", (req, res) => {
 });
 
 //PUT a property
+router.put("/propertymgmt/properties/:property_id", (req, res) => {
+  const newId = req.params["property_id"];
+  const newAddress = req.body.property_address;
+  const newOwnerId = req.body.owner_id;
+  const newPostcode = req.body.property_postcode;
+  const newBedroom = req.body.property_bedroom;
+  const newBathroom = req.body.property_bathroom;
+  const newCarpark = req.body.property_carpark;
+  const newFurnish = req.body.property_furnish;
+  const newRent = req.body.property_rent;
+  const newRentWeek = req.body.property_rentWeek;
+
+  db(`UPDATE properties SET property_address = ${JSON.stringify(newAddress)}, owner_id = ${JSON.stringify(newOwnerId)}, property_postcode = ${JSON.stringify(newPostcode)}, property_bedroom = ${JSON.stringify(newBedroom)}, property_bathroom = ${JSON.stringify(newBathroom)}, property_carpark = ${JSON.stringify(newCarpark)}, property_furnish = ${JSON.stringify(newFurnish)}, property_rent =  ${JSON.stringify(newRent)}, property_rentWeek = ${JSON.stringify(newRentWeek)} WHERE id = ${JSON.stringify(newId)};`)
+    .then(results => {
+      res.send(results.data);
+      console.log(results.data);
+      res.status(200).send("property details updated");
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 module.exports = router;
