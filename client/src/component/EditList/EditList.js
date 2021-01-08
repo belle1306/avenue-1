@@ -5,17 +5,17 @@ import Drop from "../Drop";
 class EditList extends React.Component {
     constructor(props) {
         super(props);
-        const [address , postcode] = this.props.property;
+        // const [address , postcode] = this.props.property;
         this.state = {
-            address: address.property_address,
-            postcode: postcode.property_postcode
-            // bedroom: this.props.property.property_bedroom,
-            // bathroom: this.props.property.property_bathroom,
-            // carpark: this.props.property.property_carpark,
-            // furnish: this.props.property.property_furnish,
-            // rent: this.props.property.property_rent,
-            // rentWeek: this.props.property.property_rentWeek,
-            // owner: this.props.property.owner_id
+            address: this.props.property.property_address,
+            postcode: this.props.property.property_postcode,
+            bedroom: this.props.property.property_bedroom,
+            bathroom: this.props.property.property_bathroom,
+            carpark: this.props.property.property_carpark,
+            furnish: this.props.property.property_furnish,
+            rent: this.props.property.property_rent,
+            rentWeek: this.props.property.property_rentWeek,
+            owner: this.props.property.owner_id
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFormSave = this.handleFormSave.bind(this);
@@ -67,18 +67,34 @@ class EditList extends React.Component {
         return (
             
             <div>
-                {/* {editProperty} */}
+                {console.log("CHECK THIS",this.props.property)};
+
+                {/* {this.props.property.map(p => {
+                    {console.log("EDIT FORM", p.id)}
+                    return (
+                        <div> 
+                            <form>
+                                <div key={p.id}>
+                                    <label>Address</label>
+                                    <input type="text" name="address" className="form-control" value={p.property_address} onChange={this.handleFieldChange}
+                                    />
+                                </div>                      
+                            </form>
+                        </div>
+                    )
+                })} */}
+
                 <form className="form-inline" onSubmit={this.handleFormSave}>
                     <div className="form-group mb-2"> 
                         <div>
                             <label>Address</label>
-                            <input type="text" name="address" className="form-control" value={this.state.address} defaultValue={this.props.property.property_address} onChange={this.handleFieldChange}
+                            <input type="text" name="address" className="form-control" value={this.state.address} onChange={this.handleFieldChange}
                             />
                             <label>Postcode</label>
                             <input type="text" name="postcode" className="form-control" value={this.state.postcode} onChange={this.handleFieldChange}/>
                         </div>
                     </div>
-{/*                     
+                    
                     <Drop />
 
                     <div className="form-group mb-2"> 
@@ -103,7 +119,7 @@ class EditList extends React.Component {
                         <input type="number" name="rentWeek" value={this.state.property_rentWeek} onChange={e => this.setState({ rentWeek: e.target.value})}/>
                         <label>weekly</label>
                     </div>                 
-                    <div>
+                    {/* <div>
                         <label>Owned by</label>
                         <Select 
                             options = {ownerSummary} 

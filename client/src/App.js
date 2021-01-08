@@ -14,7 +14,11 @@ class App extends React.Component {
       properties: [],
       owners: [],
       adding: false,
-      editing: false
+      // editing: false
+      editing : {
+        property : null,
+        isEditable : false
+      }
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
@@ -151,13 +155,26 @@ class App extends React.Component {
   }
 
   editingHandler(property) {
-    console.log("We are trying to edit this property:", property)
-    if (this.state.editing) {
-      this.setState({editing: false});
+    console.log("edit handler", property);
+      this.setState({
+        editing : {
+        property : property, 
+        isEditable : true
+        }
+      });
     }
-    else {
-      this.setState({editing: property});
-    }
+
+    // console.log("EDITING HANDLER", property, "id", id)
+    // if (this.state.editing) {
+    //   this.setState({editing: false});
+    // }
+    // else {
+    //   this.setState({editing: property});
+    // }
+
+
+  getProperty(id) {
+    return this.state.properties.filter(eachProperty => eachProperty.id=== id);
   }
 
   render() {
@@ -194,21 +211,26 @@ class App extends React.Component {
             owner={this.state.owners}
             edit={this.editingHandler}
           />
-
-        {/* <Modal cancel={this.editingHandler} property={this.state.properties} show={this.state.editing}> */}
-          
-          
-        {/* </Modal> */}
+        {/* 
+        <Modal cancel={this.editingHandler} show={this.state.editing.isEditable} property={this.state.editing.property}>
+          <EditList 
+            property={this.state.editing.property}
+            // owners={this.state.owners}
+            update={this.updateProperty}
+            /> 
+        </Modal> */}
         
-        { (this.state.editing) ?  <EditList 
-          property={this.state.properties}
+        {console.log("PROPERTY", this.state.editing.property)}
+        { (this.state.editing.isEditable) ?  
+        <EditList 
+          property={this.state.editing.property}
           // owners={this.state.owners}
           update={this.updateProperty}
           /> : <div></div> }
        
 
       </div>
-    )}
+  )};
 }
 
 export default App;
