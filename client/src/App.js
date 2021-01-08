@@ -29,7 +29,7 @@ class App extends React.Component {
 
   //mount all properties when page loads
   componentDidMount() {
-    console.log("starting mounting")
+    // console.log("start mounting");
     fetch("/propertymgmt/properties")
       .then(res => res.json())
       .then(json => {
@@ -91,10 +91,9 @@ class App extends React.Component {
     this.setState({adding: false});
   }
 
-  updateProperty(newVal, id) {
-    console.log("NEW VALUE FOR UPDATED PROPERTY", newVal);
-    console.log("UPDATED PROPERTY ID", id);
-    fetch("/propertymgmt/properties/" + id, {
+  updateProperty(newVal) {
+    console.log("updatedProperty in App", newVal, newVal.id);
+    fetch("/propertymgmt/properties/" + newVal.id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -121,7 +120,7 @@ class App extends React.Component {
   }
 
   deleteProperty(id) {
-    console.log("taken id", id);
+    // console.log("taken id", id);
     fetch("/propertymgmt/properties/" + id, {
       method: "DELETE",
       headers: {
@@ -135,8 +134,7 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    
-    console.log("This property id was deleted", id)
+    // console.log("This property id was deleted", id);
   }
 
   logoutHandler() {
@@ -163,15 +161,6 @@ class App extends React.Component {
         }
       });
     }
-
-    // console.log("EDITING HANDLER", property, "id", id)
-    // if (this.state.editing) {
-    //   this.setState({editing: false});
-    // }
-    // else {
-    //   this.setState({editing: property});
-    // }
-
 
   getProperty(id) {
     return this.state.properties.filter(eachProperty => eachProperty.id=== id);
@@ -219,8 +208,7 @@ class App extends React.Component {
             update={this.updateProperty}
             /> 
         </Modal> */}
-        
-        {/* {console.log("PROPERTY", this.state.editing.property)} */}
+     
         { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}

@@ -21,7 +21,7 @@ class NewList extends React.Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        console.log("input values", this.state.address, this.state.owner);
+        // console.log("input values", this.state.address, this.state.owner);
         this.props.add({
             address: this.state.address,
             postcode: this.state.postcode,

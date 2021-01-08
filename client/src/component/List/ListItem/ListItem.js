@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./ListItem.module.css";
 
 const listItem = (props) => {
-    // console.log("this is property id in list item", props.property.id)
+    // console.log("this is property id in list item", props.property.id);
         
     return(
     <div className = {classes.ListItem}>

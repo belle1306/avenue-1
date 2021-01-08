@@ -7,6 +7,7 @@ class EditList extends React.Component {
         super(props);
         // const [address , postcode] = this.props.property;
         this.state = {
+            id: this.props.property.id,
             address: this.props.property.property_address,
             postcode: this.props.property.property_postcode,
             bedroom: this.props.property.property_bedroom,
@@ -19,7 +20,7 @@ class EditList extends React.Component {
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFormSave = this.handleFormSave.bind(this);
-        console.log("constructor", this.props.property);
+        console.log("constructor", this.props.property, "id", this.props.property.id);
     }
 
 
@@ -31,8 +32,9 @@ class EditList extends React.Component {
 
     handleFormSave(e) {
         e.preventDefault();
+        console.log("handleFormSave id", this.state.id);
         this.props.update({
-            // id: this.state.id,
+            id: this.state.id,
             address: this.state.address,
             postcode: this.state.postcode,
             bedroom: this.state.bedroom,
@@ -43,7 +45,7 @@ class EditList extends React.Component {
             rentWeek: this.state.rentWeek,
             owner: this.state.owner
         })
-        console.log("THIS IS WHAT WE ARE SENDING AFTER SAVING",this.state)
+        console.log("handleFormSave sends this",this.state)
     }
 
     render() {
@@ -66,21 +68,6 @@ class EditList extends React.Component {
             
             <div>
                 {console.log("return",this.props.property)};
-
-                {/* {this.props.property.map(p => {
-                    {console.log("EDIT FORM", p.id)}
-                    return (
-                        <div> 
-                            <form>
-                                <div key={p.id}>
-                                    <label>Address</label>
-                                    <input type="text" name="address" className="form-control" value={p.property_address} onChange={this.handleFieldChange}
-                                    />
-                                </div>                      
-                            </form>
-                        </div>
-                    )
-                })} */}
 
                 <form className="form-inline" onSubmit={this.handleFormSave}>
                     <div className="form-group mb-2"> 
@@ -125,7 +112,8 @@ class EditList extends React.Component {
                             value = {ownerSummary.filter((e) => e.value === this.props.property.owner_id)}
                             onChange={e => this.setState({ owner: e.value})}/>
                     </div> */}
-                    <input type="submit" className="btn btn-primary" onClick={e => this.handleFormSave(e)}/>
+                    
+                    <button type="submit" className="btn btn-primary" onClick={e => this.handleFormSave(e)}>Save</button>
                     <input type="reset" className="btn btn-dark" onClick={this.props.cancel}/>
                 </form>
             </div>
