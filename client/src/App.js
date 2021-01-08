@@ -14,7 +14,6 @@ class App extends React.Component {
       properties: [],
       owners: [],
       adding: false,
-      // editing: false
       editing : {
         property : null,
         isEditable : false
@@ -112,6 +111,12 @@ class App extends React.Component {
     })
       .then(res => {
         res.json();
+        this.setState({
+          editing : {
+            property : null,
+            isEditable : false
+          }
+        });
         this.componentDidMount();
       })
       .catch(error => {
@@ -153,14 +158,24 @@ class App extends React.Component {
   }
 
   editingHandler(property) {
-    console.log("edit handler", property);
+    console.log("edit handler", this.state.editing.isEditable);
+    if (this.state.editing.isEditable) {
       this.setState({
         editing : {
-        property : property, 
-        isEditable : true
+          property : null, 
+          isEditable : false
         }
       });
     }
+    else {
+      this.setState({
+      editing : {
+          property : property, 
+          isEditable : true
+        }
+      });
+    } 
+  }
 
   getProperty(id) {
     return this.state.properties.filter(eachProperty => eachProperty.id=== id);
@@ -207,15 +222,17 @@ class App extends React.Component {
                   property={this.state.editing.property}
                   owners={this.state.owners}
                   update={this.updateProperty}
+                  cancel={this.editingHandler}
                   />
             </Modal> : <div></div> }
 
-      
-        {/* { (this.state.editing.isEditable) ?  
+{/*       
+        { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}
           owners={this.state.owners}
           update={this.updateProperty}
+          cancel={this.editingHandler}
           /> : <div></div> } */}
 
       </div>

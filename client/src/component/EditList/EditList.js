@@ -21,17 +21,21 @@ class EditList extends React.Component {
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFormSave = this.handleFormSave.bind(this);
+        // console.log("checkbox", this.state.furnish);
     }
 
     handleFieldChange(e) {
-        let change = {};
-        change[e.target.name] = e.target.value;
-        this.setState(change);
+        const target = e.target;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        const name = target.name
+        this.setState({
+            [name] : value 
+        });
     }
 
     handleFormSave(e) {
         e.preventDefault();
-        // console.log("handleFormSave id", this.state.id);
+        console.log("handleFormSave FURNISH", this.state.furnish);
         this.props.update({
             id: this.state.id,
             address: this.state.address,
@@ -74,24 +78,24 @@ class EditList extends React.Component {
 
                     <div className="form-group mb-2"> 
                         <label>Bedroom</label>
-                        <input type="number" name="bedroom" className="form-control" value={this.state.bedroom} onChange={e => this.setState({ bedroom: e.target.value})}/>
+                        <input type="number" name="bedroom" className="form-control" value={this.state.bedroom} onChange={this.handleFieldChange}/>
                     </div>
                     <div className="form-group mb-2">
                         <label>Bathroom</label>
-                        <input type="number" name="bathroom" className="form-control" value={this.state.bathroom} onChange={e => this.setState({ bathroom: e.target.value})}/>
+                        <input type="number" name="bathroom" className="form-control" value={this.state.bathroom} onChange={this.handleFieldChange}/>
                     </div>
                     <div className="form-group mb-2">
                         <label>Carpark</label>
-                        <input type="number" name="carpark" className="form-control" value={this.state.carpark} onChange={e => this.setState({ carpark: e.target.value})}/>
+                        <input type="number" name="carpark" className="form-control" value={this.state.carpark} onChange={this.handleFieldChange}/>
                     </div>                      
                     <div className="form-check">
-                        <input type="checkbox" name="furnish" className="form-check-input" value={this.state.furnish} onChange={e => this.setState({ furnish: e.target.checked ? 1 : 0})}/>
+                        <input type="checkbox" name="furnish" className="form-check-input" checked={this.state.furnish} onChange={this.handleFieldChange}/>
                         <label>Furnished</label>
                     </div>
                     <div className="form-check">
-                        <input type="checkbox" name="rent" className="form-check-input" value={this.state.property_rent} onChange={e => this.setState({ rent: e.target.checked ? 1 : 0})}/>
+                        <input type="checkbox" name="rent" className="form-check-input" checked={this.state.rent} onChange={this.handleFieldChange}/>
                         <label>Rented</label>
-                        <input type="number" name="rentWeek" value={this.state.property_rentWeek} onChange={e => this.setState({ rentWeek: e.target.value})}/>
+                        <input type="number" name="rentWeek" value={this.state.rentWeek} onChange={this.handleFieldChange}/>
                         <label>weekly</label>
                     </div>                 
                     <div>
