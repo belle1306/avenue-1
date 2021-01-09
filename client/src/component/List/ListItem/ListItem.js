@@ -36,7 +36,7 @@ const listItem = (props) => {
                     &nbsp;
                     {"•"}
                     &nbsp;
-                    ${props.property.property_rentWeek * 52} monthly
+                    ${props.property.property_rentWeek * 4} monthly
                 </div>
 
                 <div>

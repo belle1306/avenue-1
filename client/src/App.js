@@ -40,7 +40,6 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
-
     this.getOwners();
   }
 
@@ -48,7 +47,7 @@ class App extends React.Component {
     fetch("/propertymgmt/owners")
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         this.setState({
           owners: data
         });
@@ -182,6 +181,11 @@ class App extends React.Component {
   }
 
   render() {
+    const numProperties = this.state.properties.length;
+    const vacancy = this.state.properties.filter(e => 
+      e.property_rent === 0
+    ).length;
+    const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
 
     return (
       <div>
@@ -192,12 +196,36 @@ class App extends React.Component {
           </Layout>
 
           <div className="badge rounded-pill bg-light text-dark">  
-              Currently managing 
-                <span className="badge rounded-pill bg-warning text-dark">
-                  {this.state.properties.length} 
-                </span>
-              properties
+              <span className="badge rounded-pill bg-warning text-dark">
+                {numProperties} 
+              </span>
+              &nbsp;
+              properties under management
           </div>
+
+          <div className="badge rounded-pill bg-light text-dark">
+              <span className="badge rounded-pill bg-warning text-dark">
+                {vacancy} 
+              </span>
+              &nbsp;
+              vacant properties
+          </div>
+
+          <div className="badge rounded-pill bg-light text-dark">
+              <span className="badge rounded-pill bg-warning text-dark text-lg">
+                {vacancy / numProperties * 100}%
+              </span>
+              &nbsp;
+              vacancy rate
+          </div>          
+
+          <div className="badge rounded-pill bg-light text-dark">
+              <span className="badge rounded-pill bg-warning text-dark text-lg">
+              ${totalRentMonth}
+              </span>
+              &nbsp;
+              monthly rent collection
+          </div>   
 
           <div>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
