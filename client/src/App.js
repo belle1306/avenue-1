@@ -195,37 +195,41 @@ class App extends React.Component {
           >
           </Layout>
 
-          <div className="badge rounded-pill bg-light text-dark">  
-              <span className="badge rounded-pill bg-warning text-dark">
-                {numProperties} 
-              </span>
-              &nbsp;
-              properties under management
+          <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div className="col">
+              <div className="card-body text-dark text-center bg-light mb-3">
+                <h1 className="card-title">{numProperties}</h1>
+                <p className="card-text">properties under management</p>
+              </div>
+            </div>
           </div>
 
-          <div className="badge rounded-pill bg-light text-dark">
-              <span className="badge rounded-pill bg-warning text-dark">
-                {vacancy} 
-              </span>
-              &nbsp;
-              vacant properties
+          <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div className="col">
+              <div className="card-body text-dark text-center bg-light mb-3">
+                <h1 className="card-title">{vacancy}</h1>
+                <p className="card-text">vacant properties</p>
+              </div>
+            </div>
           </div>
 
-          <div className="badge rounded-pill bg-light text-dark">
-              <span className="badge rounded-pill bg-warning text-dark text-lg">
-                {vacancy / numProperties * 100}%
-              </span>
-              &nbsp;
-              vacancy rate
-          </div>          
+          <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div className="col">
+              <div className="card-body text-dark text-center bg-light mb-3">
+                <h1 className="card-title">{vacancy / numProperties * 100}%</h1>
+                <p className="card-text">vacancy rate</p>
+              </div>
+            </div>
+          </div>
 
-          <div className="badge rounded-pill bg-light text-dark">
-              <span className="badge rounded-pill bg-warning text-dark text-lg">
-              ${totalRentMonth}
-              </span>
-              &nbsp;
-              monthly rent collection
-          </div>   
+          <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div className="col">
+              <div className="card-body text-dark text-center bg-light mb-3">
+                <h1 className="card-title">${totalRentMonth}</h1>
+                <p className="card-text">monthly rent collection</p>
+              </div>
+            </div>
+          </div>
 
           <div>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
