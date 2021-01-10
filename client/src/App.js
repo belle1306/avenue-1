@@ -189,48 +189,54 @@ class App extends React.Component {
 
     return (
       <div>
-          <Layout 
+          <Layout
           logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
           >
           </Layout>
 
-          <div class="row row-cols-1 row-cols-md-6 g-4">
+          <div className="row m-5">
+            <div className="col-2">
+                <div className="card-body text-light text-center bg-primary mb-3 rounded">
+                  <h1 className="card-title">{numProperties}</h1>
+                  <p className="card-text">properties under management</p>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                      <h1 className="card-title">{vacancy}</h1>
+                      <p className="card-text">vacant properties</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="card-body text-light text-center bg-primary mb-3 rounded">
+                      <h1 className="card-title">${totalRentMonth}</h1>
+                      <p className="card-text">monthly rent collection</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                      <h1 className="card-title">{vacancy / numProperties * 100}%</h1>
+                      <p className="card-text">vacancy rate</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+      
             <div className="col">
-              <div className="card-body text-dark text-center bg-light mb-3">
-                <h1 className="card-title">{numProperties}</h1>
-                <p className="card-text">properties under management</p>
-              </div>
+              <List 
+                properties={this.state.properties}
+                delete={this.deleteProperty}
+                owner={this.state.owners}
+                edit={this.editingHandler}
+              />
             </div>
           </div>
-
-          <div class="row row-cols-1 row-cols-md-6 g-4">
-            <div className="col">
-              <div className="card-body text-dark text-center bg-light mb-3">
-                <h1 className="card-title">{vacancy}</h1>
-                <p className="card-text">vacant properties</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="row row-cols-1 row-cols-md-6 g-4">
-            <div className="col">
-              <div className="card-body text-dark text-center bg-light mb-3">
-                <h1 className="card-title">{vacancy / numProperties * 100}%</h1>
-                <p className="card-text">vacancy rate</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="row row-cols-1 row-cols-md-6 g-4">
-            <div className="col">
-              <div className="card-body text-dark text-center bg-light mb-3">
-                <h1 className="card-title">${totalRentMonth}</h1>
-                <p className="card-text">monthly rent collection</p>
-              </div>
-            </div>
-          </div>
-
+        
           <div>
             <Modal cancel={this.addingHandler} show={this.state.adding}>
               <NewList 
@@ -241,13 +247,6 @@ class App extends React.Component {
             </Modal>
           </div>
 
-          <List 
-            properties={this.state.properties}
-            delete={this.deleteProperty}
-            owner={this.state.owners}
-            edit={this.editingHandler}
-          />
-        
         { (this.state.editing.isEditable) ? 
             <Modal cancel={this.editingHandler} show={this.state.editing.isEditable}>
                 <EditList 

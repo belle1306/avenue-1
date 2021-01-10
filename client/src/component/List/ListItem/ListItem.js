@@ -10,10 +10,10 @@ const listItem = (props) => {
             <img className="card-img-top" src="https://static.mansionglobal.com/production/media/listing_images/044c9a1bb0936046e21d5e119428414c/small_1D917539-4723-4E89-959A-8A3C5D2EC131.jpeg" alt="house"/>
 
             <div className="card-img-overlay">
-                <h1 className="card-title text-white">{props.property.property_address}</h1>
-                <div className="text-white">
+                <h3 className="card-title text-white">{props.property.property_address}</h3>
+                <span className="text-white">
                     {props.property.property_postcode}
-                </div>
+                </span>
             </div>
             
             <div className="card-body">
@@ -51,6 +51,7 @@ const listItem = (props) => {
                 <button onClick={props.edit} className="btn btn-primary">Edit</button>
                 <button onClick={props.delete} className="btn btn-danger">Delete</button>
             </div>
+           
         </div>
 
     </div>
