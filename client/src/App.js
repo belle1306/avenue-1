@@ -186,6 +186,7 @@ class App extends React.Component {
       e.property_rent === 0
     ).length;
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
+    const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
 
     return (
       <div>
@@ -220,7 +221,7 @@ class App extends React.Component {
                 <div className="row">
                   <div className="col">
                     <div className="card-body text-light text-center bg-danger mb-3 rounded">
-                      <h1 className="card-title">{vacancy / numProperties * 100}%</h1>
+                      <h1 className="card-title">{vacancyRate}%</h1>
                       <p className="card-text">vacancy rate</p>
                     </div>
                   </div>
