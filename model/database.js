@@ -27,7 +27,7 @@ con.connect(function(err) {
   + "CREATE TABLE `owners` (`owner_id` INT,`owner_firstName` varchar(50),`owner_lastName` varchar(50),`owner_mobile` varchar(13),`owner_email` TEXT,PRIMARY KEY (`owner_id`));"
   + "ALTER TABLE `properties` ADD CONSTRAINT `properties_fk0` FOREIGN KEY (`tenant_id`) REFERENCES `tenants`(`tenant_id`);"
   + "ALTER TABLE `properties` ADD CONSTRAINT `properties_fk1` FOREIGN KEY (`owner_id`) REFERENCES `owners`(`owner_id`);"
-brb 
+
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Tables for `propertymgmt` database were successfully created!");
