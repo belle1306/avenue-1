@@ -9,6 +9,7 @@ const toolbar = (props) => (
             <h1 className="text-white">Avenue</h1>
             <button className="btn btn-danger text-white m-4" onClick={props.newbtn}>New</button>
             <button className="btn btn-danger text-white" onClick={props.logoutbtn}>Log out</button>
+            {/* <button className="btn btn-danger text-white m-4" onClick={props.signbtn}>Add Signature</button> */}
         </nav>
     </header>
 );

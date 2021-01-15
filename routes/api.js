@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 const bodyParser = require("body-parser");
 const db = require("../model/helper");
+const hellosign = require('hellosign-sdk')({
+  key: '7150cf6254b928355fb88dd8fb225d385b7c59464ea38df8bd591052391c9307'
+});
 
 router.use(bodyParser.json());
 
@@ -77,5 +80,81 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
     })
     .catch(err => res.status(500).send(err));
 });
+
+//Signature
+const opts = {
+  test_mode: 1,
+  clientId: 'e8bef94dd5a2e23cf4e32bfd9de4fd4a',
+  template_id: 'b0ee832977d76cc3240364e0287ccfd1544bb454',
+  subject: 'The NDA we talked about',
+  message: 'Please sign this NDA and then we can discuss more. Let me know if you have any questions.',
+  signers: [
+    {
+      email_address: 'jas4gan@gmail.com',
+      name: 'Alice',
+      role: 'subject'
+    }
+  ],
+  custom_fields: {
+    organization_name: 'ACME Co.',
+    shoot_type: 'Hand model',
+    location: 'Cozumel, Mexico'
+  }
+};
+
+/*hellosign.signatureRequest.createEmbeddedWithTemplate(opts).then((res) => {
+  // handle response
+}).catch((err) => {
+  // handle error
+});
+ const opts = {
+  test_mode: 1,
+  clientId: 'e8bef94dd5a2e23cf4e32bfd9de4fd4a',
+  subject: 'NDA with Acme Co.',
+  message: 'Please sign this NDA and then we can discuss more.?',
+  
+  signers: [
+    {
+      email_address: 'jas4gan@gmail.com',
+      name: 'Jas'
+    },
+    {
+      email_address: 'jaseslin@gmail.com',
+      name: 'Jaseslin'
+    }
+  ],
+  files: ['Agreement.pdf','Agreement2.pdf']
+}; */
+// let signatureId = "";
+hellosign.signatureRequest.createEmbedded(opts).then((res) => {
+  // handle response
+ /*  console.log("are you here?", res.signature_request);
+  signatureId = res.signature_request.signature_request_id;
+  return signatureId;
+})
+  .then(data => {
+    hellosign.embedded.getSignUrl(data).then((res) => {
+      console.log('The sign url is: ' + res.embedded.sign_url);
+    }).catch((err) => {
+      // handle error
+    });
+  })
+  .catch((err) => {
+  // handle error
+  console.log(err);
+}); */
+console.log("are you here?", res.signature_request);
+  const signature = res.signature_request.signatures[0];
+  const signatureId = signature.signature_id;
+
+  return hellosign.embedded.getSignUrl(signatureId);
+}).then((res) => {
+  console.log('The sign url: ' + res.embedded.sign_url);
+}).catch((err) => {
+  // handle error
+});
+// const hellosign = require('hellosign-sdk')({ key: '7150cf6254b928355fb88dd8fb225d385b7c59464ea38df8bd591052391c9307' });
+
+
 
 module.exports = router;
