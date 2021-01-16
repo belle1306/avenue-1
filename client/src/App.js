@@ -7,7 +7,6 @@ import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
 import EditList from "./component/EditList/EditList";
 
-import HelloSign from "hellosign-embedded";
 
 class App extends React.Component {
   constructor(props) {
@@ -147,6 +146,7 @@ class App extends React.Component {
     alert("work saved! logged out");
   }
 
+  
   addingHandler() {
     console.log("adding", this.state.adding);
     if (this.state.adding) {
@@ -157,29 +157,7 @@ class App extends React.Component {
       this.setState({adding: true});
     }
   }
-/*
-  signHandler() {
-    console.log("Sign here please...");
-    const client = new HelloSign({
-      clientId: "e8bef94dd5a2e23cf4e32bfd9de4fd4a"
-    });
-    console.log("what's in client: ", client);
-    client.open("https://api.hellosign.com/v3/signature_request/files/73e48d65f735a45142af28c7a2fd312c415b3e98", {
-      allowCancel: true,
-      skipDomainVerification: true,
-      testMode: true
-    });
-    
-    client.on(HelloSign.events.SIGN, (data) => {
-      console.log('The document has been signed!');
-    })
-    
-    /* client.open("https://api.hellosign.com/v3/signature_request/files/73e48d65f735a45142af28c7a2fd312c415b3e98", {
-      testMode: true,
-      skipDomainVerification: true
-    }); 
-}  
-//C:\Users\jases\BreakthrHW\feature_ext\avenue\Agreement.pdf*/
+
 
   editingHandler(property) {
     console.log("edit handler", this.state.editing.isEditable);
@@ -214,14 +192,12 @@ class App extends React.Component {
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
 
     return (
-      <div>
+      <div>        
           <Layout
-          logoutbtn={this.logoutHandler}
-          newbtn={this.addingHandler}
-          // signbtn={this.signHandler}
+            logoutbtn={this.logoutHandler}
+          newbtn={this.addingHandler}  
           >
           </Layout>
-
           <div className="row m-5">
             <div className="col-2">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">

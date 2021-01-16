@@ -8,7 +8,6 @@ const layout = (props) => (
         <Toolbar 
             logoutbtn={props.logoutbtn} 
             newbtn={props.newbtn}
-            // signbtn={props.signbtn}
         />   
         <main>
             {props.children}
