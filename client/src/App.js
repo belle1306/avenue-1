@@ -6,6 +6,7 @@ import Layout from "./component/Layout/Layout";
 import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
 import EditList from "./component/EditList/EditList";
+import RentCalculator from "./component/RentCalculator";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,15 +15,17 @@ class App extends React.Component {
       properties: [],
       owners: [],
       adding: false,
-      editing : {
-        property : null,
-        isEditable : false
+      calculate: false,
+      editing: {
+        property: null,
+        isEditable: false
       }
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
     this.deleteProperty = this.deleteProperty.bind(this);
     this.addingHandler = this.addingHandler.bind(this);
+    this.calculateHandler = this.calculateHandler.bind(this);
     this.editingHandler = this.editingHandler.bind(this);
   }
 
@@ -85,8 +88,8 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    
-    this.setState({adding: false});
+
+    this.setState({ adding: false });
   }
 
   updateProperty(newVal) {
@@ -111,9 +114,9 @@ class App extends React.Component {
       .then(res => {
         res.json();
         this.setState({
-          editing : {
-            property : null,
-            isEditable : false
+          editing: {
+            property: null,
+            isEditable: false
           }
         });
         this.componentDidMount();
@@ -148,11 +151,20 @@ class App extends React.Component {
   addingHandler() {
     console.log("adding", this.state.adding);
     if (this.state.adding) {
-      this.setState({adding: false});
+      this.setState({ adding: false });
     }
     else {
       this.getOwners();
-      this.setState({adding: true});
+      this.setState({ adding: true });
+    }
+  }
+
+  calculateHandler() {
+    if (this.state.calculate) {
+      this.setState({ calculate: false });
+    }
+    else {
+      this.setState({ calculate: true });
     }
   }
 
@@ -160,29 +172,29 @@ class App extends React.Component {
     console.log("edit handler", this.state.editing.isEditable);
     if (this.state.editing.isEditable) {
       this.setState({
-        editing : {
-          property : null, 
-          isEditable : false
+        editing: {
+          property: null,
+          isEditable: false
         }
       });
     }
     else {
       this.setState({
-      editing : {
-          property : property, 
-          isEditable : true
+        editing: {
+          property: property,
+          isEditable: true
         }
       });
-    } 
+    }
   }
 
   getProperty(id) {
-    return this.state.properties.filter(eachProperty => eachProperty.id=== id);
+    return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
   render() {
     const numProperties = this.state.properties.length;
-    const vacancy = this.state.properties.filter(e => 
+    const vacancy = this.state.properties.filter(e =>
       e.property_rent === 0
     ).length;
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
@@ -190,75 +202,84 @@ class App extends React.Component {
 
     return (
       <div>
-          <Layout
+        <Layout
           logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
-          >
-          </Layout>
+          calculatebtn={this.calculateHandler}
+        >
+        </Layout>
 
-          <div className="row m-5">
-            <div className="col-2">
+        <div className="row m-5">
+          <div className="col-2">
+            <div className="card-body text-light text-center bg-primary mb-3 rounded">
+              <h1 className="card-title">{numProperties}</h1>
+              <p className="card-text">properties under management</p>
+            </div>
+            <div className="row">
+              <div className="col">
+                <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                  <h1 className="card-title">{vacancy}</h1>
+                  <p className="card-text">vacant properties</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">
-                  <h1 className="card-title">{numProperties}</h1>
-                  <p className="card-text">properties under management</p>
+                  <h1 className="card-title">${totalRentMonth}</h1>
+                  <p className="card-text">monthly rent collection</p>
                 </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
-                      <h1 className="card-title">{vacancy}</h1>
-                      <p className="card-text">vacant properties</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="card-body text-light text-center bg-primary mb-3 rounded">
-                      <h1 className="card-title">${totalRentMonth}</h1>
-                      <p className="card-text">monthly rent collection</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
-                      <h1 className="card-title">{vacancyRate}%</h1>
-                      <p className="card-text">vacancy rate</p>
-                    </div>
-                  </div>
-                </div>
+              </div>
             </div>
-      
-            <div className="col">
-              <List 
-                properties={this.state.properties}
-                delete={this.deleteProperty}
-                owner={this.state.owners}
-                edit={this.editingHandler}
-              />
+            <div className="row">
+              <div className="col">
+                <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                  <h1 className="card-title">{vacancyRate}%</h1>
+                  <p className="card-text">vacancy rate</p>
+                </div>
+              </div>
             </div>
           </div>
-        
-          <div>
-            <Modal cancel={this.addingHandler} show={this.state.adding}>
-              <NewList 
-                owners={this.state.owners} 
-                cancel={this.addingHandler}
-                add={this.addProperty}
-              />
-            </Modal>
+
+          <div className="col">
+            <List
+              properties={this.state.properties}
+              delete={this.deleteProperty}
+              owner={this.state.owners}
+              edit={this.editingHandler}
+            />
           </div>
+        </div>
 
-        { (this.state.editing.isEditable) ? 
-            <Modal cancel={this.editingHandler} show={this.state.editing.isEditable}>
-                <EditList 
-                  property={this.state.editing.property}
-                  owners={this.state.owners}
-                  update={this.updateProperty}
-                  cancel={this.editingHandler}
-                  />
-            </Modal> : <div></div> }
+        <div>
+          <Modal cancel={this.addingHandler} show={this.state.adding}>
+            <NewList
+              owners={this.state.owners}
+              cancel={this.addingHandler}
+              add={this.addProperty}
+            />
+          </Modal>
+        </div>
 
-{/*       
+        { (this.state.editing.isEditable) ?
+          <Modal cancel={this.editingHandler} show={this.state.editing.isEditable}>
+            <EditList
+              property={this.state.editing.property}
+              owners={this.state.owners}
+              update={this.updateProperty}
+              cancel={this.editingHandler}
+            />
+          </Modal> : <div></div>}
+
+        <div>
+          <Modal cancel={this.calculateHandler} show={this.state.calculate}>
+              <RentCalculator
+                cancel={this.calculateHandler}
+              />
+            </Modal>  
+        </div>
+
+        {/*       
         { (this.state.editing.isEditable) ?  
         <EditList 
           property={this.state.editing.property}
@@ -268,7 +289,8 @@ class App extends React.Component {
           /> : <div></div> } */}
 
       </div>
-  )};
+    )
+  };
 }
 
 export default App;
