@@ -162,6 +162,7 @@ class App extends React.Component {
   calculateHandler() {
     if (this.state.calculate) {
       this.setState({ calculate: false });
+      window.location.reload();
     }
     else {
       this.setState({ calculate: true });

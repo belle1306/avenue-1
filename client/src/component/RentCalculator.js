@@ -36,13 +36,13 @@ const RentCalculator = (props) => {
             actualError = 'All the values are required';
         }
         // Validate if the values are numbers
-        if (isNaN(amount) || isNaN(years)) {
-            actualError = 'All the values must be a valid number';
-        }
+        // if (isNaN(amount) || isNaN(years)) {
+        //     actualError = 'All the values must be a valid number';
+        // }
         // Validate if the values are positive numbers
-        if (Number(amount) <= 0 || Number(years) <= 0) {
-            actualError = 'All the values must be a positive number';
-        }
+        // if (Number(amount) <= 0 || Number(years) <= 0) {
+        //     actualError = 'All the values must be a positive number';
+        // }
         if (actualError) {
             setError(actualError);
             return false;
@@ -50,13 +50,20 @@ const RentCalculator = (props) => {
         return true;
     };
 
-    // Handle the data submited - validate inputs and send it as a parameter to the function that calculates the loan
+    // Handle the data submited - validate inputs and send it as a parameter to the function that calculates the rent
     const handleSubmitValues = (e) => {
         e.preventDefault();
         if (isValid()) {
             setError('');
             calculateResults(userValues);
         }
+    };
+
+    // Reset calculator input value
+    const resetInput = (e) => {
+        e.preventDefault();
+        setError('');
+        clearFields();
     };
 
     // Calculation
@@ -92,108 +99,158 @@ const RentCalculator = (props) => {
 
     // Clear input fields
     const clearFields = () => {
-            setUserValues({
-                amount: '',
-                years: '',
-            });
+        setUserValues({
+            amount: '',
+            years: '',
+        });
 
-            setResults({
-                bondPayment: '',
-                monthlyRent: '',
-                monthlyServiceFee: '',
-                monthlyVAT: '',
-                totalUpfront: '',
-                totalMonthly: '',
-                totalMonthlyOwner: '',
-                totalPayment: '',
-                isResult: false,
-            });
+        setResults({
+            bondPayment: '',
+            monthlyRent: '',
+            monthlyServiceFee: '',
+            monthlyVAT: '',
+            totalUpfront: '',
+            totalMonthly: '',
+            totalMonthlyOwner: '',
+            totalPayment: '',
+            isResult: false,
+        });
     };
 
     return (
-        <div className='calculator'>
-            <div className='form'>
-                {/* <h1>Rent Calculator</h1> */}
-                {/* Display the error when it exists */}
-                <p className='error'>{error}</p>
-                <form onSubmit={handleSubmitValues}>
-                    {/* ternary operator manages when the calculator and results will be displayed to the user */}
-                    {!results.isResult ? (
-                        //   Form to collect data from the user
-                        <div className='form-items'>
-                            <div>
-                                <label id='label'>Weekly Rent $:</label>
-                                <input
-                                    type='text'
-                                    name='amount'
-                                    placeholder='Weekly rent amount'
-                                    value={userValues.amount}
-                                    // onChange method sets the values given by the user as input to the userValues state
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <div>
-                                <label id='label'>Year(s):</label>
-                                <input
-                                    type='text'
-                                    name='years'
-                                    placeholder='Tenure year(s)'
-                                    value={userValues.years}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <input type='submit' className='btn btn-primary' />
-                            <button className='btn btn-secondary' onClick={props.cancel}>Close</button>
-                        </div>
-                    ) : (
-                            //   Form to display the results to the user
-                            <div className='form-items'>
-                                <h4>
-                                    Weekly rent amount: ${userValues.amount} <br />Tenure year(s): {userValues.years} <br />Service Fee: 12% Monthly <br />VAT: 20% Monthly
-                                </h4>
-                                <div>
-                                    <label id='label'>Bond Payment: <br />(Refundable as Final Month Rent Payment)</label>
-                                    <input type='text' value={results.bondPayment} disabled />
+        <div className='container'>
+            <div className='row'>
+                <div className='col mx-auto calculate-form'>
+                    <div className='card card-body text-center'>
+                        <h1 className='heading display-5'>Rent Calculator</h1>
+                            {/* Display the error when it exists */}
+                            <p className='error'>{error}</p>
+                            <form id='rent-form' autocomplete='off' onSubmit={handleSubmitValues}>
+                                {/* ternary operator manages when the calculator and results will be displayed to the user */}
+                                {!results.isResult ? (
+                                    //   Form to collect data from the user
+                                <div className='form'>
+                                    <div className='form-group'>
+                                        <div className='input-group'>
+                                            <div className='input-group-prepend'>
+                                                <span className='input-group-text'>$</span>
+                                            </div>
+                                            <input
+                                                type='number'
+                                                name='amount'
+                                                className='form-control'
+                                                placeholder='Weekly rent amount'
+                                                value={userValues.amount}
+                                                // onChange method sets the values given by the user as input to the userValues state
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className='form-group'>
+                                        <div className='input-group'>
+                                            <div className='input-group-prepend'>
+                                                <span className='input-group-text'>#</span>
+                                            </div>
+                                            <input
+                                                type='number'
+                                                name='years'
+                                                className='form-control'
+                                                placeholder='Tenure year(s)'
+                                                value={userValues.years}
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                    </div><br/>
+                                    <input type='submit' className='btn btn-primary' />
+                                    <button className='btn btn-danger' onClick={resetInput}>Reset</button>
+                                    <button className='btn btn-secondary' onClick={props.cancel}>Close</button>
                                 </div>
-                                <div>
-                                    <label id='label'>Monthly Rent: </label>
-                                    <input type='text' value={results.monthlyRent} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Monthly Service Fee:</label>
-                                    <input type='text' value={results.monthlyServiceFee} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Monthly VAT:</label>
-                                    <input type='text' value={results.monthlyVAT} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Total Upfront Payment (Tenant):</label>
-                                    <input type='text' value={results.totalUpfront} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Total Monthly Rent (Tenant) ({userValues.years * 12 - 2} Months):</label>
-                                    <input type='text' value={results.totalMonthly} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Total Monthly Service Fee & VAT (Owner) ({userValues.years * 12} Months):</label>
-                                    <input type='text' value={results.totalMonthlyOwner} disabled />
-                                </div>
-                                <div>
-                                    <label id='label'>Total Payment per Tenure (Tenant + Owner):</label>
-                                    <input type='text' value={results.totalPayment} disabled />
-                                </div>
-                                {/* Button to clear fields */}
-                                <input
-                                    className='button'
-                                    value='Calculate again'
-                                    type='button'
-                                    onClick={clearFields}
-                                />
-                            </div>
-                        )}
-                </form>
-            </div>
+                            ) : (
+                                    //   Form to display the results to the user
+                                    <div className='form-results'>
+                                        <h4>Weekly rent amount: ${userValues.amount} <br />Tenure year(s): {userValues.years}</h4>
+                                        <h6>Service Fee: 12% Monthly <br />VAT: 20% Monthly</h6>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Bond $</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.bondPayment} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Monthly Rent $</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.monthlyRent} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Monthly Service Fee $</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.monthlyServiceFee} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Monthly VAT $</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.monthlyVAT} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Upfront $ (T)</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.totalUpfront} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Total Monthly Rent $ (T)</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.totalMonthly} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Total Monthly Service Fee & VAT $ (O)</span>
+                                                </div>
+                                                <input type='number' className='form-control' value={results.totalMonthlyOwner} disabled />
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='input-group'>
+                                                <div className='input-group-prepend'>
+                                                    <span className='input-group-text'>Total Collection per Tenure $ (T+O)</span>
+                                                </div>
+                                                <input type='text' className='form-control' value={results.totalPayment} disabled />
+                                            </div>
+                                        </div>
+                                        <p>(T): Tenant | (O): Owner</p>
+                                        {/* Button to clear fields */}
+                                        <input
+                                            className='btn btn-primary'
+                                            value='Calculate again'
+                                            type='button'
+                                            onClick={clearFields}
+                                        />
+                                    </div>
+
+
+                                )}
+                            </form>
+                    </div>
+                </div>        
+            </div>            
         </div>
     );
 }
