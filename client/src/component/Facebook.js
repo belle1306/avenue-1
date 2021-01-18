@@ -39,7 +39,6 @@ export default class Facebook extends Component {
             ) : fbContent = (
                 <div
                     style={{
-                        //background:'#dc3545',
                         padding: '0px 20px'
                     }}
                 >

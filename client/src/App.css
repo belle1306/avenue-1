@@ -23,7 +23,7 @@
   color: #61dafb;
 }
 
-button.kep-login-facebook.metro:not(:disabled) {
+.kep-login-facebook.metro:not(:disabled) {
   font-weight: 400;
   line-height: 1.5;
   text-align: center;
