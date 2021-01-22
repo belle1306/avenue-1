@@ -7,6 +7,7 @@ import List from "./component/List/List";
 import NewList from "./component/NewList/NewList";
 import EditList from "./component/EditList/EditList";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -145,6 +146,7 @@ class App extends React.Component {
     alert("work saved! logged out");
   }
 
+  
   addingHandler() {
     console.log("adding", this.state.adding);
     if (this.state.adding) {
@@ -155,6 +157,7 @@ class App extends React.Component {
       this.setState({adding: true});
     }
   }
+
 
   editingHandler(property) {
     console.log("edit handler", this.state.editing.isEditable);
@@ -189,13 +192,12 @@ class App extends React.Component {
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
 
     return (
-      <div>
+      <div>        
           <Layout
-          logoutbtn={this.logoutHandler}
-          newbtn={this.addingHandler}
+            logoutbtn={this.logoutHandler}
+          newbtn={this.addingHandler}  
           >
           </Layout>
-
           <div className="row m-5">
             <div className="col-2">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">
