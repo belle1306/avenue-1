@@ -205,8 +205,8 @@ class App extends React.Component {
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
 
     return (
-
       <div>
+
         <Layout
           logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
@@ -228,6 +228,7 @@ class App extends React.Component {
                     </div>
                   </div>
                 </div>
+
                 <div className="row">
                   <div className="col">
                     <div className="card-body text-light text-center bg-primary mb-3 rounded">
@@ -235,10 +236,9 @@ class App extends React.Component {
                       <p className="card-text">monthly rent collection</p>
                     </div>
                   </div>
-
                 </div>
-              </div>
-            </div>
+
+             
             <div className="row">
               <div className="col">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">
@@ -247,6 +247,7 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col">
                 <div className="card-body text-light text-center bg-danger mb-3 rounded">
@@ -255,6 +256,7 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
+
           </div>
 
           <div className="col">
@@ -265,6 +267,7 @@ class App extends React.Component {
               edit={this.editingHandler}
             />
           </div>
+
         </div>
 
         <div>
