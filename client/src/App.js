@@ -1,7 +1,6 @@
 import React from "react";
 // import "./App.css";
 import Nav from './component/Nav';
-import Home from './component/Home';
 import Manager from './component/Manager';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -10,13 +9,19 @@ function App() {
       <Router>
         <div>
             <Nav />
-            <Route path="/" />
-            <Route path="/manager" component={Manager}/>
+            <Switch>
+              <Route path="/" exact component={Home}/>
+              <Route path="/manager" component={Manager}/>
+            </Switch>
         </div>
       </Router>
     );
 }
 
-// const Home = ()=>
+const Home = ()=> (
+  <div>
+    <h1>Home Page</h1>
+  </div>
+);
 
 export default App;
