@@ -3,6 +3,7 @@ import React from "react";
 import {Link} from'react-router-dom';
 import Logo from "./Logo/Logo";
 import Facebook from './Facebook';
+<<<<<<< HEAD
 
 function Nav(props) {
     return (
@@ -21,6 +22,27 @@ function Nav(props) {
             </ul>
         </nav>
     </header>
+=======
+// import classes from "./Nav.module.css";
+
+function Nav() {
+    return (
+        // <div className={classes.bg}>
+            <nav className="navbar navbar-expand-lg navbar-danger bg-danger ml-auto">
+                <ul className="nav-links">
+                    <Logo />
+                    <h1 className="text-white m-4">Avenue</h1>
+                    <Link to="/">
+                        <li>Home</li>
+                    </Link>  
+                    <Link to="/manager">
+                        <li>Manager</li>
+                    </Link> 
+                    <Facebook />
+                </ul>
+            </nav>
+        // </div>
+>>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
     );
 }
 
