@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -7,8 +6,4 @@
 .env
 package.json
 yarn.lock
-=======
-.DS_Store
-/node_modules
-.env
->>>>>>> f8199d75ebbab4c19db64545e114c2cac483f77b
+
