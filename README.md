@@ -41,10 +41,11 @@ In the MySQL CLI, type `create database propertymgmt;` to create a database in M
 ### Install Dependencies
 
 Run `yarn` in avenue folder to install dependencies related to Express.
+Run `yarn add hellosign-sdk`.
 
 Open a **new** terminal window and run `node model/database.js` in avenue root folder. This will create a table called 'properties' in your database.
 
-`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`.
+`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`, `yarn add react-number-format`, `yarn add react-facebook-login`,`yarn add hellosign-embedded`, `yarn add react-router-dom`.
 
 ### Run Development Servers
 
