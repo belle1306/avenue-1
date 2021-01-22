@@ -5,7 +5,7 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 
 const layout = (props) => (
     <Auxil>
-        <Toolbar 
+        <Toolbar
         logoutbtn={props.logoutbtn} 
         newbtn={props.newbtn}
         calculatebtn={props.calculatebtn}

@@ -8,6 +8,7 @@ import NewList from "./component/NewList/NewList";
 import EditList from "./component/EditList/EditList";
 import RentCalculator from "./component/RentCalculator";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -148,6 +149,7 @@ class App extends React.Component {
     alert("work saved! logged out");
   }
 
+  
   addingHandler() {
     console.log("adding", this.state.adding);
     if (this.state.adding) {
@@ -168,6 +170,7 @@ class App extends React.Component {
       this.setState({ calculate: true });
     }
   }
+
 
   editingHandler(property) {
     console.log("edit handler", this.state.editing.isEditable);
@@ -202,6 +205,7 @@ class App extends React.Component {
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
 
     return (
+
       <div>
         <Layout
           logoutbtn={this.logoutHandler}
@@ -209,18 +213,29 @@ class App extends React.Component {
           calculatebtn={this.calculateHandler}
         >
         </Layout>
+ 
+          <div className="row m-5">
+            <div className="col-2">
+                <div className="card-body text-light text-center bg-primary mb-3 rounded">
+                  <h1 className="card-title">{numProperties}</h1>
+                  <p className="card-text">properties under management</p>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                      <h1 className="card-title">{vacancy}</h1>
+                      <p className="card-text">vacant properties</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div className="card-body text-light text-center bg-primary mb-3 rounded">
+                      <h1 className="card-title">${totalRentMonth}</h1>
+                      <p className="card-text">monthly rent collection</p>
+                    </div>
+                  </div>
 
-        <div className="row m-5">
-          <div className="col-2">
-            <div className="card-body text-light text-center bg-primary mb-3 rounded">
-              <h1 className="card-title">{numProperties}</h1>
-              <p className="card-text">properties under management</p>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="card-body text-light text-center bg-danger mb-3 rounded">
-                  <h1 className="card-title">{vacancy}</h1>
-                  <p className="card-text">vacant properties</p>
                 </div>
               </div>
             </div>
