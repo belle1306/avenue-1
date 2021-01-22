@@ -1,11 +1,7 @@
 import React from "react";
-<<<<<<< HEAD
 // import Logo from "../../Logo/Logo";
 // import Facebook from '../../Facebook';
-=======
-import Logo from "../../Logo/Logo";
-import Facebook from '../../Facebook';
->>>>>>> main
+
 
 const toolbar = (props) => (
     <header>
