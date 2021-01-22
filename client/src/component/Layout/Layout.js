@@ -5,14 +5,15 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 
 const layout = (props) => (
     <Auxil>
-        <Toolbar 
-            logoutbtn={props.logoutbtn} 
-            newbtn={props.newbtn}
+        <Toolbar
+        logoutbtn={props.logoutbtn} 
+        newbtn={props.newbtn}
+        calculatebtn={props.calculatebtn}
         />   
         <main>
             {props.children}
         </main>
     </Auxil>
 );
-  
+
 export default layout;

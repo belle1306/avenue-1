@@ -50,3 +50,7 @@
     transform: rotate(360deg);
   }
 }
+
+#rent-calculator {
+  background-color: whitesmoke;
+}
