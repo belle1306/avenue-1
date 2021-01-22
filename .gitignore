@@ -6,4 +6,4 @@
 .env
 package.json
 yarn.lock
-
+/client/.eslintcache
