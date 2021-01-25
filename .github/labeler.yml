@@ -16,4 +16,4 @@ jobs:
     steps:
     - uses: actions/labeler@v2
       with:
-        repo-token: "${{ secrets.AVENUE_TKN }}"
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
