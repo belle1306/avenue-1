@@ -14,11 +14,14 @@ function Nav() {
                     <h1 className="text-white m-4">Avenue</h1>
                     <Link to="/">
                         <li>Home</li>
-                    </Link>  
+                    </Link> 
                     <Link to="/manager">
                         <li>Manager</li>
                     </Link> 
                     <Facebook />
+                    <Link to="/landing">
+                        <li>Landing for testing</li>
+                    </Link>  
                 </ul>
             </nav>
         // </div>

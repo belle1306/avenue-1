@@ -1,0 +1,7 @@
+.bg {
+    /* background-image: url('../assets/images/pexels-negative-space-33999.jpg'); */
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
