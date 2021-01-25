@@ -145,15 +145,9 @@ class Manager extends React.Component {
     // console.log("This property id was deleted", id);
   }
 
-<<<<<<< HEAD
-  logoutHandler() {
-    alert("work saved! logged out");
-  }
-=======
   // logoutHandler() {
   //   alert("work saved! logged out");
   // }
->>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
 
   
   addingHandler() {
@@ -214,11 +208,7 @@ class Manager extends React.Component {
       <div>
 
         <Layout
-<<<<<<< HEAD
-          logoutbtn={this.logoutHandler}
-=======
           // logoutbtn={this.logoutHandler}
->>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
           newbtn={this.addingHandler}
           calculatebtn={this.calculateHandler}
         >
