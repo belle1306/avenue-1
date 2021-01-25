@@ -2,34 +2,22 @@
   text-align: center;
 }
 
-<<<<<<< HEAD
-.nav {
-=======
 /* .nav {
->>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
   background: maroon;
   color: white;
-<<<<<<< HEAD
-}
-=======
 } */
 
->>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
-.nav-links{
-  width:50%;
+.nav-links {
+  width: 50%;
   display: flex;
-  justify-content:space-around;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
   list-style: none;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 255c3fd9a16313692b4a8a66106fd0f9e870ea26
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
