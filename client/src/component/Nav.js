@@ -21,7 +21,8 @@ function Nav() {
                     <Facebook />
                     <Link to="/landing">
                         <li>Landing for testing</li>
-                    </Link>  
+                </Link>  
+                <Link to="/owner"><li>Owner</li></Link>
                 </ul>
             </nav>
         // </div>
