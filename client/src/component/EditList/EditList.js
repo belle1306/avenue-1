@@ -11,6 +11,7 @@ class EditList extends React.Component {
             id: this.props.property.id,
             address: this.props.property.property_address,
             postcode: this.props.property.property_postcode,
+            photo: this.props.property.property_photo,
             bedroom: this.props.property.property_bedroom,
             bathroom: this.props.property.property_bathroom,
             carpark: this.props.property.property_carpark,
@@ -40,6 +41,7 @@ class EditList extends React.Component {
             id: this.state.id,
             address: this.state.address,
             postcode: this.state.postcode,
+            photo: this.state.photo,
             bedroom: this.state.bedroom,
             bathroom: this.state.bathroom,
             carpark: this.state.carpark,
@@ -71,6 +73,8 @@ class EditList extends React.Component {
                             />
                             <label>Postcode</label>
                             <input type="text" name="postcode" className="form-control" value={this.state.postcode} onChange={this.handleFieldChange}/>
+                            <label>URL</label>
+                            <input type="text" name="photo" className="form-control" value={this.state.photo} onChange={this.handleFieldChange}/>
                         </div>
                     </div>
                     

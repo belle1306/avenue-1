@@ -3,11 +3,12 @@ import React from "react";
 
 const listItem = (props) => {
     // console.log("this is property id in list item", props.property.id);
+    console.log('props>>> ', props);
 
     return (
         <div className="card-group">
             <div className="card">
-                <img className="card-img-top" src="https://static.mansionglobal.com/production/media/listing_images/044c9a1bb0936046e21d5e119428414c/small_1D917539-4723-4E89-959A-8A3C5D2EC131.jpeg" alt="house" />
+                <img className="card-img-top" src={props.property.property_photo} alt="house" />
 
                 <div className="card-img-overlay">
                     <h3 className="card-title text-white">{props.property.property_address}</h3>
