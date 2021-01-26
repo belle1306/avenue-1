@@ -7,7 +7,7 @@ import List from "./List/List";
 import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
 import RentCalculator from "./RentCalculator";
-
+// import HelloSign from "hellosign-embedded";
 
 class Manager extends React.Component {
   constructor(props) {
@@ -196,6 +196,22 @@ class Manager extends React.Component {
     return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
+  // signHandler() {
+  //   console.log("Sign here please...");
+  //   const client = new HelloSign({
+  //     clientId: "0ce014a59e087c76d07bb63819c363e9"
+  //   });
+  //   console.log("what's in client: ", client);
+  //   client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=e1d3dade7e8f058cfa040b181d6e68e3&token=c80d494dcf1221a9a31ff7a03d7ac236", {
+  //     allowCancel: true,
+  //     skipDomainVerification: true,
+  //     testMode: true
+  //   });
+  //   client.on(HelloSign.events.SIGN, (data) => {
+  //     console.log('The document has been signed!');
+  //   })   
+  // }  
+
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>
@@ -211,6 +227,7 @@ class Manager extends React.Component {
           // logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
           calculatebtn={this.calculateHandler}
+          // signbtn={this.signHandler}
         >
         </Layout>
  
@@ -238,7 +255,6 @@ class Manager extends React.Component {
                   </div>
                 </div>
 
-             
             <div className="row">
               <div className="col">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">

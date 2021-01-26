@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const bodyParser = require("body-parser");
 const db = require("../model/helper");
-
+const hellosign = require('hellosign-sdk')({ key: '7150cf6254b928355fb88dd8fb225d385b7c59464ea38df8bd591052391c9307' });
 
 router.use(bodyParser.json());
 
@@ -78,5 +78,39 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
     })
     .catch(err => res.status(500).send(err));
 });
+
+//Create signature request
+router.post("/callback", (req, res,json) => {
+  const data = req.body.json;
+  console.log("Input payload of the event-----", data);
+  res.status(200).send('Hello API Event Received'); 
+  
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  const opts = {
+    test_mode: 1,
+    clientId: '0ce014a59e087c76d07bb63819c363e9',
+    title: 'NDA with Acme Co.',
+    subject: 'The NDA we talked about',
+    message: 'Please sign this NDA and then we can discuss more.',
+    signers: [
+      {
+        email_address: 'lilliantoh1111@gmail.com',
+        name: 'Lillian Avenue'
+      }
+    ],
+    files: ['Agreement.pdf']
+  };
+  hellosign.signatureRequest.createEmbedded(opts).then((res) => {
+    // handle response
+    const signature = res.signature_request.signatures[0];
+    const signatureId = signature.signature_id;
+    return hellosign.embedded.getSignUrl(signatureId);
+  }).then((res) => {
+    console.log('The sign url: ' + res.embedded.sign_url);
+  }).catch((err) => {
+    // handle error
+  });
+  
+})
 
 module.exports = router;
