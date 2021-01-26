@@ -2,7 +2,7 @@
 
 ![Logo](images/)
 
-Avenue is a full stack application that streamlines property information in one place. Built for property managers to service overseas property owners.
+Avenue is a full stack application that streamlines property information in one place. Built for property managers to service property owners.
 
 ## Demo
 
