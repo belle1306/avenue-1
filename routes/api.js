@@ -13,12 +13,18 @@ router.get("/", (req, res) => {
 // GET all tables - properties, owners and leases
 router.get("/propertymgmt/:table", (req, res) => {
   const table = req.params.table;
+  console.log('table>>> ',table);
   db(`SELECT * FROM ${table};`)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
+
+//Get owner data by owner id
+router.get("/propertymgmt/owners/:id", (req, res) => {
+  
+})
 
 // POST new property after user has a choice to select which owner
 // populate owner table with fake data
@@ -32,6 +38,7 @@ router.post("/propertymgmt/properties", (req, res) => {
   const newAddress = req.body.property_address;
   const newOwnerId = req.body.owner_id;
   const newPostcode = req.body.property_postcode;
+  const newPhoto = req.body.property_photo;
   const newBedroom = req.body.property_bedroom;
   const newBathroom = req.body.property_bathroom;
   const newCarpark = req.body.property_carpark;
@@ -39,7 +46,7 @@ router.post("/propertymgmt/properties", (req, res) => {
   const newRent = req.body.property_rent;
   const newRentWeek = req.body.property_rentWeek;
 
-  db(`INSERT INTO properties(property_address, owner_id, property_postcode, property_bedroom, property_bathroom, property_carpark, property_furnish, property_rent, property_rentWeek) VALUES(${JSON.stringify(newAddress)},${JSON.stringify(newOwnerId)},${JSON.stringify(newPostcode)},${JSON.stringify(newBedroom)},${JSON.stringify(newBathroom)}, ${JSON.stringify(newCarpark)}, ${JSON.stringify(newFurnish)}, ${JSON.stringify(newRent)}, ${JSON.stringify(newRentWeek)});`)
+  db(`INSERT INTO properties(property_address, owner_id, property_postcode, property_photo, property_bedroom, property_bathroom, property_carpark, property_furnish, property_rent, property_rentWeek) VALUES(${JSON.stringify(newAddress)},${JSON.stringify(newOwnerId)},${JSON.stringify(newPostcode)},${JSON.stringify(newPhoto)},${JSON.stringify(newBedroom)},${JSON.stringify(newBathroom)}, ${JSON.stringify(newCarpark)}, ${JSON.stringify(newFurnish)}, ${JSON.stringify(newRent)}, ${JSON.stringify(newRentWeek)});`)
     .then(results => {
       res.send(results);
       res.send("posted new property");
@@ -63,6 +70,7 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
   const newAddress = req.body.property_address;
   const newOwnerId = req.body.owner_id;
   const newPostcode = req.body.property_postcode;
+  const newPhoto = req.body.property_photo;
   const newBedroom = req.body.property_bedroom;
   const newBathroom = req.body.property_bathroom;
   const newCarpark = req.body.property_carpark;
@@ -70,7 +78,7 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
   const newRent = req.body.property_rent;
   const newRentWeek = req.body.property_rentWeek;
 
-  db(`UPDATE properties SET property_address = ${JSON.stringify(newAddress)}, owner_id = ${JSON.stringify(newOwnerId)}, property_postcode = ${JSON.stringify(newPostcode)}, property_bedroom = ${JSON.stringify(newBedroom)}, property_bathroom = ${JSON.stringify(newBathroom)}, property_carpark = ${JSON.stringify(newCarpark)}, property_furnish = ${JSON.stringify(newFurnish)}, property_rent =  ${JSON.stringify(newRent)}, property_rentWeek = ${JSON.stringify(newRentWeek)} WHERE id = ${JSON.stringify(newId)};`)
+  db(`UPDATE properties SET property_address = ${JSON.stringify(newAddress)}, owner_id = ${JSON.stringify(newOwnerId)}, property_postcode = ${JSON.stringify(newPostcode)}, property_photo = ${JSON.stringify(newPhoto)}, property_bedroom = ${JSON.stringify(newBedroom)}, property_bathroom = ${JSON.stringify(newBathroom)}, property_carpark = ${JSON.stringify(newCarpark)}, property_furnish = ${JSON.stringify(newFurnish)}, property_rent =  ${JSON.stringify(newRent)}, property_rentWeek = ${JSON.stringify(newRentWeek)} WHERE id = ${JSON.stringify(newId)};`)
     .then(results => {
       res.send(results.data);
       console.log(results.data);

@@ -9,6 +9,7 @@ class NewList extends React.Component {
         this.state = {
             address: "",
             postcode: "",
+            photo: "",
             bedroom: 0,
             bathroom: 0,
             carpark: 0,
@@ -25,6 +26,7 @@ class NewList extends React.Component {
         this.props.add({
             address: this.state.address,
             postcode: this.state.postcode,
+            photo: this.state.photo,
             bedroom: this.state.bedroom,
             bathroom: this.state.bathroom,
             carpark: this.state.carpark,
@@ -47,7 +49,9 @@ class NewList extends React.Component {
                             <label>Address</label>
                             <input type="text" className="form-control" value={this.state.address} onChange={e => this.setState({ address: e.target.value})}/>
                             <label>Postcode</label>
-                            <input type="text" className="form-control" value={this.state.postcode} onChange={e => this.setState({ postcode: e.target.value})}/>
+                            <input type="text" className="form-control" value={this.state.postcode} onChange={e => this.setState({ postcode: e.target.value })} />
+                            <label>URL</label>
+                            <input type="text" className="form-control" value={this.state.photo} onChange={e => this.setState({ photo: e.target.value })} />
                         </div>
                     </div>
                     
