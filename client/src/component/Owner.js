@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
+import OwnerProfile from "./OwnerProfile";
 
 class Owner extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class Owner extends React.Component {
                 >
                 </LayoutOwner>
                 <h1>Owner Page</h1>
+                <OwnerProfile />
             </div>
         )
     }

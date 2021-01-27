@@ -25,10 +25,8 @@ Download MySQL.
 
 After installing MySQL, go to `.env` file in the avenue directory.
 
-```
 DB_NAME=propertymgmt
 DB_PASS=YOUR_PASSWORD
-```
 
 Replace `YOUR_PASSWORD` with a password that you can remember.
 
@@ -47,20 +45,19 @@ Go to Applications and Create Application > Give an App name > Select Single Pag
 Go to Settings > Take your Domain and Client ID; and
 Go to `.env` file in client directory and replace as below.
 
-```
 REACT_APP_AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
 REACT_APP_AUTH0_CLIENT_ID=YOUR_AUTH0_PASSWORD
-```
 
 Fill in "http://localhost:3000" for all 3 fields: Allowed Callback URLs, Allowed Logout URLs and Allowed Web Origins.
 
 Click Save Changes.
 
 On the browser, go to YOUR_AUTH0_DOMAIN and login from there.
+
 ### Install Dependencies
 
 Run `yarn` in avenue folder to install dependencies related to Express.
-Run `yarn add hellosign-sdk`.
+Run `yarn add hellosign-sdk`, `yarn add cors`, `yarn add express-jwt`,`yarn add helmet`,`yarn add jwks-rsa`.
 
 Open a **new** terminal window and run `node model/database.js` in avenue root folder. This will create a table called 'properties' in your database.
 
