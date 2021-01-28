@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
-import OwnerProfile from "./OwnerProfile";
+import OwnerProfile from "../views/OwnerProfile";
 
 class Owner extends React.Component {
     constructor(props) {

@@ -6,7 +6,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
   console.log('process', process);
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  
+  const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
   const history = useHistory();
 
   const onRedirectCallback = (appState) => {
@@ -17,10 +17,11 @@ const Auth0ProviderWithHistory = ({ children }) => {
     <Auth0Provider
       domain="dev-i-z1p8oy.au.auth0.com"
       clientId="yCk6dAdzFdPdJD98o1A7hQwQoOTXNgDR"
+      audience="https://express.sample"
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
-      {console.log('Domain>>> ',domain, 'client ID', clientId, "children", children)}
+      {console.log('client ID', clientId, "children", children)}
       {children}
     </Auth0Provider>
   );
