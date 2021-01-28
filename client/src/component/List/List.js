@@ -51,7 +51,7 @@ class List extends React.Component {
                 return e.tenant_firstName + " " + e.tenant_lastName + " ";
             }
             else {
-                return "null";
+                return " ";
             }
         });
         console.log("tenants first name", tenantInfo);
