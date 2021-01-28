@@ -21,6 +21,24 @@ router.get("/propertymgmt/:table", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+//Get property and lease details by lease id
+// router.get("/propertymgmt/properties/:lease_id", (req, res) => {
+//   db(`SELECT * FROM properties INNER JOIN leases ON leases.id = properties.lease_id WHERE properties.lease_id='${req.params.lease_id}';`)
+//     .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
+
+//Get tenant and lease details by lease id
+router.get("/propertymgmt/tenants/:lease_id", (req, res) => {
+  db(`SELECT * FROM tenants INNER JOIN leases ON leases.id = tenants.lease_id WHERE leases.id='${req.params.lease_id}';`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
 //Get owner data by owner id
 router.get("/propertymgmt/owners/:id", (req, res) => {
   
