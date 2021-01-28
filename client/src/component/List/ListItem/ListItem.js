@@ -3,7 +3,7 @@ import React from "react";
 
 const listItem = (props) => {
     // console.log("this is property id in list item", props.property.id);
-    console.log('props>>> ', props);
+    // console.log('props>>> ', props);
 
     return (
         <div className="card-group">
@@ -51,10 +51,16 @@ const listItem = (props) => {
                 <div className="card-body">
                     <button onClick={props.edit} className="btn btn-primary">Edit</button>
                     <button onClick={props.delete} className="btn btn-danger">Delete</button>
+                    <h3>Lease details</h3>
+                    <div>
+                        {props.lease}
+                    </div>
+                    <div>
+                        {props.tenants}
+                    </div>
                 </div>
-
             </div>
-
+            
         </div>
     )
 };
