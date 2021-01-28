@@ -5,7 +5,7 @@ import React from "react";
 
 const toolbar = (props) => (
     <header>
-        <nav className="navbar navbar-expand-lg navbar-danger bg-danger ml-auto">
+        <nav className="navbar navbar-expand-lg navbar-danger bg-white ml-auto float-none">
             {/* <Logo />
             <h1 className="text-white m-4">Avenue</h1> */}
             <button className="btn btn-danger text-white m-4" onClick={props.newbtn}>New</button>

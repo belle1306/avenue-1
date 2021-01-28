@@ -15,6 +15,9 @@ class Manager extends React.Component {
     this.state = {
       properties: [],
       owners: [],
+      leases: [],
+      tenants: [],
+      tenantsbyLease: [],
       adding: false,
       calculate: false,
       editing: {
@@ -45,13 +48,16 @@ class Manager extends React.Component {
         console.log(error);
       });
     this.getOwners();
+    this.getLeases();
+    this.getTenants();
+    this.getTenantsByLease();
   }
 
   getOwners() {
     fetch("/propertymgmt/owners")
       .then(res => res.json())
       .then(data => {
-        //console.log(data);
+        // console.log("getOwner()", data);
         this.setState({
           owners: data
         });
@@ -59,6 +65,58 @@ class Manager extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  getLeases() {
+    fetch("/propertymgmt/leases")
+      .then(res => res.json())
+      .then(data => {
+        // console.log("getLeases()", data);
+        this.setState({
+          leases: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getTenants() {
+    fetch("/propertymgmt/tenants")
+      .then(res => res.json())
+      .then(data => {
+        console.log("getTenants() HERE", data);
+        this.setState({
+          tenants: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+//   async getSubjectsbyTeacherId(teacher_id) {
+//     // console.log("Teacher id on click", teacher_id);
+//     try {
+//         const response = await axios.get(`http://localhost:5000/users/myschooladmin/subjects/` + teacher_id);
+//         this.subjectsbyTeacherId = response.data;
+//         // console.log("list of subjects", this.subjectsbyTeacherId);
+//     } catch(err) {
+//         console.log(err);
+//     }
+// },
+  getTenantsByLease(id) {
+    console.log(id, "get tenant by lease id");
+    // fetch("/propertymgmt/tenants/1")
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log("getTenantsByLease()", data);
+    //     // this.setState({
+    //     //   tenantsbyLease: data
+    //     // });
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   addProperty(newProperty) {
@@ -248,15 +306,6 @@ class Manager extends React.Component {
                   </div>
                 </div>
 
-                <div className="row">
-                  <div className="col">
-                    <div className="card-body text-light text-center bg-primary mb-3 rounded">
-                      <h1 className="card-title">${totalRentMonth}</h1>
-                      <p className="card-text">monthly rent collection</p>
-                    </div>
-                  </div>
-                </div>
-
             <div className="row">
               <div className="col">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">
@@ -283,6 +332,8 @@ class Manager extends React.Component {
               delete={this.deleteProperty}
               owner={this.state.owners}
               edit={this.editingHandler}
+              lease={this.state.leases}
+              tenants={this.state.tenants}
             />
           </div>
 
