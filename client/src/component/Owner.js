@@ -15,7 +15,8 @@ class Owner extends React.Component {
           clientId: "0ce014a59e087c76d07bb63819c363e9"
         });
         console.log("what's in client: ", client);
-        client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=e1d3dade7e8f058cfa040b181d6e68e3&token=c80d494dcf1221a9a31ff7a03d7ac236", {
+        client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=787e76989f2b6e8142aa3ee213e893d4&token=372672df611d7778c566ff1bd4dde79a", {
+          // url: "SIGN_URL",
           allowCancel: true,
           skipDomainVerification: true,
           testMode: true
