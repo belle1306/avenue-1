@@ -57,11 +57,11 @@ On the browser, go to YOUR_AUTH0_DOMAIN and login from there.
 ### Install Dependencies
 
 Run `yarn` in avenue folder to install dependencies related to Express.
-Run `yarn add hellosign-sdk`, `yarn add cors`, `yarn add express-jwt`,`yarn add helmet`,`yarn add jwks-rsa`.
+Run `yarn add hellosign-sdk`, `yarn add cors`, `yarn add express-jwt`,`yarn add helmet`,`yarn add jwks-rsa`,`yarn add leaflet`.
 
 Open a **new** terminal window and run `node model/database.js` in avenue root folder. This will create a table called 'properties' in your database.
 
-`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`, `yarn add react-number-format`, `yarn add react-facebook-login`,`yarn add hellosign-embedded`, `yarn add react-router-dom`,`yarn add @auth0/auth0-react`.
+`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`, `yarn add react-number-format`, `yarn add react-facebook-login`,`yarn add hellosign-embedded`, `yarn add react-router-dom`,`yarn add @auth0/auth0-react`, `yarn add react-leaflet`, `yarn add leaflet`.
 
 ### Run Development Servers
 

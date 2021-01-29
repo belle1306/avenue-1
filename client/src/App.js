@@ -1,5 +1,5 @@
 import React from "react";
-// import "./App.css";
+import "./App.css";
 import Nav from './component/Nav';
 import Manager from './component/Manager';
 import Landing from './component/Landing';
