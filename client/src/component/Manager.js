@@ -7,7 +7,13 @@ import List from "./List/List";
 import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
 import RentCalculator from "./RentCalculator";
-// import HelloSign from "hellosign-embedded";
+
+//import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
+// import { Icon } from "leaflet";
+import 'leaflet/dist/leaflet.css';
+import data from '../assets/data';
+import Markers from './VenueMarkers';
 
 class Manager extends React.Component {
   constructor(props) {
@@ -23,7 +29,10 @@ class Manager extends React.Component {
       editing: {
         property: null,
         isEditable: false
-      }
+      },
+      currentLocation: { lat: 52.52437, lng: 13.41053 },
+      zoom: 12
+
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
@@ -279,7 +288,8 @@ class Manager extends React.Component {
     ).length;
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
-
+    const { currentLocation, zoom } = this.state;
+        
     return (
       <div>
 
@@ -290,7 +300,7 @@ class Manager extends React.Component {
           // signbtn={this.signHandler}
         >
         </Layout>
- 
+
           <div className="row m-5">
             <div className="col-2">
                 <div className="card-body text-light text-center bg-primary mb-3 rounded">
@@ -375,7 +385,16 @@ class Manager extends React.Component {
           update={this.updateProperty}
           cancel={this.editingHandler}
           /> : <div></div> } */}
-
+        <div className="float-right">
+          <MapContainer center={currentLocation} zoom={zoom}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            />        
+            <Markers venues={data.venues}/>
+          </MapContainer>
+        </div>
+        
       </div>
     )
   };

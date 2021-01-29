@@ -70,3 +70,10 @@
 #rent-calculator {
   background-color: whitesmoke;
 }
+.leaflet-container {
+  height: 50vh;
+  width: 50vw;
+}
+/* #mapid {
+  height: 180px;
+} */
