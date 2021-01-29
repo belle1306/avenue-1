@@ -41,8 +41,12 @@ router.get("/propertymgmt/tenants/:lease_id", (req, res) => {
 
 //Get owner data by owner id
 router.get("/propertymgmt/owners/:id", (req, res) => {
-  
-})
+  db(`SELECT * FROM owners INNER JOIN properties ON properties.owner_id = owners.id WHERE properties.owner_id='${req.params.id}';`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 // POST new property after user has a choice to select which owner
 // populate owner table with fake data
