@@ -77,3 +77,47 @@
 /* #mapid {
   height: 180px;
 } */
+
+.Calendar {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.head,
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 287px;
+}
+
+.day {
+  width: 39px;
+  height: 39px;
+  background: #dd3333;
+  color: #fff;
+  margin: 1px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day.inactive {
+  background: #777777;
+}
+
+.day.selected {
+  background: rgb(85, 85, 226);
+}
+
+.List {
+  width: 80%;
+  padding: 16px;
+  margin: 50px auto;
+  border: 2px solid black;
+  text-align: center;
+  background-color: whitesmoke;
+  justify-content: space-between;
+}
