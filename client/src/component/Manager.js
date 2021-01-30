@@ -7,14 +7,14 @@ import List from "./List/List";
 import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
 import RentCalculator from "./RentCalculator";
-
 //import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 // import { Icon } from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import data from '../assets/data';
 import Markers from './VenueMarkers';
-
+import BedroomPie from './UI/Charts/BedroomPie';
+import { AutoSizer } from 'react-virtualized'
 class Manager extends React.Component {
   constructor(props) {
     super(props);
@@ -59,7 +59,6 @@ class Manager extends React.Component {
     this.getOwners();
     this.getLeases();
     this.getTenants();
-    this.getTenantsByLease();
   }
 
   getOwners() {
@@ -94,7 +93,7 @@ class Manager extends React.Component {
     fetch("/propertymgmt/tenants")
       .then(res => res.json())
       .then(data => {
-        console.log("getTenants() HERE", data);
+        // console.log("getTenants() HERE", data);
         this.setState({
           tenants: data
         });
@@ -103,29 +102,22 @@ class Manager extends React.Component {
         console.log(error);
       });
   }
-//   async getSubjectsbyTeacherId(teacher_id) {
-//     // console.log("Teacher id on click", teacher_id);
-//     try {
-//         const response = await axios.get(`http://localhost:5000/users/myschooladmin/subjects/` + teacher_id);
-//         this.subjectsbyTeacherId = response.data;
-//         // console.log("list of subjects", this.subjectsbyTeacherId);
-//     } catch(err) {
-//         console.log(err);
-//     }
-// },
-  getTenantsByLease(id) {
-    console.log(id, "get tenant by lease id");
-    // fetch("/propertymgmt/tenants/1")
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log("getTenantsByLease()", data);
-    //     // this.setState({
-    //     //   tenantsbyLease: data
-    //     // });
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+
+  getBedroomData() {
+    
+    let tempData = [];
+    let dataIndex = null;
+
+    this.state.properties.map((type) => {
+      dataIndex = tempData.findIndex(x => x.id === type.property_bedroom + " Bed " + type.property_bathroom + " Bath")
+      console.log("data Index", dataIndex);
+      if(dataIndex >= 0){
+        tempData[dataIndex].value += 1
+      } else {
+        tempData = [...tempData, {"id": type.property_bedroom + " Bed "  + type.property_bathroom + " Bath", "value": 1}]
+      }
+    })
+    return tempData;
   }
 
   addProperty(newProperty) {
@@ -213,14 +205,9 @@ class Manager extends React.Component {
       });
     // console.log("This property id was deleted", id);
   }
-
-  // logoutHandler() {
-  //   alert("work saved! logged out");
-  // }
-
   
   addingHandler() {
-    console.log("adding", this.state.adding);
+    // console.log("adding", this.state.adding);
     if (this.state.adding) {
       this.setState({ adding: false });
     }
@@ -240,9 +227,8 @@ class Manager extends React.Component {
     }
   }
 
-
   editingHandler(property) {
-    console.log("edit handler", this.state.editing.isEditable);
+    // console.log("edit handler", this.state.editing.isEditable);
     if (this.state.editing.isEditable) {
       this.setState({
         editing: {
@@ -265,22 +251,6 @@ class Manager extends React.Component {
     return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
-  // signHandler() {
-  //   console.log("Sign here please...");
-  //   const client = new HelloSign({
-  //     clientId: "0ce014a59e087c76d07bb63819c363e9"
-  //   });
-  //   console.log("what's in client: ", client);
-  //   client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=e1d3dade7e8f058cfa040b181d6e68e3&token=c80d494dcf1221a9a31ff7a03d7ac236", {
-  //     allowCancel: true,
-  //     skipDomainVerification: true,
-  //     testMode: true
-  //   });
-  //   client.on(HelloSign.events.SIGN, (data) => {
-  //     console.log('The document has been signed!');
-  //   })   
-  // }  
-
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>
@@ -289,6 +259,8 @@ class Manager extends React.Component {
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
     const { currentLocation, zoom } = this.state;
+    const bedroomData = this.getBedroomData();
+    console.log(bedroomData, "WHAT IS THIS");
         
     return (
       <div>
@@ -337,6 +309,31 @@ class Manager extends React.Component {
           </div>
 
           <div className="col">
+          <AutoSizer style={{ height: "400px", width:"400px" }}>
+              {({ height, width }) => (
+                  <BedroomPie 
+                    bedroomData={bedroomData}
+                    height={height}
+                    width={width}
+                  />
+              )}
+          </AutoSizer>
+         
+          <h3>Import Lease graph</h3>
+
+          </div>
+
+          <div className="col">
+            <MapContainer center={currentLocation} zoom={zoom}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              />        
+              <Markers venues={data.venues}/>
+            </MapContainer>
+          </div>
+
+          <div className="row">
             <List
               properties={this.state.properties}
               delete={this.deleteProperty}
@@ -377,24 +374,6 @@ class Manager extends React.Component {
             </Modal>  
         </div>
 
-        {/*       
-        { (this.state.editing.isEditable) ?  
-        <EditList 
-          property={this.state.editing.property}
-          owners={this.state.owners}
-          update={this.updateProperty}
-          cancel={this.editingHandler}
-          /> : <div></div> } */}
-        <div className="float-right">
-          <MapContainer center={currentLocation} zoom={zoom}>
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            />        
-            <Markers venues={data.venues}/>
-          </MapContainer>
-        </div>
-        
       </div>
     )
   };
