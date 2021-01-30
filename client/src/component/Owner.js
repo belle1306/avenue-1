@@ -127,7 +127,10 @@ class Owner extends React.Component {
                 </div>
                 <div className="card">
                   <div className="card-body">
-                    <Calendar />
+                    <Calendar
+                      leaseStart={e.leaseStart}
+                      leaseEnd={e.leaseEnd}
+                    />
                   </div>
                 </div>
               </div>
