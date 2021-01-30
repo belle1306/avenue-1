@@ -9,8 +9,9 @@ class Owner extends React.Component {
     super(props);
     this.state = {
       properties: [],
-      owners: [],
-      ownerId: ""
+      tenants: [],
+      ownerId: "",
+      leaseid: ""
     };
   }
   propertiesbyOwnerId(e) {
@@ -18,13 +19,29 @@ class Owner extends React.Component {
     this.setState({
       ownerId: e.target.value
     });
-    console.log("propertiesbyOwnerId>>>", e.target.value)
+    // console.log("propertiesbyOwnerId>>>", e.target.value)
     fetch("/propertymgmt/owners/" + e.target.value)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(">>>", data);
+        this.setState({
+          properties: data
+        });
+      })
+      .catch(err => console.log(err));
+  }
+  detailbyLeaseId(e) {
+    // e.preventDefault();
+    // this.setState({
+    //   leaseId: e
+    // });
+    // console.log("propertiesbyOwnerId>>>", e.target.value)
+    fetch("/propertymgmt/tenants/" + e)
       .then(res => res.json())
       .then(data => {
         console.log(">>>", data);
         this.setState({
-          properties: data
+          tenants: data
         });
       })
       .catch(err => console.log(err));
@@ -47,7 +64,7 @@ class Owner extends React.Component {
   }
 
   render() {
-
+    let id = "";
     return (
       <div>
         <LayoutOwner
@@ -57,14 +74,7 @@ class Owner extends React.Component {
         <h1>Owner Page</h1>
         <div>
           {/* <OwnerProfile /> */}
-          {/* <div>
-          {{
-            const propertyList = this.props.properties.map(p => {
-              let selectedProperty = this.showProperties(p.owner_id, this.props.properties);
-              console.log('propertyList>>', propertyList, ' selectedProperty', selectedProperty)
-            })
-          }}
-          </div> */}
+
         </div>
         <div className="col-auto">
           <input
@@ -75,37 +85,79 @@ class Owner extends React.Component {
           <div >
 
             {this.state.properties.map((e, i) => (
+              id = e.lease_id,
               <div className="card-group">
                 <div className="card">
-                  <img className="card-img-top" key={i} src={e.property_photo} />,
+                  <img className="card-img-top" key={i} src={e.property_photo} />
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
                     <span className="text-white">
                       {e.property_postcode}
                     </span>
                   </div>
-                </div>
-                <div className="card">
+
                   <div className="card-body">
-                    <h3>Lease details</h3>
-                    <div>
-                      {e.lease_id}
+                    <div className="card-text">
+                      {e.property_bedroom} &nbsp;
+                    <i className='fas'>&#xf236;</i> &nbsp; &nbsp;
+                    {e.property_bathroom} &nbsp;
+                    <i className='fa'>&#xf2cc;</i> &nbsp; &nbsp;
+                    {e.property_carpark} &nbsp;
+                    <i className='fas'>&#xf1b9;</i>
                     </div>
+
                     <div>
-                      tenant
+                      Furnished {(e.property_furnish) ? "✓" : "X"} &nbsp;&nbsp;
+                Rented {(e.property_rent) ? "✓" : "X"}
+                    </div>
+
+                    <div>
+                      ${e.property_rentWeek} weekly
+                    &nbsp;
+                    {"•"}
+                    &nbsp;
+                    ${e.property_rentWeek * 4} monthly
+                    </div>
+
+                    <div>
+                      <i className='fas'>&#xf182;</i>&nbsp;
+                    {e.owner}
                     </div>
                   </div>
                 </div>
+
+                {/*  */}
               </div>
             )
             )}
-
-
           </div>
-
-
+          <input
+            className="form-control"
+            onChange={e => this.detailbyLeaseId(id)}
+          />
+          {this.state.tenants.map(e => (
+            <div className="card-group">
+              <div className="card">
+                <div className="card-body">
+                  <h3>Lease details</h3>
+                  <div>
+                    {e.leaseStart}
+                  </div>
+                  <div>
+                    {e.leaseEnd}
+                  </div>
+                  <div>
+                    {e.tenant_firstName}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+
+
       </div>
+
     )
   }
 }
