@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
+    "@nivo/core": "^0.67.0",
+    "@nivo/pie": "^0.67.0",
     "dotenv": "^8.2.0",
     "hellosign-embedded": "^2.9.0",
     "leaflet": "^1.7.1",
+    "nivo": "^0.31.0",
     "react": "^17.0.1",
     "react-dom": "^16.8.6",
     "react-dropzone": "^11.2.4",
@@ -14,7 +17,8 @@
     "react-leaflet": "^3.0.5",
     "react-number-format": "^4.4.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1"
+    "react-scripts": "^4.0.1",
+    "react-virtualized": "^9.22.3"
   },
   "scripts": {
     "start": "react-scripts start",

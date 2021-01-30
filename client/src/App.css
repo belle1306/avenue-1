@@ -71,8 +71,8 @@
   background-color: whitesmoke;
 }
 .leaflet-container {
-  height: 50vh;
-  width: 50vw;
+  height: 60vh;
+  width: 40vw;
 }
 /* #mapid {
   height: 180px;
