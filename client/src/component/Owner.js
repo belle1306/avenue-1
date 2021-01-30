@@ -2,7 +2,9 @@ import React from "react";
 import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
+import Calendar from "./Calendar";
 // import OwnerProfile from "../views/OwnerProfile";
+import "./List/List.module.css";
 
 class Owner extends React.Component {
   constructor(props) {
@@ -59,15 +61,15 @@ class Owner extends React.Component {
         <h1>Owner Page</h1>
         <div>
           {/* <OwnerProfile /> */}
-
         </div>
+
         <div className="col-auto">
           <input
             className="form-control"
             onChange={e => this.propertiesbyOwnerId(e)}
           />
           <h1>Properties by owner</h1>
-          <div >
+          <div className="List">
 
             {this.state.properties.map((e, i) => (
               <div className="card-group">
@@ -121,6 +123,11 @@ class Owner extends React.Component {
                     <div>
                       {e.tenant_firstName + " " + e.tenant_lastName}
                     </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-body">
+                    <Calendar />
                   </div>
                 </div>
               </div>
