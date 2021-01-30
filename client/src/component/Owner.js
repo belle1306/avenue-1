@@ -30,22 +30,7 @@ class Owner extends React.Component {
       })
       .catch(err => console.log(err));
   }
-  detailbyLeaseId(e) {
-    // e.preventDefault();
-    // this.setState({
-    //   leaseId: e
-    // });
-    // console.log("propertiesbyOwnerId>>>", e.target.value)
-    fetch("/propertymgmt/tenants/" + e)
-      .then(res => res.json())
-      .then(data => {
-        console.log(">>>", data);
-        this.setState({
-          tenants: data
-        });
-      })
-      .catch(err => console.log(err));
-  }
+
 
   signHandler() {
     // console.log("Sign here please...");
@@ -64,7 +49,7 @@ class Owner extends React.Component {
   }
 
   render() {
-    let id = "";
+
     return (
       <div>
         <LayoutOwner
@@ -85,17 +70,16 @@ class Owner extends React.Component {
           <div >
 
             {this.state.properties.map((e, i) => (
-              id = e.lease_id,
               <div className="card-group">
                 <div className="card">
-                  <img className="card-img-top" key={i} src={e.property_photo} />
+                  <img className="card-img-top" key={i} src={e.property_photo} />,
+
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
                     <span className="text-white">
                       {e.property_postcode}
                     </span>
                   </div>
-
                   <div className="card-body">
                     <div className="card-text">
                       {e.property_bedroom} &nbsp;
@@ -117,47 +101,38 @@ class Owner extends React.Component {
                     {"•"}
                     &nbsp;
                     ${e.property_rentWeek * 4} monthly
-                    </div>
+                </div>
 
                     <div>
                       <i className='fas'>&#xf182;</i>&nbsp;
-                    {e.owner}
+                    {e.owner_firstName + " " + e.owner_lastName}
                     </div>
                   </div>
                 </div>
-
-                {/*  */}
-              </div>
-            )
-            )}
-          </div>
-          <input
-            className="form-control"
-            onChange={e => this.detailbyLeaseId(id)}
-          />
-          {this.state.tenants.map(e => (
-            <div className="card-group">
-              <div className="card">
-                <div className="card-body">
-                  <h3>Lease details</h3>
-                  <div>
-                    {e.leaseStart}
-                  </div>
-                  <div>
-                    {e.leaseEnd}
-                  </div>
-                  <div>
-                    {e.tenant_firstName}
+                <div className="card">
+                  <div className="card-body">
+                    <h3>Lease details</h3>
+                    <div>
+                      {"START: " + e.leaseStart}
+                    </div>
+                    <div>
+                      {"END: " + e.leaseEnd}
+                    </div>
+                    <div>
+                      {e.tenant_firstName + " " + e.tenant_lastName}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+            )}
+
+
+          </div>
+
+
         </div>
-
-
       </div>
-
     )
   }
 }
