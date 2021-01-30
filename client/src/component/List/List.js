@@ -36,17 +36,17 @@ class List extends React.Component {
         const leaseIdForTenants = tenants.map(e => {
             return e.lease_id;
         });
-        console.log("lease Id for Tenants", leaseIdForTenants);
+        // console.log("lease Id for Tenants", leaseIdForTenants);
         // let unique = [...new Set(leaseIdForTenants)];
         // console.log("should be unique", unique);
 
         let matchedId = leaseIdForTenants.find(i => {
             return i === leaseId;
         });
-        console.log("matched lease Ids OUTSIDE map", matchedId);
+        // console.log("matched lease Ids OUTSIDE map", matchedId);
 
         const tenantInfo = tenants.map(e => {
-            console.log("matched lease Ids IN MAP", matchedId);
+            // console.log("matched lease Ids IN MAP", matchedId);
             if(e.lease_id === matchedId) {
                 return e.tenant_firstName + " " + e.tenant_lastName + " ";
             }
@@ -54,7 +54,7 @@ class List extends React.Component {
                 return " ";
             }
         });
-        console.log("tenants first name", tenantInfo);
+        // console.log("tenants first name", tenantInfo);
         return tenantInfo;
     }
     //ACTUALLY WE DONT NEED TENANT ID IN LEASES TABLE
