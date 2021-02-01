@@ -70,6 +70,7 @@
 #rent-calculator {
   background-color: whitesmoke;
 }
+
 .leaflet-container {
   height: 60vh;
   width: 40vw;
@@ -120,4 +121,10 @@
   text-align: center;
   background-color: whitesmoke;
   justify-content: space-between;
+}
+
+#background-video {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
 }
