@@ -326,7 +326,7 @@ class Manager extends React.Component {
                 </div>
               </div>
             </div>
-
+ 
           </div>
 
           <div className="col">
