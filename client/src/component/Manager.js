@@ -7,14 +7,17 @@ import List from "./List/List";
 import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
 import RentCalculator from "./RentCalculator";
-//import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { MapContainer, TileLayer } from "react-leaflet";
-// import { Icon } from "leaflet";
+// import { MapContainer, TileLayer } from "react-leaflet";
+import { geosearch } from "esri-leaflet-geocoder";
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'leaflet/dist/leaflet.css';
-import data from '../assets/data';
-import Markers from './VenueMarkers';
+// import data from '../assets/data';
+// import Markers from './VenueMarkers';
 import BedroomPie from './UI/Charts/BedroomPie';
-import { AutoSizer } from 'react-virtualized'
+// import LeaseGraph from './UI/Charts/LeaseGraph';
+import { AutoSizer } from 'react-virtualized';
+import MyMap from './MyMap';
+
 class Manager extends React.Component {
   constructor(props) {
     super(props);
@@ -23,16 +26,14 @@ class Manager extends React.Component {
       owners: [],
       leases: [],
       tenants: [],
-      tenantsbyLease: [],
       adding: false,
       calculate: false,
       editing: {
         property: null,
         isEditable: false
       },
-      currentLocation: { lat: 52.52437, lng: 13.41053 },
-      zoom: 12
-
+      // currentLocation: { lat: 0, lng: 0 },
+      // zoom: 1
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
@@ -104,21 +105,27 @@ class Manager extends React.Component {
   }
 
   getBedroomData() {
-    
-    let tempData = [];
+    let tempBedroomData = [];
     let dataIndex = null;
-
     this.state.properties.map((type) => {
-      dataIndex = tempData.findIndex(x => x.id === type.property_bedroom + " Bed " + type.property_bathroom + " Bath")
-      console.log("data Index", dataIndex);
+      dataIndex = tempBedroomData.findIndex(x => x.id === type.property_bedroom + " Bed " + type.property_bathroom + " Bath")
+      // console.log("data Index", dataIndex);
       if(dataIndex >= 0){
-        tempData[dataIndex].value += 1
+        tempBedroomData[dataIndex].value += 1
       } else {
-        tempData = [...tempData, {"id": type.property_bedroom + " Bed "  + type.property_bathroom + " Bath", "value": 1}]
+        tempBedroomData = [...tempBedroomData, {"id": type.property_bedroom + " Bed "  + type.property_bathroom + " Bath", "value": 1}]
       }
     })
-    return tempData;
+    return tempBedroomData;
   }
+
+  // getLeaseData() {
+  //   // [ {"id": "leaseStart", "data": [{"x": 2018,"y": leaseStart}], {"id": "leaseEnd", "data": [{"x": "2025","y": x.leaseEnd}] } ]
+  //   let tempLeaseData = [];
+  //   this.state.leases.map(d => {
+  //     console.log(d.leaseStart);
+  //   })
+  // }
 
   addProperty(newProperty) {
     console.log("new prop address", newProperty.address);
@@ -251,6 +258,7 @@ class Manager extends React.Component {
     return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
+    
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>
@@ -258,13 +266,26 @@ class Manager extends React.Component {
     ).length;
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
-    const { currentLocation, zoom } = this.state;
     const bedroomData = this.getBedroomData();
-    console.log(bedroomData, "WHAT IS THIS");
-        
+    const { currentLocation, zoom } = this.state;
+ 
+    // useEffect(() => {
+    //   const { current = {} } = mapRef;
+    //   const { leafletElement: map = current;
+
+    //   if ( !map ) return;
+    //   const control = geosearch();
+    //   control.addTo(map);
+    //   }
+    // }, []);
+
+    // const marker = L.marker([0,0]).addTo(mymap);
+    // console.log(bedroomData, "WHAT IS THIS");
+    // const leaseData = this.getLeaseData();
+  
+
     return (
       <div>
-
         <Layout
           // logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
@@ -319,18 +340,30 @@ class Manager extends React.Component {
               )}
           </AutoSizer>
          
-          <h3>Import Lease graph</h3>
+          {/* <AutoSizer style={{ height: "400px", width:"800px" }}>
+              {({ height, width }) => (
+                  <LeaseGraph
+                    leaseData={leaseData}
+                    height={height}
+                    width={width}
+                  />
+              )}
+          </AutoSizer> */}
 
           </div>
 
-          <div className="col">
-            <MapContainer center={currentLocation} zoom={zoom}>
+          {/* <div className="col">
+            <MapContainer ref={mapRef} center={currentLocation} zoom={zoom}>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               />        
               <Markers venues={data.venues}/>
             </MapContainer>
+          </div> */}
+
+          <div className="col">
+            <MyMap />
           </div>
 
           <div className="row">
