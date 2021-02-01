@@ -8,7 +8,7 @@ import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
 import RentCalculator from "./RentCalculator";
 // import { MapContainer, TileLayer } from "react-leaflet";
-import { geosearch } from "esri-leaflet-geocoder";
+// import { geosearch } from "esri-leaflet-geocoder";
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'leaflet/dist/leaflet.css';
 // import data from '../assets/data';
@@ -107,7 +107,7 @@ class Manager extends React.Component {
   getBedroomData() {
     let tempBedroomData = [];
     let dataIndex = null;
-    this.state.properties.map((type) => {
+    this.state.properties.map(type => {
       dataIndex = tempBedroomData.findIndex(x => x.id === type.property_bedroom + " Bed " + type.property_bathroom + " Bath")
       // console.log("data Index", dataIndex);
       if(dataIndex >= 0){
@@ -267,7 +267,6 @@ class Manager extends React.Component {
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
     const bedroomData = this.getBedroomData();
-    const { currentLocation, zoom } = this.state;
  
     // useEffect(() => {
     //   const { current = {} } = mapRef;
@@ -339,7 +338,7 @@ class Manager extends React.Component {
                   />
               )}
           </AutoSizer>
-         
+
           {/* <AutoSizer style={{ height: "400px", width:"800px" }}>
               {({ height, width }) => (
                   <LeaseGraph

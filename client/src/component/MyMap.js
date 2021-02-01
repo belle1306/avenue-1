@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+// import React, { useRef, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import L from 'leaflet';
+// import L from 'leaflet';
 import Markers from './VenueMarkers';
 import data from '../assets/data';
 import 'leaflet/dist/leaflet.css';

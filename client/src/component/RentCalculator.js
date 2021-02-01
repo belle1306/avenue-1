@@ -94,7 +94,7 @@ const RentCalculator = (props) => {
                 <div className='col mx-auto calculate-form'>
                     <div id='rent-calculator' className='card border-danger card-body text-center'>
                         <h1 className='heading display-5'>Rent Calculator</h1>
-                        <form id='rent-form' autocomplete='off' onSubmit={handleSubmitValues}>
+                        <form id='rent-form' autoComplete='off' onSubmit={handleSubmitValues}>
                             {/* ternary operator manages when the calculator and results will be displayed to the user */}
                             {!results.isResult ? (
                                 //   Form to collect data from the user

@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const Auth0ProviderWithHistory = ({ children }) => {
-  console.log('process', process);
-  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  // console.log('process', process);
+  // const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  // const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
   const history = useHistory();
 
   const onRedirectCallback = (appState) => {
