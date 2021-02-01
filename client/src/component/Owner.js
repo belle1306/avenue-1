@@ -2,15 +2,18 @@ import React from "react";
 import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
+import Calendar from "./Calendar";
 // import OwnerProfile from "../views/OwnerProfile";
+import "./List/List.module.css";
 
 class Owner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       properties: [],
-      owners: [],
-      ownerId: ""
+      tenants: [],
+      ownerId: "",
+      leaseid: ""
     };
   }
   propertiesbyOwnerId(e) {
@@ -18,17 +21,18 @@ class Owner extends React.Component {
     this.setState({
       ownerId: e.target.value
     });
-    console.log("propertiesbyOwnerId>>>", e.target.value)
+    // console.log("propertiesbyOwnerId>>>", e.target.value)
     fetch("/propertymgmt/owners/" + e.target.value)
       .then(res => res.json())
       .then(data => {
-        console.log(">>>", data);
+        // console.log(">>>", data);
         this.setState({
           properties: data
         });
       })
       .catch(err => console.log(err));
   }
+
 
   signHandler() {
     // console.log("Sign here please...");
@@ -57,43 +61,76 @@ class Owner extends React.Component {
         <h1>Owner Page</h1>
         <div>
           {/* <OwnerProfile /> */}
-          {/* <div>
-          {{
-            const propertyList = this.props.properties.map(p => {
-              let selectedProperty = this.showProperties(p.owner_id, this.props.properties);
-              console.log('propertyList>>', propertyList, ' selectedProperty', selectedProperty)
-            })
-          }}
-          </div> */}
         </div>
+
         <div className="col-auto">
           <input
             className="form-control"
             onChange={e => this.propertiesbyOwnerId(e)}
           />
           <h1>Properties by owner</h1>
-          <div >
+          <div className="List">
 
             {this.state.properties.map((e, i) => (
               <div className="card-group">
                 <div className="card">
                   <img className="card-img-top" key={i} src={e.property_photo} />,
+
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
                     <span className="text-white">
                       {e.property_postcode}
                     </span>
                   </div>
+                  <div className="card-body">
+                    <div className="card-text">
+                      {e.property_bedroom} &nbsp;
+                    <i className='fas'>&#xf236;</i> &nbsp; &nbsp;
+                    {e.property_bathroom} &nbsp;
+                    <i className='fa'>&#xf2cc;</i> &nbsp; &nbsp;
+                    {e.property_carpark} &nbsp;
+                    <i className='fas'>&#xf1b9;</i>
+                    </div>
+
+                    <div>
+                      Furnished {(e.property_furnish) ? "✓" : "X"} &nbsp;&nbsp;
+                Rented {(e.property_rent) ? "✓" : "X"}
+                    </div>
+
+                    <div>
+                      ${e.property_rentWeek} weekly
+                    &nbsp;
+                    {"•"}
+                    &nbsp;
+                    ${e.property_rentWeek * 4} monthly
+                </div>
+
+                    <div>
+                      <i className='fas'>&#xf182;</i>&nbsp;
+                    {e.owner_firstName + " " + e.owner_lastName}
+                    </div>
+                  </div>
                 </div>
                 <div className="card">
                   <div className="card-body">
                     <h3>Lease details</h3>
                     <div>
-                      {e.lease_id}
+                      {"START: " + e.leaseStart}
                     </div>
                     <div>
-                      tenant
+                      {"END: " + e.leaseEnd}
                     </div>
+                    <div>
+                      {e.tenant_firstName + " " + e.tenant_lastName}
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-body">
+                    <Calendar
+                      leaseStart={e.leaseStart}
+                      leaseEnd={e.leaseEnd}
+                    />
                   </div>
                 </div>
               </div>

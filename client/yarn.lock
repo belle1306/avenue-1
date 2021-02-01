@@ -9479,6 +9479,11 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-calendar-hook@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-calendar-hook/-/react-calendar-hook-1.0.1.tgz#5c3aaf37886883f90d881ba69c8717ccd9ddb0ab"
+  integrity sha512-6fv0TrhzS1Nq6VOcgGLAObimF7ouDZfmV9nJ/ZWXeoGivEi022qtepsgSV0e7w1PgecnCYSrJSCb+xVo4A1nJw==
+
 react-dev-utils@^11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.1.tgz#30106c2055acfd6b047d2dc478a85c356e66fe45"
