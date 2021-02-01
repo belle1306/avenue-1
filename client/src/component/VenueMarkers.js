@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Marker } from 'react-leaflet';
 import { VenueLocationIcon } from './VenueLocationIcon';
 import MarkerPopup from './MarkerPopup'; 
+import 'leaflet/dist/leaflet.css';
 
 const VenueMarkers = (props) => {
   const { venues } = props;
