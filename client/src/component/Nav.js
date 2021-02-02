@@ -9,22 +9,15 @@ import AuthNav from "./auth-nav";
 function Nav() {
     return (
         // <div className={classes.bg}>
-            <nav className="navbar navbar-expand-lg navbar-danger bg-danger ml-auto">
+            <nav className="navbar navbar-expand-lg navbar-danger ml-auto">
                 <ul className="nav-links">
                     <Logo />
                     <h1 className="text-white m-4">Avenue</h1>
-                    <Link to="/">
-                        <li>Home</li>
-                    </Link> 
-                    <Link to="/manager">
-                        <li>Manager</li>
-                    </Link> 
-                    <Facebook />
-                    <AuthNav />
-                    <Link to="/landing">
-                        <li>Landing for testing</li>
-                </Link>  
-                <Link to="/owner"><li>Owner</li></Link>
+                    <li><Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</Link></li>
+                    <li><Link to="/manager" style={{ textDecoration: 'none', color: 'black' }}>Manager</Link></li>
+                    <li><Link to="/owner" style={{ textDecoration: 'none', color: 'black' }} >Owner</Link></li>
+                    <li><Facebook /></li>
+                    <li><AuthNav /></li>
                 </ul>
             </nav>
         // </div>

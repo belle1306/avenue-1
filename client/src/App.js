@@ -25,11 +25,15 @@ function App() {
 
 const Home = () => (
   <div>
-    <video autoPlay loop muted id="background-video">
-      <source src={bgVideo} type='video/mp4' />
-    </video>
+    {/* <div className="video-overlay"> */}
+      <video autoPlay loop muted id="background-video">
+        <source src={bgVideo} type='video/mp4' />
+      </video>
+      <div className="text-position">
+        <h1 className="display-4 text-center">Property from Another Perspective</h1>
+      </div>
+    {/* </div> */}
   </div>
 );
-
 
 export default App;
