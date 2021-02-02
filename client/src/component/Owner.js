@@ -5,6 +5,7 @@ import HelloSign from "hellosign-embedded";
 import Calendar from "./Calendar";
 // import OwnerProfile from "../views/OwnerProfile";
 import "./List/List.module.css";
+import List from "./List/List";
 
 class Owner extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class Owner extends React.Component {
     this.state = {
       properties: [],
       tenants: [],
+      leases: [],
+      owners: [],
       ownerId: "",
       leaseid: ""
     };
@@ -31,6 +34,47 @@ class Owner extends React.Component {
         });
       })
       .catch(err => console.log(err));
+  }
+  getOwners() {
+    fetch("/propertymgmt/owners")
+      .then(res => res.json())
+      .then(data => {
+        // console.log("getOwner()", data);
+        this.setState({
+          owners: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getLeases() {
+    fetch("/propertymgmt/leases")
+      .then(res => res.json())
+      .then(data => {
+        // console.log("getLeases()", data);
+        this.setState({
+          leases: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getTenants() {
+    fetch("/propertymgmt/tenants")
+      .then(res => res.json())
+      .then(data => {
+        // console.log("getTenants() HERE", data);
+        this.setState({
+          tenants: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
 
@@ -113,12 +157,22 @@ class Owner extends React.Component {
                 </div>
                 <div className="card">
                   <div className="card-body">
-                    <h3>Lease details</h3>
                     <div>
-                      {"START: " + e.leaseStart}
-                    </div>
-                    <div>
-                      {"END: " + e.leaseEnd}
+                      {this.state.leases.map(e => (
+                        <div>
+                          <h3>Lease details</h3>
+                          {console.log(e, "<<<")}
+                          {/* <div>
+                            {"LEASE #: " + e.id}
+                          </div>
+                          <div>
+                            {"START: " + e.leaseStart}
+                          </div>
+                          <div>
+                            {"END: " + e.leaseEnd}
+                          </div> */}
+                        </div>
+                      ))}
                     </div>
                     <div>
                       {e.tenant_firstName + " " + e.tenant_lastName}
@@ -136,12 +190,9 @@ class Owner extends React.Component {
               </div>
             )
             )}
-
-
           </div>
-
-
         </div>
+
       </div>
     )
   }

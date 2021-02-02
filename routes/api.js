@@ -41,7 +41,7 @@ router.get("/propertymgmt/tenants/:lease_id", (req, res) => {
 
 //Get owner data by owner id
 router.get("/propertymgmt/owners/:id", (req, res) => {
-  db(`SELECT * FROM owners INNER JOIN properties USING (id) INNER JOIN leases USING (id) INNER JOIN tenants ON properties.owner_id = owners.id WHERE owner_id='${req.params.id}';`)
+  db(`SELECT * FROM owners INNER JOIN properties ON properties.owner_id = owners.id WHERE owner_id='${req.params.id}';`)
     .then(results => {
       res.send(results.data);
     })
