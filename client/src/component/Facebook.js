@@ -44,11 +44,16 @@ export default class Facebook extends Component {
                 >
                     
                 <FacebookLogin
-                    appId="845362466033294"
-                    autoLoad={false}
-                    fields="name,email,picture"
-                    onClick={this.componentClicked}
-                    callback={this.responseFacebook} />
+                        appId="845362466033294"
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        onClick={this.componentClicked}
+                        callback={this.responseFacebook}
+                        cssClass="btn btn-facebook none"                        
+                        // cssClass="my-facebook-button-class"
+                        textButton="Owner Login"
+                        // icon="fa-facebook"
+                    />
                     </div>
             );
             
