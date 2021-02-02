@@ -23,7 +23,7 @@ class List extends React.Component {
         });
         let selectedLease = lease[leaseIndex];
         if(selectedLease) {
-            return "START: " + selectedLease.leaseStart + "END: " + selectedLease.leaseEnd;
+            return `START:  ${selectedLease.leaseStart} END: ${selectedLease.leaseEnd}`;
         }
         else {
             return null;

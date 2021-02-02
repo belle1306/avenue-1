@@ -39,13 +39,13 @@
   color: #61dafb;
 }
 
-div.fb-login-button.fb_iframe_widget_fluid {
+/* .fb-login-button.fb_iframe_widget_fluid {
   display: block !important;
 }
-div.fb-login-button.fb_iframe_widget_fluid span,
-div.fb-login-button.fb_iframe_widget_fluid span iframe {
+.fb-login-button.fb_iframe_widget_fluid span,
+.fb-login-button.fb_iframe_widget_fluid span iframe {
   width: 100% !important;
-}
+} */
 /* .kep-login-facebook.metro:not(:disabled) {
   font-weight: 400;
   line-height: 1.5;
