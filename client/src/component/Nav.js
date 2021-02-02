@@ -3,8 +3,8 @@ import React from "react";
 import {Link} from'react-router-dom';
 import Logo from "./Logo/Logo";
 import Facebook from './Facebook';
-// import classes from "./Nav.module.css";
 import AuthNav from "./auth-nav";
+// import classes from "./Nav.module.css";
 
 function Nav() {
     return (
