@@ -39,7 +39,14 @@
   color: #61dafb;
 }
 
-.kep-login-facebook.metro:not(:disabled) {
+div.fb-login-button.fb_iframe_widget_fluid {
+  display: block !important;
+}
+div.fb-login-button.fb_iframe_widget_fluid span,
+div.fb-login-button.fb_iframe_widget_fluid span iframe {
+  width: 100% !important;
+}
+/* .kep-login-facebook.metro:not(:disabled) {
   font-weight: 400;
   line-height: 1.5;
   text-align: center;
@@ -56,7 +63,7 @@
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin: 0;
   font-family: inherit;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
@@ -124,9 +131,9 @@
 }
 
 #background-video {
-    position: fixed;
-    z-index: -1;
-    width: 100%;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
 }
 .text-position {
   padding-top: 300px;
@@ -142,4 +149,3 @@
   background-color: rgba(0,0,0,.7);
   z-index: 2;
 } */
-

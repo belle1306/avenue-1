@@ -98,6 +98,7 @@ class Owner extends React.Component {
 
     return (
       <div>
+
         <LayoutOwner
           signbtn={this.signHandler}
         >
@@ -159,7 +160,9 @@ class Owner extends React.Component {
                   <div className="card-body">
                     <div>
                       {this.state.leases.map(e => (
+
                         <div>
+                          {/* {if(e.id===)} */}
                           <h3>Lease details</h3>
                           {console.log(e, "<<<")}
                           {/* <div>
