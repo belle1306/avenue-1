@@ -18,7 +18,7 @@ Avenue is a full stack application that streamlines property information in one 
 
 ![Map](support/map.png)
 
-- Properties are listed in a card
+- Properties under management are listed in a card
 
 ![Listing](support/propertylist.png)
 
