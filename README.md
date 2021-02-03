@@ -14,19 +14,19 @@ Avenue is a full stack application that streamlines property information in one 
 
 ![Form](support/form.png)
 
-- Properties display on a map
+- Properties are displayed on a map
 
 ![Map](support/map.png)
 
-- List of properties
+- Properties are listed in a card
 
 ![Listing](support/propertylist.png)
 
-- Rent calculator
+- Rent calculator tool for property manager
 
 ![Calculator](support/calculator2.PNG)
 
-- Propert owner can sign tenancy agreement
+- Property owner can sign tenancy agreement
 
 ![HelloSign](support/hellosign.png)
 
