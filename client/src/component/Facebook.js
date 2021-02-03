@@ -49,7 +49,7 @@ export default class Facebook extends Component {
                         fields="name,email,picture"
                         onClick={this.componentClicked}
                         callback={this.responseFacebook}
-                        cssClass="btn btn-facebook none"                        
+                        cssClass="btn btn-facebook"                      
                         // cssClass="my-facebook-button-class"
                         textButton="Owner Login"
                         // icon="fa-facebook"
