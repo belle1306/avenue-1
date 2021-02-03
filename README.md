@@ -7,22 +7,28 @@ Avenue is a full stack application that streamlines property information in one 
 ## Features
 
 - Analytics dashboard for property manager
-![Dashboard](support/dashboard.PNG)
+
+![Dashboard](support/dashboard.png)
 
 - Form input for new property
-![Form](support/form.PNG)
+
+![Form](support/form.png)
 
 - Properties display on a map
-![Map](support/map.PNG)
+
+![Map](support/map.png)
 
 - List of properties
-![Listing](support/propertylist.PNG)
+
+![Listing](support/propertylist.png)
 
 - Rent calculator
+
 ![Calculator](support/calculator2.PNG)
 
 - Propert owner can sign tenancy agreement
-![HelloSign](support/hellosign.PNG)
+
+![HelloSign](support/hellosign.png)
 
 ## To use this app, you will need to install
 
