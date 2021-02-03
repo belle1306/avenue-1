@@ -32,8 +32,7 @@ class Manager extends React.Component {
         property: null,
         isEditable: false
       },
-      // currentLocation: { lat: 0, lng: 0 },
-      // zoom: 1
+      searchTerm: ""
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
@@ -41,6 +40,7 @@ class Manager extends React.Component {
     this.addingHandler = this.addingHandler.bind(this);
     this.calculateHandler = this.calculateHandler.bind(this);
     this.editingHandler = this.editingHandler.bind(this);
+    this.editSearchTerm = this.editSearchTerm.bind(this);
   }
 
   //mount all properties when page loads
@@ -258,7 +258,17 @@ class Manager extends React.Component {
     return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
-    
+  editSearchTerm = (e) => {
+    console.log(e.target.value, "value");
+    this.setState({searchTerm : e.target.value});
+  }
+
+  dynamicSearch = () => {
+     let displaySearch = this.state.properties.filter(property => property.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+     console.log(displaySearch, "displaySearch");
+     return displaySearch;
+  }
+
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>
@@ -282,6 +292,7 @@ class Manager extends React.Component {
     // console.log(bedroomData, "WHAT IS THIS");
     // const leaseData = this.getLeaseData();
   
+    console.log(this.state.searchTerm, "search term");
 
     return (
       <div>
@@ -289,9 +300,17 @@ class Manager extends React.Component {
           // logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
           calculatebtn={this.calculateHandler}
+          searchTerm={this.state.searchTerm}
+          editSearchTerm={(e) => this.editSearchTerm(e)}
           // signbtn={this.signHandler}
         >
         </Layout>
+
+        {/* <div>
+          <input type="text" value={this.state.searchTerm} onChange={this.editSearchTerm} placeholder="search property" />
+          <h3>Searched property:</h3>
+          <p>{this.dynamicSearch}</p>
+        </div> */}
 
           <div className="row m-5">
             <div className="col-2">

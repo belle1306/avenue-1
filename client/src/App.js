@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import classes from "./component/Nav.module.css";
 import ProtectedRoute from "./auth/protected-route";
 import bgVideo from "./assets/images/pexels_02.mp4";
+import Logo from "./component/Logo/Logo";
 
 function App() {
     return (
@@ -30,7 +31,8 @@ const Home = () => (
         <source src={bgVideo} type='video/mp4' />
       </video>
       <div className="text-position">
-        <h1 className="display-4 text-center">Property from Another Perspective</h1>
+        <h1 className="display-1 text-center"><Logo />Avenue</h1>
+        <h3 className="display-6 text-center">Property from Another Perspective</h3>
       </div>
     {/* </div> */}
   </div>

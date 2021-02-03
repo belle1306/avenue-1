@@ -16,8 +16,10 @@ function Nav() {
                     <li><Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</Link></li>
                     <li><Link to="/manager" style={{ textDecoration: 'none', color: 'black' }}>Manager</Link></li>
                     <li><Link to="/owner" style={{ textDecoration: 'none', color: 'black' }} >Owner</Link></li>
-                    <li><Facebook /></li>
-                    <li><AuthNav /></li>
+                </ul>
+                <ul className="nav-links">
+                    <li className="float-right"><Facebook /></li>
+                    <li className="float-right"><AuthNav /></li>
                 </ul>
             </nav>
         // </div>
