@@ -1,9 +1,7 @@
 import React from "react";
-// import classes from "./ListItem.module.css";
 
 const listItem = (props) => {
     // console.log("this is property id in list item", props.property.id);
-    // console.log('props>>> ', props);
 
     return (
         <div className="card-group">
@@ -20,29 +18,27 @@ const listItem = (props) => {
                 <div className="card-body">
                     <div className="card-text">
                         {props.property.property_bedroom} &nbsp;
-                    <i className='fas'>&#xf236;</i> &nbsp; &nbsp;
-                    {props.property.property_bathroom} &nbsp;
-                    <i className='fa'>&#xf2cc;</i> &nbsp; &nbsp;
-                    {props.property.property_carpark} &nbsp;
-                    <i className='fas'>&#xf1b9;</i>
+                        <i className='fas'>&#xf236;</i> &nbsp; &nbsp;
+                        {props.property.property_bathroom} &nbsp;
+                        <i className='fas'>&#xf2cc;</i> &nbsp; &nbsp;
+                        {props.property.property_carpark} &nbsp;
+                        <i className='fas'>&#xf1b9;</i>
                     </div>
 
                     <div>
                         Furnished {(props.property.property_furnish) ? "✓" : "X"} &nbsp;&nbsp;
-                Rented {(props.property.property_rent) ? "✓" : "X"}
+                        Rented {(props.property.property_rent) ? "✓" : "X"}
                     </div>
 
                     <div>
-                        ${props.property.property_rentWeek} weekly
-                    &nbsp;
-                    {"•"}
-                    &nbsp;
-                    ${props.property.property_rentWeek * 4} monthly
-                </div>
+                        ${props.property.property_rentWeek} weekly &nbsp; 
+                        {"•"} &nbsp;
+                        ${props.property.property_rentWeek * 4} monthly
+                    </div>
 
                     <div>
-                        <i className='fas'>&#xf182;</i>&nbsp;
-                    {props.owner}
+                        <i className='fas'>&#xf182;</i> &nbsp;
+                        {props.owner}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem/ListItem";
 import classes from "./List.module.css";
-
+import moment from 'moment';
 class List extends React.Component {
 
     showOwner = (owner, id) => {
@@ -23,8 +23,8 @@ class List extends React.Component {
         });
         let selectedLease = lease[leaseIndex];
         if(selectedLease) {
-            return `START:  ${selectedLease.leaseStart} END: ${selectedLease.leaseEnd}`;
-        }
+            return `${moment(selectedLease.leaseStart).format('MMMM Do YYYY')} to ${moment(selectedLease.leaseEnd).format('MMMM Do YYYY')}`;
+        } 
         else {
             return null;
         }
@@ -57,7 +57,6 @@ class List extends React.Component {
         // console.log("tenants first name", tenantInfo);
         return tenantInfo;
     }
-    //ACTUALLY WE DONT NEED TENANT ID IN LEASES TABLE
 
     render() {
         const propertyList = this.props.properties.map(p => {
