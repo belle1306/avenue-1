@@ -2,9 +2,10 @@ import React from "react";
 import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
-import Calendar from "./Calendar";
+import OwnerCalendar from "./Calendar";
 // import OwnerProfile from "../views/OwnerProfile";
 import "./List/List.module.css";
+import moment from 'moment';
 // import List from "./List/List";
 
 class Owner extends React.Component {
@@ -26,6 +27,7 @@ class Owner extends React.Component {
     this.getLeases();
     this.getTenants();
   }
+
   propertiesbyOwnerId(e) {
     e.preventDefault();
     this.setState({
@@ -42,6 +44,7 @@ class Owner extends React.Component {
       })
       .catch(err => console.log(err));
   }
+  
   getOwners() {
     fetch("/propertymgmt/owners")
       .then(res => res.json())
@@ -102,6 +105,8 @@ class Owner extends React.Component {
   }
 
   render() {
+    // const StartOfLease = `JSON.stringify${DATE_FORMAT(leases.leaseStart, '%Y,%m,%d')}`;
+    
 
     return (
       <div>
@@ -123,9 +128,10 @@ class Owner extends React.Component {
           <div className="List">
 
             {this.state.properties.map((e, i) => (
+              
               <div className="card-group">
                 <div className="card">
-                  <img className="card-img-top" key={i} src={e.property_photo} />,
+                  <img className="card-img-top" key={i} src={e.property_photo} alt=""/>,
 
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
@@ -166,10 +172,10 @@ class Owner extends React.Component {
                   <div className="card-body">
                     <h3>Lease details</h3>
                     <div>
-                      {"START: " + e.leaseStart}
+                      {moment(e.leaseStart).format('YYYY-MM-DD')}
                     </div>
                     <div>
-                      {"END: " + e.leaseEnd}
+                      {moment(e.leaseEnd).format('YYYY-MM-DD')}
                     </div>
                     <div>
                       {e.tenant_firstName + " " + e.tenant_lastName}
@@ -178,17 +184,15 @@ class Owner extends React.Component {
                 </div>
                 <div className="card">
                   <div className="card-body">
-                    <Calendar />
-                  </div>
+                    <OwnerCalendar
+                      startDate={moment(e.leaseStart).format()}
+                      endDate={moment(e.leaseEnd).format()}
+                    />                                          
+                </div>
                 </div>
               </div>
-            )
-            )}
-
-
+            ))}
           </div>
-
-
         </div>
       </div>
     )
