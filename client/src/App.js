@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Nav from './component/Nav';
 import Manager from './component/Manager';
-import Landing from './component/Landing';
+import Login from './component/Login';
 import Owner from './component/Owner';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import classes from "./component/Nav.module.css";
@@ -17,8 +17,8 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path="/manager" component={Manager}/>
-              <Route path="/landing" component={Landing} />
-              <ProtectedRoute path="/owner" component={Owner}/>
+              <Route path="/login" component={Login} />
+              <ProtectedRoute exact path="/owner/:id" component={Owner} />
             </Switch>
       </Router>
     );

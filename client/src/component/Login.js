@@ -1,8 +1,8 @@
 import React from "react";
 import "../App.css";
-import classes from "./Landing.module.css";
+import classes from "./Login.module.css";
 
-class Landing extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,4 +16,4 @@ class Landing extends React.Component {
     )
   };
 }
-export default Landing;
+export default Login;
