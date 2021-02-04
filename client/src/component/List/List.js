@@ -57,7 +57,6 @@ class List extends React.Component {
         // console.log("tenants first name", tenantInfo);
         return tenantInfo;
     }
-    //ACTUALLY WE DONT NEED TENANT ID IN LEASES TABLE
 
     render() {
         const propertyList = this.props.properties.map(p => {
