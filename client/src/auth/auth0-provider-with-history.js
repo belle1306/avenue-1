@@ -13,7 +13,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
     history.push(appState?.returnTo || window.location.pathname);
   };
 
-  return (
+  return ( 
     <Auth0Provider
       domain="dev-i-z1p8oy.au.auth0.com"
       clientId="yCk6dAdzFdPdJD98o1A7hQwQoOTXNgDR"
@@ -21,7 +21,6 @@ const Auth0ProviderWithHistory = ({ children }) => {
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
-      {console.log('client ID', clientId, "children", children)}
       {children}
     </Auth0Provider>
   );

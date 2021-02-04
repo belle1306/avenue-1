@@ -112,9 +112,8 @@ class Owner extends React.Component {
                 <div className="card">
                   <div className="card-body" key={i}>
                     <OwnerCalendar
-                      // startDate={e.}
-                      startDate={moment(e.leaseStart).format()}                      
-                      endDate={moment(e.leaseEnd).format()}
+                      startDate={e.leaseStart}
+                      endDate={e.leaseEnd}
                     />                       
                 </div>
                 </div>
