@@ -50,19 +50,14 @@ export default class Facebook extends Component {
                         fields="name,email,picture"
                         onClick={this.componentClicked}
                         callback={this.responseFacebook}
-<<<<<<< HEAD
+
                         // cssClass="none"
                         // cssClass="my-facebook-button-class btn  btn-facebook "
                         cssClass="kep-login-facebook kep-login-facebook-small"
                         textButton=" Owner Login"
                         icon="fa-facebook"
 
-=======
-                        cssClass="btn btn-facebook"                      
-                        // cssClass="my-facebook-button-class"
-                        textButton="Owner Login"
-                        // icon="fa-facebook"
->>>>>>> 1bd750723131fd00e8937411cb752f8dc1e2ef50
+
                     />
                 </div>
             );
