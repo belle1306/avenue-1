@@ -1,14 +1,36 @@
 # Avenue
 
-![Logo](images/)
+![Landing](support/homepage.PNG)
 
-Avenue is a full stack application that streamlines property information in one place. Built for property managers to service property owners.
+Avenue is a full stack application that streamlines property information in one place. Built for property managers and property owners.
 
-## Demo
+## Features
 
-![Demo](images/)
+- Dynamic analytics dashboard for property manager
 
-## To use this app, uou will need to install
+![Dashboard](support/dashboard.png)
+
+- Form for new property in a modal
+
+![Form](support/form.png)
+
+- Properties are displayed on a map with popups and markers
+
+![Map](support/map.png)
+
+- Properties under management are listed in a card
+
+![Listing](support/propertylist.png)
+
+- Quick rent calculation tool for property manager
+
+![Calculator](support/calculator2.PNG)
+
+- Property owner can sign tenancy agreement
+
+![HelloSign](support/hellosign.png)
+
+## To use this app, you will need to install
 
 - MySQL.
 - Node/Express.
@@ -73,24 +95,16 @@ Open a **new** terminal window and run `node model/database.js` in avenue root f
 - You can test your client app in `http://localhost:3000`
 - You can test your API in `http://localhost:5000/api`
 
-## Features
-
-![Features](images/)
-
 ## Built With
 
 - MySQL.
 - Node/Express.
-- Vue.
+- React.
 - Bootstrap.
 
 ## Database Schema
 
-![Schema](images/)
-
-## API Routes Plan
-
-![Routes](images/)
+![Schema](support/db.PNG)
 
 ## Credit
 
