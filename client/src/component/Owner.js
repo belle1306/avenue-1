@@ -3,41 +3,24 @@ import "../App.css";
 import LayoutOwner from "./Layout/LayoutOwner";
 import HelloSign from "hellosign-embedded";
 import OwnerCalendar from "./Calendar";
-// import OwnerProfile from "../views/OwnerProfile";
 import "./List/List.module.css";
 import moment from 'moment';
-// import List from "./List/List";
 
 class Owner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       properties: [],
-      tenants: [],
-      leases: [],
-      owners: [],
       ownerId: "",
       leaseid: ""
     };
   }
   //mount all properties when page loads
-  componentDidMount() {
-    // this.propertiesbyOwnerId();
-    this.getOwners();
-    this.getLeases();
-    this.getTenants();
-  }
-
-  propertiesbyOwnerId(e) {
-    e.preventDefault();
-    this.setState({
-      ownerId: e.target.value
-    });
-    // console.log("propertiesbyOwnerId>>>", e.target.value)
-    fetch("/propertymgmt/owners/" + e.target.value)
+   componentDidMount() {      
+    const { match: { params } } = this.props;  
+    fetch(`/propertymgmt/owners/${params.id}`)
       .then(res => res.json())
       .then(data => {
-        // console.log(">>>", data);
         this.setState({
           properties: data
         });
@@ -45,51 +28,7 @@ class Owner extends React.Component {
       .catch(err => console.log(err));
   }
   
-  getOwners() {
-    fetch("/propertymgmt/owners")
-      .then(res => res.json())
-      .then(data => {
-        // console.log("getOwner()", data);
-        this.setState({
-          owners: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  getLeases() {
-    fetch("/propertymgmt/leases")
-      .then(res => res.json())
-      .then(data => {
-        console.log("getLeases()", data);
-        this.setState({
-          leases: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  getTenants() {
-    fetch("/propertymgmt/tenants")
-      .then(res => res.json())
-      .then(data => {
-        // console.log("getTenants() HERE", data);
-        this.setState({
-          tenants: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-
   signHandler() {
-    // console.log("Sign here please...");
     const client = new HelloSign({
       clientId: "cc43fe82df8bf9fbea4ca8d26e0995ad"
     });
@@ -105,30 +44,15 @@ class Owner extends React.Component {
   }
 
   render() {
-    // const StartOfLease = `JSON.stringify${DATE_FORMAT(leases.leaseStart, '%Y,%m,%d')}`;
-    
-
     return (
-      <div>
+      <div>        
         <LayoutOwner
           signbtn={this.signHandler}
         >
         </LayoutOwner>
-        <h1>Owner Page</h1>
-        <div>
-          {/* <OwnerProfile /> */}
-        </div>
-
         <div className="col-auto">
-          <input
-            className="form-control"
-            onChange={e => this.propertiesbyOwnerId(e)}
-          />
-          <h1>Properties by owner</h1>
           <div className="List">
-
-            {this.state.properties.map((e, i) => (
-              
+            {this.state.properties.map((e, i) => (              
               <div className="card-group">
                 <div className="card">
                   <img className="card-img-top" key={i} src={e.property_photo} alt=""/>,
@@ -144,7 +68,7 @@ class Owner extends React.Component {
                       {e.property_bedroom} &nbsp;
                     <i className='fas'>&#xf236;</i> &nbsp; &nbsp;
                     {e.property_bathroom} &nbsp;
-                    <i className='fa'>&#xf2cc;</i> &nbsp; &nbsp;
+                    <i className='fas'>&#xf2cc;</i> &nbsp; &nbsp;
                     {e.property_carpark} &nbsp;
                     <i className='fas'>&#xf1b9;</i>
                     </div>
@@ -180,14 +104,18 @@ class Owner extends React.Component {
                     <div>
                       {e.tenant_firstName + " " + e.tenant_lastName}
                     </div>
+                    <div>
+                      {e.lease_id}
+                    </div>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body" key={i}>
                     <OwnerCalendar
-                      startDate={moment(e.leaseStart).format()}
+                      // startDate={e.}
+                      startDate={moment(e.leaseStart).format()}                      
                       endDate={moment(e.leaseEnd).format()}
-                    />                                          
+                    />                       
                 </div>
                 </div>
               </div>

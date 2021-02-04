@@ -6,7 +6,7 @@ import Landing from './component/Landing';
 import Owner from './component/Owner';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import classes from "./component/Nav.module.css";
-import ProtectedRoute from "./auth/protected-route";
+// import ProtectedRoute from "./auth/protected-route";
 import bgVideo from "./assets/images/pexels_02.mp4";
 import Logo from "./component/Logo/Logo";
 
@@ -18,7 +18,8 @@ function App() {
               <Route path="/" exact component={Home}/>
               <Route path="/manager" component={Manager}/>
               <Route path="/landing" component={Landing} />
-              <ProtectedRoute path="/owner" component={Owner}/>
+          {/* <ProtectedRoute path="/owner/:id" component={Owner} /> */}
+          <Route path="/owner/:id" component={Owner} />
             </Switch>
       </Router>
     );
