@@ -268,7 +268,7 @@ class Manager extends React.Component {
      console.log(displaySearch, "displaySearch");
      return displaySearch;
   }
-
+ 
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import "./../App.css";
+// import TiSocialFacebookCircular from 'react-icons/lib/ti/social-facebook-circular';
 
 export default class Facebook extends Component {
     state = {
@@ -12,13 +13,13 @@ export default class Facebook extends Component {
     }
 
     responseFacebook = response => {
-        if(response.status !== 'unknown')
+        if (response.status !== 'unknown')
             this.setState({
                 isLoggedIn: true,
                 name: response.name,
                 picture: response.picture.data.url
             });
-            
+
     }
 
     componentClicked = () => console.log("clicked");
@@ -34,7 +35,7 @@ export default class Facebook extends Component {
                         padding: '0px 20px'
                     }}
                 >
-                    <img src={this.state.picture} alt={this.state.name}/>
+                    <img src={this.state.picture} alt={this.state.name} />
                 </div>
             ) : fbContent = (
                 <div
@@ -42,22 +43,26 @@ export default class Facebook extends Component {
                         padding: '0px 20px'
                     }}
                 >
-                    
-                <FacebookLogin
+
+                    <FacebookLogin
                         appId="845362466033294"
                         autoLoad={false}
                         fields="name,email,picture"
                         onClick={this.componentClicked}
                         callback={this.responseFacebook}
-                        cssClass="btn btn-facebook"                      
-                        // cssClass="my-facebook-button-class"
-                        textButton="Owner Login"
-                        // icon="fa-facebook"
+
+                        // cssClass="none"
+                        // cssClass="my-facebook-button-class btn  btn-facebook "
+                        cssClass="kep-login-facebook kep-login-facebook-small"
+                        textButton=" Owner Login"
+                        icon="fa-facebook"
+
+
                     />
-                    </div>
+                </div>
             );
-            
-        
+
+
         return (
             <div>
                 {fbContent}
