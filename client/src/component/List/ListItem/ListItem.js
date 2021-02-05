@@ -1,8 +1,6 @@
 import React from "react";
 
 const listItem = (props) => {
-    // console.log("this is property id in list item", props.property.id);
-
     return (
         <div className="card-group">
             <div className="card">
