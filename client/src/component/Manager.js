@@ -374,7 +374,7 @@ class Manager extends React.Component {
             <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
             <h3>Searched property:</h3>
           </div>
-          {/* {console.log(this.state.search, "pass this down")} */}
+
           <div className="row">
             <List
               properties={this.state.properties}

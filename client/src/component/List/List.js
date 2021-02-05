@@ -64,8 +64,7 @@ class List extends React.Component {
             let selectedLease = this.showLease(this.props.lease, p.lease_id);
             // console.log("selected lease", selectedLease);
             let selectedTenant = this.showTenants(p.lease_id, this.props.tenants);
-            // console.log("this.props.tenants", this.props.tenants);
-
+            // console.log("this.props.tenants", this.props.tenants); 
             return (
                 <ListItem key={p.id}
                     property={p}
@@ -76,29 +75,14 @@ class List extends React.Component {
                     tenants={selectedTenant}
                 />
             )
+        })   
+          
+        let propertyFiltered = propertyList.filter(e => {
+            if(e.props.property.property_address.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1) return e.props;
         })
-        
-        // let propertyAddress = propertyList.map(e => {
-        //     console.log(e.props.property.property_address, "WE WANT THIS");
-        // });
-        console.log(this.props.search, "is this the search?!!!!");
-        let propertyAddress = propertyList.map(e => {
-            return e.props.property.property_address
-        });
-        console.log(propertyAddress,"This is the property address?");
-
-        let filteredProperty = propertyAddress.filter(address => {
-            return address.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1;
-        });
-
         return (
             <div className={classes.List}>
-                <ul>
-                    {filteredProperty.map((address, index) => {
-                        return <li key={index}>{address}</li>
-                    })}
-                </ul>
-                {propertyList}
+                {propertyFiltered}
             </div>
         );
     };
