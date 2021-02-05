@@ -330,6 +330,12 @@ class Manager extends React.Component {
                 </div>
               </div>
             </div>
+
+            <div className="row">
+              <div className="col">
+              <input className="searchInput" type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
+              </div>
+            </div>
  
           </div>
 
@@ -370,10 +376,11 @@ class Manager extends React.Component {
             <MyMap />
           </div>
 
-          <div>
-            <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
-            <h3>Searched property:</h3>
-          </div>
+          {/* <div className="row m-5">
+            <div className="col-2">
+             <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
+            </div>
+          </div> */}
 
           <div className="row">
             <List
