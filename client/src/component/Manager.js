@@ -32,7 +32,7 @@ class Manager extends React.Component {
         property: null,
         isEditable: false
       },
-      searchTerm: ""
+      search: ""
     };
     this.addProperty = this.addProperty.bind(this);
     this.updateProperty = this.updateProperty.bind(this);
@@ -40,7 +40,6 @@ class Manager extends React.Component {
     this.addingHandler = this.addingHandler.bind(this);
     this.calculateHandler = this.calculateHandler.bind(this);
     this.editingHandler = this.editingHandler.bind(this);
-    this.editSearchTerm = this.editSearchTerm.bind(this);
   }
 
   //mount all properties when page loads
@@ -258,15 +257,9 @@ class Manager extends React.Component {
     return this.state.properties.filter(eachProperty => eachProperty.id === id);
   }
 
-  editSearchTerm = (e) => {
-    console.log(e.target.value, "value");
-    this.setState({searchTerm : e.target.value});
-  }
-
-  dynamicSearch = () => {
-     let displaySearch = this.state.properties.filter(property => property.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
-     console.log(displaySearch, "displaySearch");
-     return displaySearch;
+  updateSearch = (e) => {
+    console.log(e.target.value, "search term");
+    this.setState({search: e.target.value.substr(0,20)});
   }
  
   render() {
@@ -277,7 +270,7 @@ class Manager extends React.Component {
     const totalRentMonth = this.state.properties.filter(e => e.property_rent === 1).reduce((prev, curr) => prev + curr.property_rentWeek, 0) * 4;
     const vacancyRate = (vacancy / numProperties * 100).toFixed(2);
     const bedroomData = this.getBedroomData();
- 
+
     // useEffect(() => {
     //   const { current = {} } = mapRef;
     //   const { leafletElement: map = current;
@@ -292,25 +285,18 @@ class Manager extends React.Component {
     // console.log(bedroomData, "WHAT IS THIS");
     // const leaseData = this.getLeaseData();
   
-    console.log(this.state.searchTerm, "search term");
-
+  
     return (
       <div>
         <Layout
           // logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
           calculatebtn={this.calculateHandler}
-          searchTerm={this.state.searchTerm}
-          editSearchTerm={(e) => this.editSearchTerm(e)}
+          // searchTerm={this.state.searchTerm}
+          // editSearchTerm={(e) => this.editSearchTerm(e)}
           // signbtn={this.signHandler}
         >
         </Layout>
-
-        {/* <div>
-          <input type="text" value={this.state.searchTerm} onChange={this.editSearchTerm} placeholder="search property" />
-          <h3>Searched property:</h3>
-          <p>{this.dynamicSearch}</p>
-        </div> */}
 
           <div className="row m-5">
             <div className="col-2">
@@ -384,6 +370,11 @@ class Manager extends React.Component {
             <MyMap />
           </div>
 
+          <div>
+            <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
+            <h3>Searched property:</h3>
+          </div>
+          {/* {console.log(this.state.search, "pass this down")} */}
           <div className="row">
             <List
               properties={this.state.properties}
@@ -392,6 +383,7 @@ class Manager extends React.Component {
               edit={this.editingHandler}
               lease={this.state.leases}
               tenants={this.state.tenants}
+              search={this.state.search}
             />
           </div>
 

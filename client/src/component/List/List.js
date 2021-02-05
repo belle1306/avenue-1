@@ -3,7 +3,6 @@ import ListItem from "./ListItem/ListItem";
 import classes from "./List.module.css";
 import moment from 'moment';
 class List extends React.Component {
-
     showOwner = (owner, id) => {
         const ownerIndex = owner.findIndex(o => {
             return o.id === id;
@@ -66,7 +65,7 @@ class List extends React.Component {
             // console.log("selected lease", selectedLease);
             let selectedTenant = this.showTenants(p.lease_id, this.props.tenants);
             // console.log("this.props.tenants", this.props.tenants);
-    
+
             return (
                 <ListItem key={p.id}
                     property={p}
@@ -78,9 +77,27 @@ class List extends React.Component {
                 />
             )
         })
-        // console.log(propertyList);
+        
+        // let propertyAddress = propertyList.map(e => {
+        //     console.log(e.props.property.property_address, "WE WANT THIS");
+        // });
+        console.log(this.props.search, "is this the search?!!!!");
+        let propertyAddress = propertyList.map(e => {
+            return e.props.property.property_address
+        });
+        console.log(propertyAddress,"This is the property address?");
+
+        let filteredProperty = propertyAddress.filter(address => {
+            return address.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1;
+        });
+
         return (
             <div className={classes.List}>
+                <ul>
+                    {filteredProperty.map((address, index) => {
+                        return <li key={index}>{address}</li>
+                    })}
+                </ul>
                 {propertyList}
             </div>
         );
