@@ -138,14 +138,14 @@ router.post("/owner/callback", (req, res,json) => {
     // handle response
     const signature = res.signature_request.signatures[0];
     const signatureId = signature.signature_id;
-    console.log("signature Id", signatureId)
+    console.log("signature Id", signatureId);
     return hellosign.embedded.getSignUrl(signatureId);
-  }).then((res) => {
-    console.log('The sign url: ' + res.embedded.sign_url);
-  }).catch((err) => {
-    // handle error
-  });
-  
+  }).then(result => {
+    console.log('The sign url: ' + result.embedded.sign_url);
+    // console.log('embedded ', result.embedded);
+    // res.send(result);
+  })
+  .catch(err => res.status(500).send(err));  
 })
 
 module.exports = router;

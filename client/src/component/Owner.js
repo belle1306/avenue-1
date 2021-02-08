@@ -10,9 +10,10 @@ class Owner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // helloUrl: "",
       properties: [],
       ownerId: "",
-      leaseid: ""
+      leaseid: "",
     };
   }
   //mount all properties when page loads
@@ -24,15 +25,29 @@ class Owner extends React.Component {
         this.setState({
           properties: data
         });
+        // this.getUrl();
       })
       .catch(err => console.log(err));
   }
+
+  // getUrl() {
+  //   console.log("get url()");
+  //   fetch(`/owner/callback`)
+  //     .then(res => console.log(res.json(), "get URL"))
+  //     .then(data => {
+  //       console.log(data, "hellosign data");
+  //       this.setState({
+  //         helloUrl: data
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
   
   signHandler() {
     const client = new HelloSign({
       clientId: "cc43fe82df8bf9fbea4ca8d26e0995ad"
     });
-    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=0f95d5500ec28328c3f6e67055ab2a11&token=ee5a82505bbe6aed1b10944903f25188", {
+    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=e8579b47a0d5ee4c0cbfb13faab642c3&token=46b6c6c6663e5a496d445337681841cc", {
       // url: "SIGN_URL",
       allowCancel: true,
       skipDomainVerification: true,
