@@ -83,7 +83,8 @@ Run `yarn add hellosign-sdk`, `yarn add cors`, `yarn add express-jwt`,`yarn add 
 
 Open a **new** terminal window and run `node model/database.js` in avenue root folder. This will create a table called 'properties' in your database.
 
-`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`, `yarn add react-number-format`, `yarn add react-facebook-login`,`yarn add hellosign-embedded`, `yarn add react-router-dom`,`yarn add @auth0/auth0-react`,  `yarn add leaflet`, `yarn add react-leaflet`, `yarn add nivo`, `yarn add @nivo/core @nivo/pie`, `yarn add react-virtualized`,`yarn add react-calendar`,`yarn add moment`.
+`cd client` and run `yarn` in client folder to install dependencies related to React. Run `yarn add react`, `yarn add react-number-format`, `yarn add react-facebook-login`,`yarn add hellosign-embedded`, `yarn add react-router-dom`,`yarn add @auth0/auth0-react`, `yarn add leaflet`, `yarn add react-leaflet`, `yarn add nivo`, `yarn add @nivo/core @nivo/pie`, `yarn add react-virtualized`,`yarn add react-calendar`,`yarn add moment`, `yarn add react-select`.
+For testing:`yarn add jest`,`yarn add enzyme`,`yarn add enzyme-adapter-react-16.1`, `yarn add sinon`,`yarn add prop-types`.
 
 ### Run Development Servers
 
