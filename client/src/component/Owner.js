@@ -32,7 +32,7 @@ class Owner extends React.Component {
     const client = new HelloSign({
       clientId: "cc43fe82df8bf9fbea4ca8d26e0995ad"
     });
-    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=787e76989f2b6e8142aa3ee213e893d4&token=372672df611d7778c566ff1bd4dde79a", {
+    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=0f95d5500ec28328c3f6e67055ab2a11&token=ee5a82505bbe6aed1b10944903f25188", {
       // url: "SIGN_URL",
       allowCancel: true,
       skipDomainVerification: true,

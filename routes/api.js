@@ -110,7 +110,7 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
 });
 
 //Create signature request
-router.post("/callback", (req, res,json) => {
+router.post("/owner/callback", (req, res,json) => {
   const data = req.body.json;
   console.log("Input payload of the event-----", data);
   res.status(200).send('Hello API Event Received'); 
@@ -123,10 +123,10 @@ router.post("/callback", (req, res,json) => {
     subject: 'You got the best deal',
     message: 'I am glad we agreed',
     signers: [
-      {
-        email_address: 'lilliantoh1111@gmail.com',
-        name: 'Tenant',
-      },
+      // {
+      //   email_address: 'lilliantoh1111@gmail.com',
+      //   name: 'Tenant',
+      // },
       {
         email_address: 'jas4gan@gmail.com',
         name: 'Owner',
