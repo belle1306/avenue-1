@@ -110,7 +110,7 @@ router.put("/propertymgmt/properties/:property_id", (req, res) => {
 });
 
 //Create signature request
-router.post("/callback", (req, res,json) => {
+router.post("/owner/callback", (req, res,json) => {
   const data = req.body.json;
   console.log("Input payload of the event-----", data);
   res.status(200).send('Hello API Event Received'); 
@@ -123,10 +123,10 @@ router.post("/callback", (req, res,json) => {
     subject: 'You got the best deal',
     message: 'I am glad we agreed',
     signers: [
-      {
-        email_address: 'lilliantoh1111@gmail.com',
-        name: 'Tenant',
-      },
+      // {
+      //   email_address: 'lilliantoh1111@gmail.com',
+      //   name: 'Tenant',
+      // },
       {
         email_address: 'jas4gan@gmail.com',
         name: 'Owner',
@@ -138,14 +138,14 @@ router.post("/callback", (req, res,json) => {
     // handle response
     const signature = res.signature_request.signatures[0];
     const signatureId = signature.signature_id;
-    console.log("signature Id", signatureId)
+    console.log("signature Id", signatureId);
     return hellosign.embedded.getSignUrl(signatureId);
-  }).then((res) => {
-    console.log('The sign url: ' + res.embedded.sign_url);
-  }).catch((err) => {
-    // handle error
-  });
-  
+  }).then(result => {
+    console.log('The sign url: ' + result.embedded.sign_url);
+    // console.log('embedded ', result.embedded);
+    // res.send(result);
+  })
+  .catch(err => res.status(500).send(err));  
 })
 
 module.exports = router;
