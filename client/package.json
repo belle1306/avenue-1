@@ -8,10 +8,13 @@
     "@nivo/line": "^0.67.0",
     "@nivo/pie": "^0.67.0",
     "dotenv": "^8.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16.1": "^1.6.4",
     "hellosign-embedded": "^2.9.0",
     "leaflet": "^1.7.1",
     "moment": "^2.29.1",
     "nivo": "^0.31.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-calendar": "^3.3.1",
     "react-dom": "^16.8.6",
@@ -21,7 +24,9 @@
     "react-number-format": "^4.4.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
-    "react-virtualized": "^9.22.3"
+    "react-select": "^4.1.0",
+    "react-virtualized": "^9.22.3",
+    "sinon": "^9.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
