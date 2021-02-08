@@ -107,30 +107,25 @@ class Owner extends React.Component {
                     </div>
                   </div>
                 </div>
+               
                 <div className="card">
                   <div className="card-body">
                     <h3>Lease details</h3>
                     <div>
-                      {moment(e.leaseStart).format('YYYY-MM-DD')}
+                      {moment(e.leaseStart).format('MMMM Do YYYY')} to {moment(e.leaseEnd).format('MMMM Do YYYY')}
                     </div>
                     <div>
-                      {moment(e.leaseEnd).format('YYYY-MM-DD')}
+                      Tenant: {e.tenant_firstName + " " + e.tenant_lastName}
                     </div>
-                    <div>
-                      {e.tenant_firstName + " " + e.tenant_lastName}
-                    </div>
-                    <div>
-                      {e.lease_id}
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-body" key={i}>
+                    
+                    <div style={{margin:"1rem"}}>
                     <OwnerCalendar
                       startDate={e.leaseStart}
                       endDate={e.leaseEnd}
-                    />                       
-                </div>
+                      /> 
+                      
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
