@@ -6,6 +6,7 @@ import Layout from "./Layout/Layout";
 import List from "./List/List";
 import NewList from "./NewList/NewList";
 import EditList from "./EditList/EditList";
+import Footer from "./Footer";
 import RentCalculator from "./RentCalculator";
 import 'leaflet/dist/leaflet.css';
 import BedroomPie from './UI/Charts/BedroomPie';
@@ -419,6 +420,9 @@ class Manager extends React.Component {
             </Modal>  
         </div>
 
+        <div>
+          <Footer />
+        </div>
       </div>
     )
   };
