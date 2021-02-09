@@ -5,17 +5,16 @@ import App from "../src/App";
 import Nav from "../src/component/Nav";
 
 configure({adapter: new Adapter()});
-test('should render Nav component', ()=> {
+test('should render Nav component', () => {
         const wrapper = shallow(<App />);
-        expect(wrapper.find(Nav));
-})
+        expect(wrapper.find(Nav)).toHaveLength(1);
+});
 
 
 //     it('should render `.houselogo`', () => {
 //         const wrapper = shallow(<App />);
 //         expect(wrapper.find('.houselogo')).to.have.length(1);
 //       });
-
 
 //'Nav bar shows Home, Manager, Owner, Login btns'
 //'It should not allow letters to be inputted'

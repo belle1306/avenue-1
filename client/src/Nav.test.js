@@ -7,19 +7,11 @@ import Manager from "../src/component/Manager";
 import Owner from "../src/component/Owner";
 
 configure({adapter: new Adapter()});
-
-// test('should render Home component', ()=> {
-//         const wrapper = shallow(<App />);
-//         expect(wrapper.find(Home));
-// });
-
-test('should render Manager component', ()=> {
+test('should render Manager component', () => {
         const wrapper = shallow(<Nav />);
         expect(wrapper.find(Manager));
 });
-test('should render Owner component', ()=> {
+test('should render Owner component', () => {
         const wrapper = shallow(<Nav />);
         expect(wrapper.find(Owner));
 });
-
-

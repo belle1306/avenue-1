@@ -31,9 +31,21 @@ class Owner extends React.Component {
   }
 
   // getUrl() {
-  //   console.log("get url()");
-  //   fetch(`/owner/callback`)
-  //     .then(res => console.log(res.json(), "get URL"))
+  //   fetch(`/owner/callback`, {
+  //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  //     mode: 'no-cors', // no-cors, *cors, same-origin
+  //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  //     credentials: 'same-origin', // include, *same-origin, omit
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //       // 'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     redirect: 'follow', // manual, *follow, error
+  //     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  //     // body: JSON.stringify(data) // body data type must match "Content-Type" header
+  //   }
+  //   )
+  //     .then(res => res.json())
   //     .then(data => {
   //       console.log(data, "hellosign data");
   //       this.setState({
@@ -42,25 +54,34 @@ class Owner extends React.Component {
   //     })
   //     .catch(err => console.log(err));
   // }
-  
+   
   signHandler() {
     const client = new HelloSign({
-      clientId: "cc43fe82df8bf9fbea4ca8d26e0995ad"
+      clientId: "0ce014a59e087c76d07bb63819c363e9"
     });
-    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=e8579b47a0d5ee4c0cbfb13faab642c3&token=46b6c6c6663e5a496d445337681841cc", {
+    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=d44b0c9aff271198c15ded43b559b9f1&token=20a7f7c6ae7dd169330d1a6145a092c1", {
       // url: "SIGN_URL",
       allowCancel: true,
       skipDomainVerification: true,
-      testMode: true
+      testMode: true,
+      debug: true
     });
-    client.on(HelloSign.events.SIGN, (data) => {
+    // client.on(HelloSign.events.SIGN, (data) => {
+    client.on(HelloSign.events, (data) => {
       console.log('The document has been signed!');
-    })
+      console.log('data', data.json());
+      // console.log("HelloSign.events",HelloSign.events.REASSIGN)
+      client.on(HelloSign.events.REASSIGN, (data) => {
+        console.log(data,"reassign")
+        console.log(`The signature request was reassigned to ${data.email}`);
+      });
+    });
+    
   }
 
   render() {
     return (
-      <div>        
+      <div id="owner">        
         <LayoutOwner
           signbtn={this.signHandler}
         >
@@ -70,8 +91,7 @@ class Owner extends React.Component {
             {this.state.properties.map((e, i) => (              
               <div className="card-group">
                 <div className="card">
-                  <img className="card-img-top" key={i} src={e.property_photo} alt=""/>,
-
+                  <img className="card-img-top" key={i} src={e.property_photo} alt="house image"/>
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
                     <span className="text-white">
@@ -116,9 +136,8 @@ class Owner extends React.Component {
                     </div>
                     <div>
                       Tenant: {e.tenant_firstName + " " + e.tenant_lastName}
-                    </div>
-                    
-                    <div style={{margin:"1rem"}}>
+                    </div>                    
+                    <div>
                     <OwnerCalendar
                       startDate={e.leaseStart}
                       endDate={e.leaseEnd}
