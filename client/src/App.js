@@ -19,6 +19,7 @@ function App() {
               <Route path="/manager" component={Manager}/>
               <Route path="/login" component={Login} />
               <ProtectedRoute exact path="/owner/:id" component={Owner} />
+              <Route exact path="/owner/:id" component={Owner} />
             </Switch>
       </Router>
     );

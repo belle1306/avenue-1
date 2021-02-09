@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const bodyParser = require("body-parser");
 const db = require("../model/helper");
-const hellosign = require('hellosign-sdk')({ key: 'd03242c8f7f36a3fbf83ab0199a7cbaa1811666c7d4a4dc6ddd6ac08b6dc119e' });
+const hellosign = require('hellosign-sdk')({ key: '7150cf6254b928355fb88dd8fb225d385b7c59464ea38df8bd591052391c9307' });
 
 router.use(bodyParser.json());
 
@@ -118,15 +118,15 @@ router.post("/owner/callback", (req, res,json) => {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   const opts = {
     test_mode: 1,
-    clientId: 'cc43fe82df8bf9fbea4ca8d26e0995ad',
+    clientId: '0ce014a59e087c76d07bb63819c363e9',
     title: 'Tenancy Agreement',
     subject: 'You got the best deal',
     message: 'I am glad we agreed',
     signers: [
-      // {
-      //   email_address: 'lilliantoh1111@gmail.com',
-      //   name: 'Tenant',
-      // },
+      {
+        email_address: 'lilliantoh1111@gmail.com',
+        name: 'Tenant',
+      },
       {
         email_address: 'jas4gan@gmail.com',
         name: 'Owner',
@@ -136,14 +136,23 @@ router.post("/owner/callback", (req, res,json) => {
   };
   hellosign.signatureRequest.createEmbedded(opts).then((res) => {
     // handle response
+    console.log(res.signature_request.client_id,"res")
     const signature = res.signature_request.signatures[0];
+    const signature1 = res.signature_request.signatures[1];
+    
+    // console.log("signature", res.signature_request.signatures);
     const signatureId = signature.signature_id;
+    const signatureId1 = signature1.signature_id;
+    console.log("signature Id1", signatureId1);
     console.log("signature Id", signatureId);
-    return hellosign.embedded.getSignUrl(signatureId);
+    // return hellosign.embedded.getSignUrl(signatureId);
+    return hellosign.embedded.getSignUrl(signatureId),hellosign.embedded.getSignUrl(signatureId1);
   }).then(result => {
-    console.log('The sign url: ' + result.embedded.sign_url);
+    // console.log('The sign url: ' + result.embedded);
+    console.log('The sign url: ' + JSON.stringify(result.embedded.sign_url));
+    // console.log('The sign url: ' + result.embedded.sign_url);
     // console.log('embedded ', result.embedded);
-    // res.send(result);
+    res.send(JSON.stringify(result.embedded.sign_url));
   })
   .catch(err => res.status(500).send(err));  
 })
