@@ -121,6 +121,17 @@ button.kep-login-facebook {
   z-index: -1;
   width: 100%;
 }
+
+#ownerHomeimg {
+  background-image: url("./assets/images/notLoggedIn.png");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
 .text-position {
   padding-top: 200px;
   color: white;

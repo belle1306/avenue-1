@@ -5,6 +5,7 @@ import HelloSign from "hellosign-embedded";
 import OwnerCalendar from "./Calendar";
 import "./List/List.module.css";
 import moment from 'moment';
+import Footer from "./Footer";
 
 class Owner extends React.Component {
   constructor(props) {
@@ -141,8 +142,7 @@ class Owner extends React.Component {
                     <OwnerCalendar
                       startDate={e.leaseStart}
                       endDate={e.leaseEnd}
-                      /> 
-                      
+                      />                       
                     </div>
                   </div>
                 </div>
@@ -150,6 +150,7 @@ class Owner extends React.Component {
             ))}
           </div>
         </div>
+        <Footer />
       </div>
     )
   }
