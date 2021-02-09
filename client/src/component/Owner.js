@@ -91,7 +91,7 @@ class Owner extends React.Component {
             {this.state.properties.map((e, i) => (              
               <div className="card-group">
                 <div className="card">
-                  <img className="card-img-top" key={i} src={e.property_photo} alt="house image"/>
+                  <img className="card-img-top" key={i} src={e.property_photo} alt="beautiful house"/>
                   <div className="card-img-overlay">
                     <h3 className="card-title text-white">{e.property_address}</h3>
                     <span className="text-white">

@@ -106,7 +106,16 @@ class NewList extends React.Component {
                     
                     <div>
                         <label>Owned by</label>
-                        <Select validate={required} options = {ownerSummary} onChange={e => this.setState({ owner: e.value})}/>
+                        <Select options={ownerSummary} onChange={e => this.setState({ owner: e.value})}/>
+                        {/* {!this.props.disabled && (
+                            <input
+                            tabIndex={-1}
+                            autoComplete="off"
+                            style={{ opacity: 0, height: 0 }}
+                            value={e.value}
+                            required
+                            />
+                        )} */}
                     </div>
 
                     <input type="submit" className="btn btn-primary" />
