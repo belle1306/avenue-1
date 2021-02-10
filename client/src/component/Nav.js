@@ -3,7 +3,7 @@ import {Link} from'react-router-dom';
 // import Logo from "./Logo/Logo";
 import NavLogo from "./Logo/NavLogo";
 // import Facebook from './Facebook';
-import AuthNav from "./auth-nav";
+// import AuthNav from "./auth-nav";
 
 function Nav() {
     return (
@@ -23,7 +23,7 @@ function Nav() {
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
                     {/* <li className="nav-item px-5"><Facebook /></li> */}
-                    <li className="nav-item px-5"><AuthNav /></li>
+                    {/* <li className="nav-item px-5"><AuthNav /></li> */}
                 </ul>
             </div>
         </nav>
