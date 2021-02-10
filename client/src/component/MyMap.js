@@ -5,8 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import "../App.css";
 
 function MyMap() {
-    const currentLocation = { lat: 0, lng: 0 };
-    const zoom = 1;
+    const currentLocation = { lat: 3.139003, lng: 101.686852 };
+    const zoom = 2;
     return (
         <div className="col">
         <MapContainer center={currentLocation} zoom={zoom}>
