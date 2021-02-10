@@ -105,10 +105,10 @@ class Manager extends React.Component {
     this.state.properties.map(type => {
       dataIndex = tempBedroomData.findIndex(x => x.id === type.property_bedroom + " Bed " + type.property_bathroom + " Bath")
       // console.log("data Index", dataIndex);
-      if(dataIndex >= 0){
+      if (dataIndex >= 0) {
         tempBedroomData[dataIndex].value += 1
       } else {
-        tempBedroomData = [...tempBedroomData, {"id": type.property_bedroom + " Bed "  + type.property_bathroom + " Bath", "value": 1}]
+        tempBedroomData = [...tempBedroomData, { "id": type.property_bedroom + " Bed " + type.property_bathroom + " Bath", "value": 1 }]
       }
     })
     return tempBedroomData;
@@ -207,7 +207,7 @@ class Manager extends React.Component {
       });
     // console.log("This property id was deleted", id);
   }
-  
+
   addingHandler() {
     // console.log("adding", this.state.adding);
     if (this.state.adding) {
@@ -255,9 +255,9 @@ class Manager extends React.Component {
 
   updateSearch = (e) => {
     console.log(e.target.value, "search term");
-    this.setState({search: e.target.value.substr(0,20)});
+    this.setState({ search: e.target.value.substr(0, 20) });
   }
- 
+
   render() {
     const numProperties = this.state.properties.length;
     const vacancy = this.state.properties.filter(e =>
@@ -280,34 +280,34 @@ class Manager extends React.Component {
     // const marker = L.marker([0,0]).addTo(mymap);
     // console.log(bedroomData, "WHAT IS THIS");
     // const leaseData = this.getLeaseData();
-  
-  
+
+
     return (
       <div>
         <Layout
           // logoutbtn={this.logoutHandler}
           newbtn={this.addingHandler}
           calculatebtn={this.calculateHandler}
-          // searchTerm={this.state.searchTerm}
-          // editSearchTerm={(e) => this.editSearchTerm(e)}
-          // signbtn={this.signHandler}
+        // searchTerm={this.state.searchTerm}
+        // editSearchTerm={(e) => this.editSearchTerm(e)}
+        // signbtn={this.signHandler}
         >
         </Layout>
 
-          <div className="row m-5">
-            <div className="col-2">
-                <div className="card-body text-light text-center bg-primary mb-3 rounded">
-                  <h1 className="card-title">{numProperties}</h1>
-                  <p className="card-text">properties under management</p>
+        <div className="row m-5">
+          <div className="col-2">
+            <div className="card-body text-light text-center bg-primary mb-3 rounded">
+              <h1 className="card-title">{numProperties}</h1>
+              <p className="card-text">properties under management</p>
+            </div>
+            <div className="row">
+              <div className="col">
+                <div className="card-body text-light text-center bg-danger mb-3 rounded">
+                  <h1 className="card-title">{vacancy}</h1>
+                  <p className="card-text">vacant properties</p>
                 </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="card-body text-light text-center bg-danger mb-3 rounded">
-                      <h1 className="card-title">{vacancy}</h1>
-                      <p className="card-text">vacant properties</p>
-                    </div>
-                  </div>
-                </div>
+              </div>
+            </div>
 
             <div className="row">
               <div className="col">
@@ -332,21 +332,21 @@ class Manager extends React.Component {
               <input className="form-control mr-sm-2" type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search property" />
               </div>
             </div>
- 
+
           </div>
 
           <div className="col">
-          <AutoSizer style={{ height: "400px", width:"400px" }}>
+            <AutoSizer style={{ height: "400px", width: "400px" }}>
               {({ height, width }) => (
-                  <BedroomPie 
-                    bedroomData={bedroomData}
-                    height={height}
-                    width={width}
-                  />
+                <BedroomPie
+                  bedroomData={bedroomData}
+                  height={height}
+                  width={width}
+                />
               )}
-          </AutoSizer>
+            </AutoSizer>
 
-          {/* <AutoSizer style={{ height: "400px", width:"800px" }}>
+            {/* <AutoSizer style={{ height: "400px", width:"800px" }}>
               {({ height, width }) => (
                   <LeaseGraph
                     leaseData={leaseData}
@@ -414,10 +414,10 @@ class Manager extends React.Component {
 
         <div>
           <Modal cancel={this.calculateHandler} show={this.state.calculate}>
-              <RentCalculator
-                cancel={this.calculateHandler}
-              />
-            </Modal>  
+            <RentCalculator
+              cancel={this.calculateHandler}
+            />
+          </Modal>
         </div>
 
         <div>
