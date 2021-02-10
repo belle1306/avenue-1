@@ -112,7 +112,7 @@ class EditList extends React.Component {
                     </div>
                     
                     <button type="submit" className="btn btn-primary" onClick={e => this.handleFormSave(e)}>Save</button>
-                    <input type="reset" className="btn btn-dark" onClick={this.props.cancel}/>
+                    <button className="btn btn-dark" onClick={this.props.cancel}>Cancel</button>
                 </form>
             </div>
         );
