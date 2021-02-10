@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Nav from './component/Nav';
+// import Nav from './component/NavLoggedIn';
 import Manager from './component/Manager';
 import Login from './component/Login';
 import Owner from './component/Owner';
@@ -15,6 +16,7 @@ import Footer from "./component/Footer";
 function App() {
     return (
       <Router>
+            {/* (isLoggedIn) ? <NavLoggedIn /> : <Nav /> */}
             <Nav />
             <Switch>
               <Route path="/" exact component={Home}/>
@@ -47,8 +49,8 @@ const OwnerHome = () => (
     <div className="text-position" id="ownerHomeimg">
       {/* <img src={notLoggedIn} alt="owner is not logged in" id="ownerHomeimg"/> */}
         {/* <h1 className="display-1 text-center"><Logo />Avenue</h1> */}
-        {/* <h3 className="display-6 text-center">You're not on Avenue yet,</h3>
-        <h3 className="display-6 text-center">but you're one click away.</h3> */}      
+        <h1>You're not on Avenue yet,</h1>
+        <button className="btn btn-dark">but you're one step away.</button>      
     </div>
     <Footer />
   </div>
