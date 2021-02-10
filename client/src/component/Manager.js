@@ -295,7 +295,7 @@ class Manager extends React.Component {
         </Layout>
 
         <div className="row m-5">
-          <div className="col-2">
+          <div className="col-2 m-5">
             <div className="card-body text-light text-center bg-primary mb-3 rounded">
               <h1 className="card-title">{numProperties}</h1>
               <p className="card-text">properties under management</p>
@@ -334,51 +334,24 @@ class Manager extends React.Component {
             </div>
 
           </div>
+          
+          <AutoSizer style={{ height: "415px", width: "559px" }}>
+            {({ height, width }) => (
+              <BedroomPie
+                bedroomData={bedroomData}
+                height={height}
+                width={width}
+              />
+            )}
+          </AutoSizer>
 
-          <div className="col">
-            <AutoSizer style={{ height: "400px", width: "400px" }}>
-              {({ height, width }) => (
-                <BedroomPie
-                  bedroomData={bedroomData}
-                  height={height}
-                  width={width}
-                />
-              )}
-            </AutoSizer>
-
-            {/* <AutoSizer style={{ height: "400px", width:"800px" }}>
-              {({ height, width }) => (
-                  <LeaseGraph
-                    leaseData={leaseData}
-                    height={height}
-                    width={width}
-                  />
-              )}
-          </AutoSizer> */}
-
-          </div>
-
-          {/* <div className="col">
-            <MapContainer ref={mapRef} center={currentLocation} zoom={zoom}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              />        
-              <Markers venues={data.venues}/>
-            </MapContainer>
-          </div> */}
-
-          <div className="col">
+          <div className="col mt-5">
             <MyMap />
           </div>
+          
+        </div>
 
-          {/* <div className="row m-5">
-            <div className="col-2">
-             <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
-            </div>
-          </div> */}
-
-          <div className="row">
+        <div className="row">
             <List
               properties={this.state.properties}
               delete={this.deleteProperty}
@@ -388,8 +361,6 @@ class Manager extends React.Component {
               tenants={this.state.tenants}
               search={this.state.search}
             />
-          </div>
-
         </div>
 
         <div>
