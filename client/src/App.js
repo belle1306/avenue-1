@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./App.css";
 import Nav from './component/Nav';
@@ -10,26 +11,44 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import ProtectedRoute from "./auth/protected-route";
 import bgVideo from "./assets/images/pexels_02.mp4";
 import Logo from "./component/Logo/Logo";
-import notLoggedIn from "./assets/images/notLoggedIn.png";
 import Footer from "./component/Footer";
 import FacebookLogin from 'react-facebook-login';
-// import { Card, Image } from 'react-bootstrap';
+import email from "../src/assets/email.json";
+require('dotenv').config();
+// const env = require("dotenv").config();
+// require("dotenv").config();
+// const mysql = require("mysql");
+console.log(process.env, "ENV<<")
 
 function App() {
   const [login, setLogin] = useState(false);
   const [data, setData] = useState(null);
   const [picture, setPicture] = useState(null);
+  const [isManager, setManager] = useState(false);
+  const [isOwner, setOwner] = useState(false);
+  const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
+  const OWNER_EMAIL = "jaseslin@gmail.com";
+  const OWNER_EMAIL_2 = "prakashnitza@gmail.com";
 
   const responseFacebook = (response) => {
-    console.log(response);
+    // console.log(response);
     setData(response);
     setPicture(response.picture.data.url);
     if (response.accessToken) {
       setLogin(true);
+      // (response.email === MANAGER_EMAIL) ?
+      (response.email === process.env.MANAGER_EMAIL) ?
+        setManager(true) :
+        setOwner(true);
     } else {
       setLogin(false);
     }
+    console.log(isManager, "Manager<<");
+    console.log(isOwner, "Owner<<");
+    console.log(process.env.REACT_APP_MANAGER_EMAIL, "EMAIL<<");
   }
+
+
 
   return (
     <div>
@@ -37,12 +56,13 @@ function App() {
         {/* (isLoggedIn) ? <NavLoggedIn /> : <Nav /> */}
         <Nav />
         <Switch>
+          <Route path="/owner" exact component={
+            isOwner ? OwnerHome : Home} />
           <Route path="/" exact component={Home} />
-          <Route path="/owner" exact component={OwnerHome} />
-          <Route path="/manager" component={Manager} />
+
+          <Route path="/manager" exact component={isManager ? Manager : Home} />
           <Route path="/login" component={Login} />
-          {/* <ProtectedRoute exact path="/owner/:id" component={Owner} /> */}
-          <Route path="/owner/:id" component={Owner} />
+          <Route path="/owner/:id" exact component={isOwner ? Owner : Home} />
         </Switch>
       </Router>
 

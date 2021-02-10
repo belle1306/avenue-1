@@ -1,0 +1,32 @@
+{
+    "Manager": [
+        {
+            "email": "lillian1111@gmail.com"            
+        },
+        {
+            "email": "ll"
+        },
+        {
+            "email": "prakashnitza@gmail.com"
+        },
+        {
+            "email": "Thailand"
+        }
+    ],
+    "Owner":[
+        {
+            "email": "lil",
+            "id": "1"            
+        },
+        {
+            "email": "jaseslin@gmail.com",
+            "id": "2"            
+        },
+        {
+            "email": "Indonesia"
+        },
+        {
+            "email": "Thailand"
+        }
+    ]
+}
