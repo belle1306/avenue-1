@@ -11,7 +11,7 @@ const VenueMarkers = (props) => {
       key={index} 
       position={venue.geometry} 
       icon={VenueLocationIcon}
-    >
+    > 
     <MarkerPopup data={venue}/>
     </Marker>
   ));  
