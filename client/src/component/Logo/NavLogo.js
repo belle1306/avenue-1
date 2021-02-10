@@ -6,6 +6,6 @@ const NavLogo = (props) => (
     <div className={classes.Logo}>
         <img src={navLogo} alt="brand logo" width="70" height="70"/>
     </div>
-);
+); 
 
 export default NavLogo;

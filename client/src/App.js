@@ -46,9 +46,9 @@ const Home = () => (
 
 const OwnerHome = () => (
   <div>
-    <div className="col pt-5 text-center text-light" id="ownerHomeimg">
-        <h2 className="display-2 text-center">You're not on Avenue yet,</h2>
-        <button className="btn btn-secondary btn-lg text-light">but you're one step away.</button>      
+    <div className="text-position" id="ownerHomeimg">
+        <h2 className="display-2 text-end">You're not on Avenue yet, &nbsp;</h2>
+        <button id="btn-redirect" className="btn btn-secondary btn-lg text-light">but you're one step away.</button>      
     </div>
     <Footer />
   </div>

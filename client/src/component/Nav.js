@@ -14,15 +14,16 @@ function Nav() {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-5">
                     {/* <Logo /> */}
+                    <h1 className="text-white">A</h1>
                     <NavLogo />
                     <h1 className="text-white m-4">Avenue</h1>
-                    <li className="nav-item active mt-4"><Link to="/" className="nav-link">Home</Link></li>
-                    <li className="nav-item mt-4"><Link to="/manager" className="nav-link">Manager</Link></li>
-                    <li className="nav-item mt-4"><Link to="/owner" className="nav-link">Owner</Link></li>
+                    <li className="nav-item active mt-4 px-5"><Link to="/" className="nav-link">Home</Link></li>
+                    <li className="nav-item mt-4 px-5"><Link to="/manager" className="nav-link">Manager</Link></li>
+                    <li className="nav-item mt-4 px-5"><Link to="/owner" className="nav-link">Owner</Link></li>
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
-                    <li className="nav-item"><Facebook /></li>
-                    <li className="nav-item "><AuthNav /></li>
+                    <li className="nav-item px-5"><Facebook /></li>
+                    <li className="nav-item px-5"><AuthNav /></li>
                 </ul>
             </div>
         </nav>
