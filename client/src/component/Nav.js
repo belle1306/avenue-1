@@ -12,17 +12,17 @@ function Nav() {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav mr-5">
                     {/* <Logo /> */}
                     <NavLogo />
                     <h1 className="text-white m-4">Avenue</h1>
-                    <li className="nav-item active"><Link to="/" className="nav-link">Home</Link></li>
-                    <li className="nav-item"><Link to="/manager" className="nav-link">Manager</Link></li>
-                    <li className="nav-item"><Link to="/owner" className="nav-link">Owner</Link></li>
+                    <li className="nav-item active mt-4"><Link to="/" className="nav-link">Home</Link></li>
+                    <li className="nav-item mt-4"><Link to="/manager" className="nav-link">Manager</Link></li>
+                    <li className="nav-item mt-4"><Link to="/owner" className="nav-link">Owner</Link></li>
                 </ul>
-                <ul className="nav-links">
-                    <li className="float-right"><Facebook /></li>
-                    <li className="float-right"><AuthNav /></li>
+                <ul className="navbar-nav my-2 my-lg-0">
+                    <li className="nav-item"><Facebook /></li>
+                    <li className="nav-item "><AuthNav /></li>
                 </ul>
             </div>
         </nav>

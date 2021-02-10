@@ -46,11 +46,9 @@ const Home = () => (
 
 const OwnerHome = () => (
   <div>
-    <div className="text-position" id="ownerHomeimg">
-      {/* <img src={notLoggedIn} alt="owner is not logged in" id="ownerHomeimg"/> */}
-        {/* <h1 className="display-1 text-center"><Logo />Avenue</h1> */}
-        <h1>You're not on Avenue yet,</h1>
-        <button className="btn btn-dark">but you're one step away.</button>      
+    <div className="col pt-5 text-center text-light" id="ownerHomeimg">
+        <h2 className="display-2 text-center">You're not on Avenue yet,</h2>
+        <button className="btn btn-secondary btn-lg text-light">but you're one step away.</button>      
     </div>
     <Footer />
   </div>
