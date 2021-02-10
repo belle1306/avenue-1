@@ -329,7 +329,7 @@ class Manager extends React.Component {
 
             <div className="row">
               <div className="col">
-                <input className="searchInput" type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search property" />
+              <input className="form-control mr-sm-2" type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search property" />
               </div>
             </div>
 
