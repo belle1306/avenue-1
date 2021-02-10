@@ -76,8 +76,7 @@ class Owner extends React.Component {
         console.log(data,"reassign")
         console.log(`The signature request was reassigned to ${data.email}`);
       });
-    });
-    
+    });  
   }
 
   render() {
