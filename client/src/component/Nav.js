@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from'react-router-dom';
 // import Logo from "./Logo/Logo";
 import NavLogo from "./Logo/NavLogo";
-import Facebook from './Facebook';
+// import Facebook from './Facebook';
 import AuthNav from "./auth-nav";
 
 function Nav() {
@@ -22,7 +22,7 @@ function Nav() {
                     <li className="nav-item mt-4 px-5"><Link to="/owner" className="nav-link">Owner</Link></li>
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
-                    <li className="nav-item px-5"><Facebook /></li>
+                    {/* <li className="nav-item px-5"><Facebook /></li> */}
                     <li className="nav-item px-5"><AuthNav /></li>
                 </ul>
             </div>
