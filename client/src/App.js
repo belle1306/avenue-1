@@ -26,37 +26,32 @@ function App() {
   const [picture, setPicture] = useState(null);
   const [isManager, setManager] = useState(false);
   const [isOwner, setOwner] = useState(false);
-  const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
-  const OWNER_EMAIL = "jaseslin@gmail.com";
-  // const MANAGER_EMAIL = "jaseslin@gmail.com";
+  // const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
+  const OWNER_EMAIL = "lilliantoh111@hotmail.com";
+  // const OWNER_EMAIL = "jaseslin@gmail.com";
+  const MANAGER_EMAIL = "jaseslin@gmail.com";
   const OWNER_EMAIL_2 = "prakashnitza@gmail.com";
   const ownerEmail = owner.owners.map(e => e.email);
-  const [ownerId, setOwnerId] = useState(null);
-  const [state, setState] = useState([]);
+  const [oId, setId] = useState(null);
+  const [currentData, setCurrentData] = useState([]);
 
   useEffect(() => {
-    fetch("/propertymgmt/owners")
+
+    console.log(isOwner, "isOwner at start");
+    fetch("/propertymgmt/owners")  // should only happen for data.email
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setState(data)
-        console.log(state, "<<< state after set state");
+        setCurrentData(data)
+        console.log(currentData, "<<< state after set state");
       })
-    console.log(ownerEmail, "WE WANT TO COMPARE");
-    state.map(owner => {
-      console.log(ownerEmail, "ownerEmail JSON in state.map");
-      console.log(owner.owner_email, "owner email BACKEND in state.map");
-      ownerEmail.map(oe => {
-        if (oe === owner.owner_email) {
-          console.log(owner.id, "owner id backend AFTER COMPARE");
-          console.log(state, "state b4setOwnerId");
-          console.log(ownerId, "it should be null before setting owner ID");
-          setOwnerId(owner.id);
-          console.log(ownerId, "state for ownerId after set. this is the problem");
-          console.log(state, "state");
-        };
-      })
-    })
+    // console.log(ownerEmail, "WE WANT TO COMPARE");
+    // 
+    currentData.map(d => {
+      console.log(data.email , " from fb is compared with ", d.owner_email );
+      (d.owner_email === data.email) ? setId(d.id) : console.log("NOT FOUND");
+    });
+
   }, [isOwner])
 
   const responseFacebook = (response) => {
@@ -79,7 +74,7 @@ function App() {
     <div>
       <Router>
         {/* (isLoggedIn) ? <NavLoggedIn /> : <Nav /> */}
-        <Nav />
+        <Nav oId={oId}/>
         <div class="container">
           <div style={{ width: '600px' }}>
             <div>
@@ -110,9 +105,11 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/manager" exact component={isManager ? Manager : Home} />
           <Route path="/login" component={Login} />
-          <Route path="/owner" exact component={
-            isOwner ? OwnerHome : Home} />
-          <Route path={'/owner/:' + ownerId} exact component={Owner} />
+          <Route path="/owner/:id" exact component={isOwner ? Owner : OwnerHome} />
+          <div>
+            oId in Route:  
+            {oId}
+          </div>
         </Switch>
       </Router>
     </div>

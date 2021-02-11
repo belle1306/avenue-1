@@ -19,7 +19,8 @@ class Owner extends React.Component {
   }
   //mount all properties when page loads
    componentDidMount() {      
-    const { match: { params } } = this.props;  
+    const { match: { params } } = this.props; 
+    console.log(this.props, "this.props.match");
     fetch(`/propertymgmt/owners/${params.id}`)
       .then(res => res.json())
       .then(data => {
