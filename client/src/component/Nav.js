@@ -21,6 +21,7 @@ function Nav(props) {
                     <li className="nav-item active mt-4 px-5"><Link to="/" className="nav-link">Home</Link></li>
                     <li className="nav-item mt-4 px-5"><Link to="/manager" className="nav-link">Manager</Link></li>
                     <li className="nav-item mt-4 px-5"><Link to={`/owner/${props.oId}`} className="nav-link">Owner</Link></li>
+                    <li className="nav-item mt-4 px-5"><Link to="/register" className="nav-link">Register</Link></li>
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
                     {/* <li className="nav-item px-5"><Facebook /></li> */}

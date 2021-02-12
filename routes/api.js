@@ -48,6 +48,9 @@ router.get("/propertymgmt/owners/:id", (req, res) => {
     .catch(err => res.status(500).send(err));
 }); 
 
+router.post("/propertymgmt/managers", (req, res) => {
+  
+})
 // POST new property after user has a choice to select which owner
 // populate owner table with fake data
 router.post("/propertymgmt/properties", (req, res) => {

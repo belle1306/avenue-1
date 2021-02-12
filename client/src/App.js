@@ -27,8 +27,8 @@ function App() {
   const [isManager, setManager] = useState(false);
   const [isOwner, setOwner] = useState(false);
   // const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
-  const OWNER_EMAIL = "lilliantoh111@hotmail.com";
-  // const OWNER_EMAIL = "jaseslin@gmail.com";
+  // const OWNER_EMAIL = "lilliantoh111@hotmail.com";
+  const OWNER_EMAIL = "jaseslin@gmail.com";
   const MANAGER_EMAIL = "jaseslin@gmail.com";
   const OWNER_EMAIL_2 = "prakashnitza@gmail.com";
   const ownerEmail = owner.owners.map(e => e.email);
@@ -71,10 +71,10 @@ function App() {
     console.log(process.env.REACT_APP_MANAGER_EMAIL, "EMAIL<<");
   }
   return (
-    <div>
-      <Router>
+    <div>      
+      <Router>        
         {/* (isLoggedIn) ? <NavLoggedIn /> : <Nav /> */}
-        <Nav oId={oId}/>
+        <Nav oId={oId} />    
         <div class="container">
           <div style={{ width: '600px' }}>
             <div>
@@ -106,12 +106,9 @@ function App() {
           <Route path="/manager" exact component={isManager ? Manager : Home} />
           <Route path="/login" component={Login} />
           <Route path="/owner/:id" exact component={isOwner ? Owner : OwnerHome} />
-          <div>
-            oId in Route:  
-            {oId}
-          </div>
         </Switch>
       </Router>
+      
     </div>
   );
 }
