@@ -4,32 +4,48 @@
             "description": "Kuala Lumpur",
             "name": "Silver Skies",
             "geometry": [
-                3.139003,
-                101.686852
+                3.079140,
+                101.642650
             ]
         },
         {
             "description": "Australia",
             "name": "Jade",
             "geometry": [
-                -25.274399,
-                133.775131
+                -37.815340,
+                144.963230
             ]
         },
         {
             "description": "Indonesia",
             "name": "Country Heights",
             "geometry": [
-                -0.789275,
-                113.921326
+                -6.162990,
+                106.823710
             ]
         },
         {
             "description": "Thailand",
             "name": "Lakehouse",
             "geometry": [
-                8.339003,
-                99.686852
+                13.778370,
+                100.455050
+            ]
+        },
+        {
+            "description": "India",
+            "name": "The Imperial",
+            "geometry": [
+                28.632430,
+                77.218790
+            ]
+        },
+        {
+            "description": "Barcelona",
+            "name": "Grand Hyatt",
+            "geometry": [
+                41.442770,
+                2.181020
             ]
         }
     ]
