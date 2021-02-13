@@ -14,7 +14,7 @@ class Owner extends React.Component {
       // helloUrl: "",
       properties: [],
       ownerId: "",
-      leaseid: "",
+      leaseid: ""
     };
   }
   //mount all properties when page loads
@@ -27,9 +27,8 @@ class Owner extends React.Component {
         this.setState({
           properties: data
         });
-        // this.getUrl();
       })
-      .catch(err => console.log(err));
+       .catch(err => console.log(err));
   }
 
   // getUrl() {
@@ -61,7 +60,7 @@ class Owner extends React.Component {
     const client = new HelloSign({
       clientId: "0ce014a59e087c76d07bb63819c363e9"
     });
-    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=d44b0c9aff271198c15ded43b559b9f1&token=20a7f7c6ae7dd169330d1a6145a092c1", {
+    client.open("https://app.hellosign.com/editor/embeddedSign?signature_id=0ad041097381cffef2e3552e85f3fd3b&token=26f1fe60e7f9dac0249e9ba7ccdc074a", {
       // url: "SIGN_URL",
       allowCancel: true,
       skipDomainVerification: true,
