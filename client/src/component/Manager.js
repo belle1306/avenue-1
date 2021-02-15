@@ -295,7 +295,7 @@ class Manager extends React.Component {
         </Layout>
 
         <div className="row m-5">
-          <div className="col-2 m-5">
+          <div className="col-2">
             <div className="card-body text-light text-center bg-primary mb-3 rounded">
               <h1 className="card-title">{numProperties}</h1>
               <p className="card-text">properties under management</p>
@@ -345,7 +345,7 @@ class Manager extends React.Component {
             )}
           </AutoSizer>
 
-          <div className="col mt-5">
+          <div className="col-2">
             <MyMap />
           </div>
           

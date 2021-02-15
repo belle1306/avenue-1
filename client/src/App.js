@@ -21,7 +21,8 @@ function App() {
   const [isOwner, setOwner] = useState(false);
   const [oId, setId] = useState(null);
   const [currentData, setCurrentData] = useState([]);
-  const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
+  // const MANAGER_EMAIL = "lilliantoh111@hotmail.com";
+  const MANAGER_EMAIL = "jaseslin@gmail.com";
 
   useEffect(() => {
     console.log(isOwner, "isOwner at start");
